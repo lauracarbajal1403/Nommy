@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
-
+    
     console.log("MENSAJES RECIBIDOS:", messages);
     console.log(
       "API KEY EXISTE:",
@@ -17,37 +17,52 @@ export async function POST(req: Request) {
       );
     }
 
+    // Filtrar mensajes vacíos o inválidos
+    const validMessages = messages
+      .filter((msg: any) => msg.content && msg.content.trim() !== "")
+      .map((msg: any) => ({
+        role: msg.role, // OpenAI usa "user", "assistant", "system"
+        content: msg.content.trim()
+      }));
+
+    // Verificar que hay al menos un mensaje válido
+    if (validMessages.length === 0) {
+      return NextResponse.json(
+        { error: "No hay mensajes válidos para procesar" },
+        { status: 400 }
+      );
+    }
+
+    console.log("MENSAJES ENVIADOS A OPENAI:", JSON.stringify(validMessages, null, 2));
+
     const openaiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.OPENAI_API_KEY}`,
+      "https://api.openai.com/v1/chat/completions",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
         },
         body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts: [{ text: messages?.[0]?.content || "Hola Gemini" }]
-            }
-          ]
+          model: "gpt-3.5-turbo", // o "gpt-4" si tienes acceso
+          messages: validMessages,
+          temperature: 0.7,
         }),
       }
     );
 
     if (!openaiRes.ok) {
       const err = await openaiRes.text();
-      console.error("Google Gemini error:", err);
+      console.error("OpenAI error:", err);
       return NextResponse.json(
-        { error: "Error desde Google Gemini" },
+        { error: "Error desde OpenAI" },
         { status: 500 }
       );
     }
 
     const result = await openaiRes.json();
-
     return NextResponse.json({
-      text: result.candidates[0].content.parts[0].text,
+      text: result.choices[0].message.content,
     });
   } catch (error) {
     console.error("API ERROR:", error);
