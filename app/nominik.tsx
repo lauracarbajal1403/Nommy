@@ -36,7 +36,7 @@ export default function NominikChatbot() {
     if (isOpen && messages.length === 0) {
       setTimeout(() => {
         addBotMessage(
-          '¡Hola! Soy Nominik 👋, tu asistente virtual de Nommy. Estoy aquí para ayudarte con cualquier pregunta sobre nómina, RRHH o lo que necesites. ¿En qué puedo ayudarte hoy? <br/>Puedes consultar nuestro <a  href="https://drive.google.com/file/d/1cFTxtE8PW_hOgmomy2i56W1SArO7J-dV/view?usp=sharing" class ="text-[#4db8a8] font-semibold" target="_blank" rel="noopener noreferrer">aviso de privacidad</a>.'
+          '¡Hola! Soy Nominik 👋, tu asistente virtual de Nommy. Estoy aquí para ayudarte con cualquier pregunta sobre nómina, RRHH o lo que necesites. ¿En qué puedo ayudarte hoy? Puedes consultar nuestro aviso de privacidad.'
         );
       }, 500);
     }
@@ -202,7 +202,7 @@ Nota: Preguntas como estas o similares deben estar orientadas a respuestas que s
               {/* Gradient background */}
               <div className="relative h-16 w-16 rounded-full bg-gradient-to-br from-[#4db8a8] to-[#3da393] shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[#4db8a8]/50">
                 <img
-                  src="/images/design-mode/nominik.jpg"
+                  src="/nominik-avatar.png"
                   alt="Nominik"
                   className="h-10 w-10 rounded-full"
                   onError={(e) => {
@@ -235,7 +235,7 @@ Nota: Preguntas como estas o similares deben estar orientadas a respuestas que s
               <div className="relative">
                 <div className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center ring-2 ring-white/30">
                   <img
-                    src="/images/design-mode/nominik.jpg"
+                    src="/nominik-avatar.png"
                     alt="Nominik"
                     className="h-10 w-10 rounded-full"
                     onError={(e) => {
@@ -285,7 +285,7 @@ Nota: Preguntas como estas o similares deben estar orientadas a respuestas que s
                 {message.role === 'bot' && (
                   <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#4db8a8] to-[#3da393] flex items-center justify-center flex-shrink-0 shadow-md">
                     <img
-                      src="/images/design-mode/nominik.jpg"
+                      src="/nominik-avatar.png"
                       alt="N"
                       className="h-6 w-6 rounded-full"
                       onError={(e) => {
@@ -304,9 +304,10 @@ Nota: Preguntas como estas o similares deben estar orientadas a respuestas que s
                       : 'bg-white text-gray-800 border border-gray-100 rounded-bl-md'
                   }`}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                    {message.text}
-                  </p>
+                  <div 
+                    className="text-sm leading-relaxed whitespace-pre-wrap"
+                    dangerouslySetInnerHTML={{ __html: message.text }}
+                  />
                 </div>
 
                 {message.role === 'user' && (
