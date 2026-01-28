@@ -23,8 +23,9 @@ export async function POST(req: Request) {
       parts: [{ text: msg.content }]
     }));
 
+    // URL corregida - usa v1 en lugar de v1beta
     const openaiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.OPENAI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.OPENAI_API_KEY}`,
       {
         method: "POST",
         headers: {
