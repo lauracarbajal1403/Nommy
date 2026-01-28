@@ -44,7 +44,7 @@ export async function POST(req: Request) {
           "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo", // o "gpt-4" si tienes acceso
+          model: "gpt-5-mini", // o "gpt-4" si tienes acceso
           messages: validMessages,
           temperature: 0.7,
         }),
