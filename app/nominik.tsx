@@ -202,7 +202,7 @@ Nota: Preguntas como estas o similares deben estar orientadas a respuestas que s
               {/* Gradient background */}
               <div className="relative h-16 w-16 rounded-full bg-gradient-to-br from-[#4db8a8] to-[#3da393] shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[#4db8a8]/50">
                 <img
-                  src="/nominik-avatar.png"
+                  src="/images/design-mode/nominik.jpg"
                   alt="Nominik"
                   className="h-10 w-10 rounded-full"
                   onError={(e) => {
@@ -235,7 +235,7 @@ Nota: Preguntas como estas o similares deben estar orientadas a respuestas que s
               <div className="relative">
                 <div className="h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center ring-2 ring-white/30">
                   <img
-                    src="/nominik-avatar.png"
+                    src="/images/design-mode/nominik.jpg"
                     alt="Nominik"
                     className="h-10 w-10 rounded-full"
                     onError={(e) => {
