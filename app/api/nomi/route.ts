@@ -35,8 +35,9 @@ export async function POST(req: Request) {
 
     console.log("CONTENIDOS ENVIADOS A GEMINI:", JSON.stringify(geminiContents, null, 2));
 
+    // Usar v1beta y gemini-1.5-flash-latest
     const openaiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.OPENAI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.OPENAI_API_KEY}`,
       {
         method: "POST",
         headers: {
