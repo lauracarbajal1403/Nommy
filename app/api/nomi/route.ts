@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
-
+    
     console.log("MENSAJES RECIBIDOS:", messages);
     console.log(
       "API KEY EXISTE:",
@@ -17,6 +17,12 @@ export async function POST(req: Request) {
       );
     }
 
+    // Convertir el formato de mensajes de OpenAI a Gemini
+    const geminiContents = messages.map((msg: any) => ({
+      role: msg.role === "assistant" ? "model" : "user",
+      parts: [{ text: msg.content }]
+    }));
+
     const openaiRes = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.OPENAI_API_KEY}`,
       {
@@ -25,12 +31,7 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts: [{ text: messages?.[0]?.content || "Hola Gemini" }]
-            }
-          ]
+          contents: geminiContents
         }),
       }
     );
@@ -45,7 +46,6 @@ export async function POST(req: Request) {
     }
 
     const result = await openaiRes.json();
-
     return NextResponse.json({
       text: result.candidates[0].content.parts[0].text,
     });
