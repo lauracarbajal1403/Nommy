@@ -50,6 +50,7 @@ export default function Navigation() {
             >
               Precios
             </Link>
+            {/*}
             <Link
               href="/resources"
               className={`transition-colors duration-300 ${
@@ -58,6 +59,7 @@ export default function Navigation() {
             >
               Recursos
             </Link>
+            */}
             <Link
               href="/demo"
               className="px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:scale-105"
