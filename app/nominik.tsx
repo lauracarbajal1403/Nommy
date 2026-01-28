@@ -285,7 +285,7 @@ Nota: Preguntas como estas o similares deben estar orientadas a respuestas que s
                 {message.role === 'bot' && (
                   <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#4db8a8] to-[#3da393] flex items-center justify-center flex-shrink-0 shadow-md">
                     <img
-                      src="/nominik-avatar.png"
+                      src="/images/design-mode/nominik.jpg"
                       alt="N"
                       className="h-6 w-6 rounded-full"
                       onError={(e) => {
