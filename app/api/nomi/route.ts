@@ -17,13 +17,24 @@ export async function POST(req: Request) {
       );
     }
 
-    // Convertir el formato de mensajes de OpenAI a Gemini
-    const geminiContents = messages.map((msg: any) => ({
-      role: msg.role === "assistant" ? "model" : "user",
-      parts: [{ text: msg.content }]
-    }));
+    // Filtrar mensajes vacíos o inválidos y convertir al formato de Gemini
+    const geminiContents = messages
+      .filter((msg: any) => msg.content && msg.content.trim() !== "")
+      .map((msg: any) => ({
+        role: msg.role === "assistant" ? "model" : "user",
+        parts: [{ text: msg.content.trim() }]
+      }));
 
-    // URL corregida - usa v1 en lugar de v1beta
+    // Verificar que hay al menos un mensaje válido
+    if (geminiContents.length === 0) {
+      return NextResponse.json(
+        { error: "No hay mensajes válidos para procesar" },
+        { status: 400 }
+      );
+    }
+
+    console.log("CONTENIDOS ENVIADOS A GEMINI:", JSON.stringify(geminiContents, null, 2));
+
     const openaiRes = await fetch(
       `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.OPENAI_API_KEY}`,
       {
