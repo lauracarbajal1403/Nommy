@@ -7,7 +7,29 @@ export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
-    // 1️⃣ OpenAI
+    if (!process.env.OPENAI_API_KEY) {
+      return NextResponse.json(
+        { error: "OPENAI_API_KEY no definida" },
+        { status: 500 }
+      );
+    }
+
+    // 1️⃣ Limpiar mensajes
+    const validMessages = messages
+      .filter((msg: any) => msg.content && msg.content.trim() !== "")
+      .map((msg: any) => ({
+        role: msg.role,
+        content: msg.content.trim(),
+      }));
+
+    if (validMessages.length === 0) {
+      return NextResponse.json(
+        { error: "No hay mensajes válidos" },
+        { status: 400 }
+      );
+    }
+
+    // 2️⃣ Llamar a OpenAI
     const openaiRes = await fetch(
       "https://api.openai.com/v1/chat/completions",
       {
@@ -18,44 +40,40 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
-          messages,
-          temperature: 0.6,
+          messages: validMessages,
+          temperature: 0.7,
         }),
       }
     );
 
-    if (!openaiRes.ok) {
-      throw new Error("OpenAI error");
-    }
-
     const result = await openaiRes.json();
     const assistantReply = result.choices[0].message.content;
 
-    // 2️⃣ Conversación completa (user + assistant)
+    // 3️⃣ Conversación completa
     const fullConversation = [
-      ...messages,
+      ...validMessages,
       { role: "assistant", content: assistantReply },
     ];
 
-    // 3️⃣ Formatear conversación para email
+    // 4️⃣ HTML bonito para correo
     const conversationHtml = fullConversation
       .map(
         (msg) => `
-          <p>
-            <strong>${msg.role === "user" ? "Usuario" : "Assistant"}:</strong><br/>
-            ${msg.content}
-          </p>
-        `
+        <p>
+          <strong>${msg.role === "user" ? "Usuario" : "Nominik"}:</strong><br/>
+          ${msg.content}
+        </p>
+      `
       )
       .join("");
 
-    // 4️⃣ Enviar correo
+    // 5️⃣ Enviar correo
     await resend.emails.send({
       from: "Nominik <onboarding@nommy.mx>",
       to: ["ventas@nommy.mx"],
-      subject: "💬 Nueva conversación en Nominik",
+      subject: "🧠 Nueva conversación – Asesoría solicitada",
       html: `
-        <h3>Conversación completa del chatbot</h3>
+        <h2>Conversación completa del chatbot</h2>
         ${conversationHtml}
       `,
     });
