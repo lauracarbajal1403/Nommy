@@ -1,15 +1,13 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { MailService } from "@/lib/mail.service"
 
 export async function POST(request: Request) {
   try {
-    // Check if API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error("[v0] RESEND_API_KEY is not configured")
+    // Check if SMTP is configured
+    if (!process.env.SMTP_USER || !(process.env.SMTP_PASSWORD || process.env.SMTP_PASS)) {
+      console.error("[send-demo-request] SMTP credentials are not configured")
       return NextResponse.json(
-        { error: "Email service is not configured. Please add RESEND_API_KEY environment variable." },
+        { error: "Email service is not configured. Please add SMTP environment variables." },
         { status: 500 },
       )
     }
@@ -22,12 +20,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    console.log("[v0] Sending demo request email to:", recipientEmail || "ventas@nommy.mx")
+    const recipient = recipientEmail || "ventas@nommy.mx"
+    console.log("[send-demo-request] Sending demo request email to:", recipient)
 
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: "NOMMY Demo <onboarding@resend.dev>",
-      to: recipientEmail || "ventas@nommy.mx",
+    // Send email using MailService
+    const result = await MailService.SendMail({
+      to: recipient,
       replyTo: email,
       subject: `Nueva solicitud de demo de NOMMY - ${company}`,
       html: `
@@ -98,15 +96,14 @@ export async function POST(request: Request) {
       `,
     })
 
-    if (error) {
-      console.error("[v0] Resend error:", error)
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
-
-    console.log("[v0] Email sent successfully:", data)
-    return NextResponse.json({ success: true, data }, { status: 200 })
+    console.log("[send-demo-request] Email sent successfully:", result.messageId)
+    return NextResponse.json({ 
+      success: true, 
+      messageId: result.messageId,
+      accepted: result.accepted 
+    }, { status: 200 })
   } catch (error) {
-    console.error("[v0] Error in send-demo-request API:", error)
+    console.error("[send-demo-request] Error sending email:", error)
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to send email" },
       { status: 500 },

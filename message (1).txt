@@ -1,0 +1,156 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { V3EvalUsecase, V3EvalAnswerUsecase } from '@repo/repositories';
+import { getCurrentUser } from '@repo/utils/server';
+import { generateEvaluationToken } from '@/lib/jwt';
+import { MailService } from '@repo/services';
+
+const EMAIL_TEMPLATE = `
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div style="width: 100%; background-color: #f5f5f5; justify-content: center; align-items: center; padding: 12px;">
+      <div style="margin: auto; max-width: 600px; width: 100%;">
+        <div style="padding: 16px; border-radius: 15px; background-color: #ffffff; margin-bottom: 12px; text-align: left;">
+          <img src="https://app.nommy.mx/nommy.small.png" style='display: block;' width="50" height="auto" />
+        </div>
+        <div style="justify-content:center; align-items: center; text-align: center; padding: 24px; border-radius: 15px; background-color: #fff;">
+          <div>
+            <h2 style="color: #333; margin-bottom: 8px;">Invitación a Evaluación</h2>
+            <h1 style="color: #37B5B1; margin-top: 0; font-size: 24px;">{{.templateName}}</h1>
+          </div>
+          <div style="color: #555; line-height: 1.6; margin: 20px 0;">
+            <p>Hola <strong>{{.evaluatorName}}</strong>,</p>
+            <p>Has sido invitado a participar en la evaluación de <strong>{{.targetName}}</strong> como parte de los procesos de <strong>{{.tenantName}}</strong>.</p>
+            <p>Tu participación es fundamental para nosotros. Por favor, haz clic en el siguiente botón para completar la evaluación:</p>
+          </div>
+          <div style="margin: 35px 0;">
+            <a href="{{.link}}" style="padding: 14px 28px; border-radius: 8px; background-color: #37B5B1; color: white; text-decoration: none; font-weight: bold; display: inline-block;">Contestar Evaluación</a>
+          </div>
+          <div style="color: #888; font-size: 13px; border-top: 1px solid #eee; pt: 15px;">
+            <p>Si el botón no funciona, puedes copiar y pegar el siguiente enlace en tu navegador:</p>
+            <p style="word-break: break-all; color: #37B5B1;">{{.link}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+`;
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const body = await request.json();
+    const { evaluatorId } = body;
+
+    const memberCookie = request.cookies.get('member-eval')?.value;
+    if (!memberCookie) {
+      return NextResponse.json({ error: 'Tenant no encontrado' }, { status: 401 });
+    }
+
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 401 });
+    }
+
+    const selectedMember = user.members?.find((m: any) => m.id.toString() === memberCookie);
+    if (!selectedMember?.tenant?.id) {
+      return NextResponse.json({ error: 'Tenant no encontrado' }, { status: 400 });
+    }
+
+    const evaluation = await V3EvalUsecase.CRUD.simpleFindOne(id, {
+      populate: ['template', 'evaluated', 'area', 'evaluators.user', 'tenant'],
+    });
+
+    if (!evaluation) {
+      return NextResponse.json({ error: 'Evaluación no encontrada' }, { status: 404 });
+    }
+
+    const answers = await V3EvalAnswerUsecase.TOOLS.getAnswersByEvaluation(evaluation.id);
+
+    if (evaluation?.attributes?.tenant?.data?.id !== selectedMember.tenant.id) {
+      return NextResponse.json({ error: 'No tienes acceso' }, { status: 403 });
+    }
+
+    const evaluators = evaluation.attributes.evaluators?.data || [];
+    const templateName = evaluation.attributes.template?.data?.attributes?.name || 'Evaluación';
+    const targetName = evaluation.attributes.evaluated?.data
+      ? `${evaluation.attributes.evaluated.data.attributes.name} ${evaluation.attributes.evaluated.data.attributes.firstLastName || ''}`.trim()
+      : evaluation.attributes.area?.data?.attributes?.name || 'la organización';
+    const tenantName = selectedMember.tenant.name;
+
+    const protocol = request.headers.get('x-forwarded-proto') || 'http';
+    const host = request.headers.get('host') || 'localhost:3002';
+    const baseUrl = `${protocol}://${host}`;
+
+    // Filter evaluators to send
+    let evaluatorsToSend = evaluators;
+    if (evaluatorId) {
+      evaluatorsToSend = evaluators.filter(e => e.id === parseInt(evaluatorId));
+    } else {
+      // If sending to all, only send to those who HAVEN'T answered yet
+      const answeredEvaluatorIds = new Set(
+        (answers || []).map((a: any) => a.attributes.owner?.data?.id)
+      );
+      evaluatorsToSend = evaluators.filter(e => !answeredEvaluatorIds.has(e.id));
+    }
+
+    const results = [];
+    for (const evaluator of evaluatorsToSend) {
+      // Prefer user email over personal email
+      const userEmail = evaluator.attributes?.user?.data?.attributes?.email;
+      const personalEmail = evaluator.attributes?.email;
+      const email = userEmail || personalEmail;
+      if (!email) continue;
+
+      const tokenPayload: any = {
+        evaluationId: evaluation.id,
+        evaluatorId: evaluator.id,
+        evaluatorEmail: email,
+        evaluatorName: `${evaluator.attributes?.name || ''} ${evaluator.attributes?.firstLastName || ''}`.trim(),
+        templateId: evaluation.attributes.template?.data?.id,
+        tenantId: selectedMember.tenant.id,
+      };
+
+      if (evaluation.attributes.evaluated?.data?.id) {
+        tokenPayload.evaluatedId = evaluation.attributes.evaluated.data.id;
+      } else if (evaluation.attributes.area?.data?.id) {
+        tokenPayload.areaId = evaluation.attributes.area.data.id;
+      }
+
+      const token = generateEvaluationToken(tokenPayload);
+      const link = `${baseUrl}/eval/${token}`;
+
+      const html = MailService.FormatHTMLWithVariables(EMAIL_TEMPLATE, {
+        templateName,
+        evaluatorName: tokenPayload.evaluatorName,
+        targetName,
+        tenantName,
+        link
+      });
+
+      try {
+        await MailService.SendMail({
+          to: email,
+          subject: `Invitación: Evaluación de ${targetName}`,
+          html: html,
+        });
+        results.push({ id: evaluator.id, status: 'sent' });
+      } catch (error) {
+        console.error(`Error sending email to ${email}:`, error);
+        results.push({ id: evaluator.id, status: 'error' });
+      }
+    }
+
+    return NextResponse.json({ success: true, results });
+  } catch (error) {
+    console.error('Error in send-email route:', error);
+    return NextResponse.json({ error: 'Error interno' }, { status: 500 });
+  }
+}
