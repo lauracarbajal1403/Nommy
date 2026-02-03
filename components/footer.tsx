@@ -90,6 +90,13 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   
                 >Política de privacidad</a>
+                <a
+                  className="text-turquoise hover:text-navy transition-colors duration-300 text-sm mt-2 sm:mt-0"
+                  href="https://drive.google.com/file/d/1YaydY0xHt1kNv28WGSQoBp-I2-ZJ_CWk/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  
+                >Aviso de privacidad</a>
               </div>
             </div>
           </div>
