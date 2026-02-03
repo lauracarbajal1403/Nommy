@@ -26,7 +26,7 @@ export default function PricingPage() {
       subtitle: "De 20 a 299 colaboradores",
       texto:
         "Si buscas optimizar procesos, integrar tecnología y darle más valor a tus equipos, este es tu mejor aliado",
-      intro: "Todo lo que incluye el Plan Pymes más...",
+      intro: "Todo lo que incluye el Plan Basic más...",
       features: ["Conexión IDSE", "Reclutamiento asistido por IA", "APP móvil para colaboradores"],
       price: "$6 USD",
       oldPrice: "$6 USD",
