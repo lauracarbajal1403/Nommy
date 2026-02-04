@@ -91,13 +91,13 @@ export default function ResourcesPage() {
           <ScrollAnimation>
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
               <Sparkles className="w-4 h-4 text-yellow-300" />
-              <span className="text-sm text-white font-medium">Nuevos recursos cada semana</span>
+              <span className="text-sm text-white font-medium">Tu blog favorito</span>
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-              Recursos para potenciar tu
+              Bienvenido a 
               <span className="block bg-gradient-to-r from-turquoise to-cyan-300 bg-clip-text text-transparent">
-                gestión de RRHH
+                Bloggy
               </span>
             </h1>
             
@@ -105,21 +105,7 @@ export default function ResourcesPage() {
               Aprende, mejora y mantente actualizado con contenido de calidad para tu equipo
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">50+</div>
-                <div className="text-sm text-gray-300">Recursos</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">10K+</div>
-                <div className="text-sm text-gray-300">Descargas</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">100%</div>
-                <div className="text-sm text-gray-300">Gratis</div>
-              </div>
-            </div>
+            
           </ScrollAnimation>
         </div>
       </section>
