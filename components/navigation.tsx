@@ -110,6 +110,15 @@ export default function Navigation() {
                 Precios
               </Link>
               <Link
+                href="/resources"
+                className={`block px-3 py-2 transition-colors duration-300 ${
+                  isActiveLink("/pricing") ? "text-turquoise" : "text-navy hover:text-turquoise"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                Recursos
+              </Link>
+              <Link
                 href="/demo"
                 className="block mx-3 my-2 px-6 py-3 rounded-full font-medium text-center transition-all duration-300 shadow-lg"
                 style={{ backgroundColor: "#152132", color: "#ffffff" }}
