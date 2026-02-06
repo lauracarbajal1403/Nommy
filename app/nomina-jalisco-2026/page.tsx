@@ -51,13 +51,13 @@ export default function NominaJalisco2026() {
 
         {/* Introduction */}
         <ScrollAnimation>
-          <div className="prose prose-lg max-w-none mb-12">
+          <div className="prose prose-lg max-w-none mb-12 text-justify">
             <div className="bg-[#FFFF00]-50 border-l-4 border-[#FFFF00]-400 p-6 rounded-r-xl mb-8">
               <div className="flex items-start gap-3">
                 <AlertTriangle className="w-6 h-6 text-[#FFFF00]-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold text-navy mb-2">Introducción</h3>
-                  <p className="text-gray-700 leading-relaxed mb-0">
+                  <p className="text-gray-700 leading-relaxed mb-0 text-justify">
                     Si tienes empleados en <strong>Guadalajara, Zapopan, o cualquier municipio de Jalisco</strong>, febrero de 2026 marca un punto de inflexión. La combinación de la implementación real de la Ley Federal del Trabajo (40 horas) con los nuevos requisitos del SAT en nómina electrónica crea una tormenta perfecta de cumplimiento. 
                   </p>
                 </div>
