@@ -1,168 +1,168 @@
-import { Download, BookOpen, Video, FileText, ArrowRight } from "lucide-react"
+import { BookOpen, Calendar, Clock, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import ScrollAnimation from "@/components/scroll-animation"
-import  NominikChatbot  from "@/app/nominik"
+import NominikChatbot from "@/app/nominik"
+
 export default function ResourcesPage() {
   const resources = [
     {
-      title: "5 errores comunes en el cierre de nómina",
-      description: "Aprende a identificar y evitar los errores más frecuentes que cometen los equipos de RRHH.",
+      title: "Nómina en Jalisco 2026",
+      description:
+        "Si eres empresario Jalisciense esta guía práctica es para ti. Te compartimos cómo la nómina de 2026 exige estos 3 cambios inmediatos.",
       category: "Blog",
       icon: BookOpen,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/bloggy.jpg",
+      link: "/nomina-jalisco-2026",
+      readTime: "5 min",
+      date: "15 Ene 2026",
     },
     {
-      title: "Plantilla gratuita para cálculo de aguinaldo",
-      description: "Descarga nuestra plantilla de Excel para calcular el aguinaldo de tus empleados.",
-      category: "Guía",
-      icon: FileText,
-      image: "/placeholder.svg?height=200&width=300",
+      title: "El SAT y la nómina electrónica 2.0",
+      description: "Vigilancia estricta en Jalisco",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/bloggy.jpg",
+      link: "/sat-nomina-electronica",
+      readTime: "4 min",
+      date: "10 Ene 2026",
     },
     {
-      title: "Video: Automatiza tu nómina con Nommy",
-      description: "Tutorial paso a paso para configurar y automatizar tu proceso de nómina.",
-      category: "Video",
-      icon: Video,
-      image: "/placeholder.svg?height=200&width=300",
-    },
-    {
-      title: "Guía completa de cumplimiento fiscal",
-      description: "Todo lo que necesitas saber sobre las obligaciones fiscales en nómina.",
-      category: "Guía",
-      icon: FileText,
-      image: "/placeholder.svg?height=200&width=300",
-    },
-    {
-      title: "Webinar: Tendencias en RRHH 2025", // Updated year from 2024 to 2025
-      description: "Descubre las últimas tendencias y mejores prácticas en recursos humanos.",
-      category: "Video",
-      icon: Video,
-      image: "/placeholder.svg?height=200&width=300",
-    },
-    {
-      title: "Checklist de onboarding de empleados",
-      description: "Lista completa para asegurar un proceso de incorporación exitoso.",
-      category: "Guía",
-      icon: FileText,
-      image: "/placeholder.svg?height=200&width=300",
+      title: 'El "Plus Jalisco": Prestaciones locales que impactan la nómina',
+      description: "Conoce cómo está siendo impactada tu nómina.",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/bloggy.jpg",
+      link: "/plus-jalisco-prestaciones",
+      readTime: "6 min",
+      date: "5 Ene 2026",
     },
   ]
 
-  const downloadables = [
-    {
-      title: "Excel de nómina",
-      description: "Plantilla completa para cálculos de nómina",
-    },
-    {
-      title: "Calendario fiscal",
-      description: "Fechas importantes para cumplimiento fiscal",
-    },
-    {
-      title: "Guía de onboarding",
-      description: "Proceso completo de incorporación de empleados",
-    },
-  ]
+  const [featured, ...articles] = resources
 
   return (
-    <div className="py-20">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <NominikChatbot />
-      <section className="bg-gradient-to-br from-navy to-turquoise py-20 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollAnimation>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">Recursos para potenciar tu gestión de RRHH</h1>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">Aprende, mejora y mantente actualizado con Nommy</p>
-          </ScrollAnimation>
-        </div>
+      {/* Hero */} 
+      <section className="relative bg-gradient-to-br from-navy via-navy to-turquoise py-24 text-white overflow-hidden"> 
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10">
+        </div> 
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+           <ScrollAnimation> 
+              <div className="text-center max-w-4xl mx-auto">
+                 <span className="inline-block px-4 py-2 bg-turquoise/20 rounded-full text-sm font-medium mb-6 border border-turquoise/30"> Centro de Recursos </span> 
+                 <h1 className="text-5xl font-bold mb-6"> Recursos para potenciar tu gestión de{" "} <span className="text-turquoise">RRHH</span> </h1> <p className="text-xl opacity-90"> Aprende, mejora y mantente actualizado con contenido especializado para tu empresa </p> 
+              </div> 
+            </ScrollAnimation>
+        </div> 
       </section>
 
-      {/* Content Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {resources.map((resource, index) => (
-              <ScrollAnimation key={index}>
-                <article className="card group cursor-pointer h-full">
-                  <div className="relative overflow-hidden rounded-lg mb-4">
+      {/* Featured Article */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <ScrollAnimation>
+            <Link href={featured.link}>
+              <article className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all group cursor-pointer">
+                <div className="grid md:grid-cols-2">
+                  <div className="relative h-64 md:h-auto overflow-hidden">
                     <img
-                      src={resource.image || "/placeholder.svg"}
-                      alt={resource.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      src={featured.image}
+                      alt={featured.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-turquoise text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {resource.category}
+                    <span className="absolute top-6 left-6 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                      ⭐ Destacado
+                    </span>
+                  </div>
+
+                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {featured.date}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {featured.readTime}
                       </span>
                     </div>
-                  </div>
 
-                  <div className="flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-turquoise transition-colors duration-300">
-                      {resource.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 flex-1">{resource.description}</p>
-                    <div className="flex items-center text-turquoise font-medium group-hover:translate-x-1 transition-transform duration-300">
-                      <span>Leer más</span>
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                    <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4 group-hover:text-turquoise transition-colors">
+                      {featured.title}
+                    </h2>
+
+                    <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                      {featured.description}
+                    </p>
+
+                    <div className="flex items-center text-turquoise font-semibold text-lg gap-2 group-hover:gap-3 transition-all">
+                      <span>Leer artículo completo</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
-                </article>
-              </ScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Downloadables Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollAnimation>
-            <h2 className="text-3xl font-bold text-navy text-center mb-12">Plantillas y Herramientas</h2>
-          </ScrollAnimation>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {downloadables.map((item, index) => (
-              <ScrollAnimation key={index}>
-                <div className="card text-center group">
-                  <div className="w-16 h-16 bg-turquoise bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Download className="w-8 h-8 text-turquoise" />
-                  </div>
-                  <h3 className="text-xl font-bold text-navy mb-2">{item.title}</h3>
-                  <p className="text-gray-600 mb-6">{item.description}</p>
-                  <button className="btn-secondary w-full group-hover:scale-110 hover:-translate-y-1 transition-transform duration-300 group">
-                    <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-                    <span className="group-hover:animate-pulse">Descargar</span>
-                  </button>
                 </div>
-              </ScrollAnimation>
-            ))}
-          </div>
+              </article>
+            </Link>
+          </ScrollAnimation>
         </div>
       </section>
 
-      {/* Newsletter Sign-Up */}
-      <section className="py-20 bg-gradient-to-br from-navy to-turquoise">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollAnimation>
-            <h2 className="text-3xl font-bold text-white mb-6">Recibe tips y recursos directamente en tu correo</h2>
-            <p className="text-lg text-gray-200 mb-8">
-              Mantente actualizado con las últimas tendencias y mejores prácticas en RRHH.
-            </p>
+      <section className="bg-navy/5 py-12">
+        <Link href="/demo">
+          <img
+            src="/bloggy.jpg"
+            alt="Blog Image"
+            className="w-full max-w-4xl mx-auto rounded-xl shadow-lg cursor-pointer"
+          />
+        </Link>
+      </section>
 
-            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Tu correo electrónico"
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-turquoise focus:border-transparent"
-                required
-              />
-              <button
-                type="submit"
-                className="bg-white text-navy px-6 py-3 rounded-full font-medium hover:scale-110 hover:-translate-y-1 hover:rotate-1 transition-all duration-300 whitespace-nowrap group"
-              >
-                <span className="group-hover:animate-pulse">Suscribirme</span>
-              </button>
-            </form>
-          </ScrollAnimation>
+      {/* Articles Grid */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {articles.map((resource, index) => (
+              <ScrollAnimation key={index}>
+                <Link href={resource.link}>
+                  <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all group h-full flex flex-col">
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={resource.image}
+                        alt={resource.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+
+                    <div className="p-6 flex flex-col flex-1">
+                      <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5" />
+                          {resource.date}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3.5 h-3.5" />
+                          {resource.readTime}
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-turquoise transition-colors">
+                        {resource.title}
+                      </h3>
+
+                      <p className="text-gray-600 mb-4 flex-1">
+                        {resource.description}
+                      </p>
+
+                      <div className="flex items-center text-turquoise font-semibold gap-1 group-hover:gap-2 transition-all">
+                        <span>Leer más</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              </ScrollAnimation>
+            ))}
+          </div>
         </div>
       </section>
     </div>
