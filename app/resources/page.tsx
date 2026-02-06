@@ -44,17 +44,29 @@ export default function ResourcesPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <NominikChatbot />
       {/* Hero */} 
-      <section className="relative bg-gradient-to-br from-navy via-navy to-turquoise py-24 text-white overflow-hidden"> 
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10">
-        </div> 
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-           <ScrollAnimation> 
-              <div className="text-center max-w-4xl mx-auto">
-                 <span className="inline-block px-4 py-2 bg-turquoise/20 rounded-full text-sm font-medium mb-6 border border-turquoise/30"> Centro de Recursos </span> 
-                 <h1 className="text-5xl font-bold mb-6"> Recursos para potenciar tu gestión de{" "} <span className="text-turquoise">RRHH</span> </h1> <p className="text-xl opacity-90"> Aprende, mejora y mantente actualizado con contenido especializado para tu empresa </p> 
-              </div> 
-            </ScrollAnimation>
-        </div> 
+      <section className="relative bg-gradient-to-br from-navy via-navy to-turquoise py-32 lg:py-40 text-white overflow-hidden"> 
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div> 
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ScrollAnimation> 
+            <div className="text-center max-w-4xl mx-auto">
+              <span className="inline-block px-4 py-2 bg-turquoise/20 backdrop-blur-sm rounded-full text-sm font-medium mb-8 border border-turquoise/30">
+                Centro de Recursos
+              </span> 
+              
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+                Recursos para potenciar tu gestión de{" "}
+                <span className="text-turquoise">RRHH</span>
+              </h1> 
+              
+              <p className="text-lg sm:text-xl lg:text-2xl opacity-90 leading-relaxed max-w-3xl mx-auto">
+                Aprende, mejora y mantente actualizado con contenido especializado para tu empresa
+              </p> 
+            </div> 
+          </ScrollAnimation>
+        </div>
+        
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       {/* Featured Article */}
@@ -110,7 +122,7 @@ export default function ResourcesPage() {
       <section className="bg-navy/5 py-12">
         <Link href="/demo">
           <img
-            src="/bloggy.jpg"
+            src="/Blog.jpg"
             alt="Blog Image"
             className="w-full max-w-4xl mx-auto rounded-xl shadow-lg cursor-pointer"
           />
