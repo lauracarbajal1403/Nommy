@@ -16,6 +16,7 @@ export default function ResourcesPage() {
       readTime: "5 min",
       date: "15 Ene 2026",
     },
+    {/*
     {
       title: "El SAT y la nómina electrónica 2.0",
       description: "Vigilancia estricta en Jalisco",
@@ -36,6 +37,7 @@ export default function ResourcesPage() {
       readTime: "6 min",
       date: "5 Ene 2026",
     },
+    */}
   ]
 
   const [featured, ...articles] = resources
@@ -44,13 +46,13 @@ export default function ResourcesPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <NominikChatbot />
       {/* Hero */} 
-      <section className="relative bg-gradient-to-br from-navy via-navy to-turquoise py-32 lg:py-40 text-white overflow-hidden"> 
+      <section className="relative bg-gradient-to-br from-navy via-navy to-turquoise py-32 lg:py-60 text-white overflow-hidden"> 
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div> 
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollAnimation> 
             <div className="text-center max-w-4xl mx-auto">
-              <span className="inline-block px-4 py-2 bg-turquoise/20 backdrop-blur-sm rounded-full text-sm font-medium mb-8 border border-turquoise/30">
+              <span className="inline-block px-4 py-4 bg-turquoise/20 backdrop-blur-sm rounded-full text-sm font-medium mb-8 border border-turquoise/30">
                 Centro de Recursos
               </span> 
               
@@ -129,7 +131,7 @@ export default function ResourcesPage() {
         </Link>
       </section>
 
-      {/* Articles Grid */}
+      {/* Articles Grid 
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -170,6 +172,7 @@ export default function ResourcesPage() {
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
+                    
                   </article>
                 </Link>
               </ScrollAnimation>
@@ -177,6 +180,7 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
+      */}
     </div>
   )
 }

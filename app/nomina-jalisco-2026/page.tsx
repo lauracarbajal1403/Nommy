@@ -1,4 +1,4 @@
-import { Calendar, Clock, ArrowLeft, CheckCircle, AlertTriangle, FileText, Building2, TrendingUp } from "lucide-react"
+import { Calendar, Clock, ArrowLeft, CheckCircle, AlertTriangle, FileText, Building2, TrendingUp, DollarSign, Users } from "lucide-react"
 import Link from "next/link"
 import ScrollAnimation from "@/components/scroll-animation"
 
@@ -33,7 +33,7 @@ export default function NominaJalisco2026() {
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock className="w-4 h-4" />
-                5 min de lectura
+                8 min de lectura
               </span>
             </div>
 
@@ -94,7 +94,7 @@ export default function NominaJalisco2026() {
         <ScrollAnimation>
           <section className="mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-8 text-center">
-              Los 3 Cambios Obligatorios
+              Los 3 Cambios Obligatorios (Enfocados en Jalisco)
             </h2>
 
             {/* Change 1 */}
@@ -177,31 +177,218 @@ export default function NominaJalisco2026() {
               </div>
             </div>
 
-            
+            {/* Change 2 */}
+            <div className="mb-12">
+              <div className="bg-white border-2 border-navy rounded-2xl overflow-hidden shadow-lg">
+                <div className="bg-gradient-to-r from-navy to-navy/80 p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl font-bold text-navy">2</span>
+                    </div>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight">
+                      El SAT y la Nómina Electrónica 2.0: Vigilancia Estricta en Jalisco
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="p-8">
+                  {/* Novedad 2026 */}
+                  <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-xl mb-6">
+                    <h4 className="text-xl font-bold text-navy mb-4 flex items-center gap-2">
+                      <DollarSign className="w-5 h-5 text-orange-600" />
+                      Novedad 2026
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      El Servicio de Administración Tributaria de la <strong>Región Occidente (con sede en GDL)</strong> prioriza auditorías a empresas que:
+                    </p>
+                    
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <p className="text-gray-700">
+                          Emiten CFDI de nómina con percepciones no registradas en el IMSS.
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <p className="text-gray-700">
+                          Tienen discrepancias entre lo pagado vía nómina electrónica y lo declarado en IMSS e INFONAVIT.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Caso Típico */}
+                  <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-xl mb-6">
+                    <h4 className="text-xl font-bold text-navy mb-3 flex items-center gap-2">
+                      <AlertTriangle className="w-5 h-5 text-purple-600" />
+                      Caso típico Jalisco
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      Empresas que dan vales de despensa superiores a la <strong>UMA ($141.70 diarios en 2026)</strong> y no los registran como percepción. 
+                      <strong className="text-purple-700"> El SAT ahora cruza datos con tiendas afiliadas.</strong>
+                    </p>
+                  </div>
+
+                  {/* Recomendación */}
+                  <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-xl">
+                    <h4 className="text-xl font-bold text-navy mb-3 flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      Recomendación urgente
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      Usar softwares como <strong className="text-turquoise">Nommy</strong> que genere recibos de nómina que contenga información completa como el CFDI entre otros aspectos relevantes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Change 3 */}
+            <div className="mb-12">
+              <div className="bg-white border-2 border-green-600 rounded-2xl overflow-hidden shadow-lg">
+                <div className="bg-gradient-to-r from-green-600 to-green-500 p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl font-bold text-green-600">3</span>
+                    </div>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight">
+                      El "Plus Jalisco": Prestaciones Locales que Impactan Nómina
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="p-8">
+                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                    <strong>Reglamento Interior de Trabajo del Estado de Jalisco (actualizado 2025)</strong> exige:
+                  </p>
+
+                  {/* Día de la Charreada */}
+                  <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl mb-6">
+                    <h4 className="text-xl font-bold text-navy mb-3">
+                      🐎 Día de la Charreada (14 de septiembre)
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      Día de descanso obligatorio pagado para todos los empleados del estado.
+                    </p>
+                  </div>
+
+                  {/* Fondos de Ahorro */}
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-6">
+                    <h4 className="text-xl font-bold text-navy mb-3">
+                      💰 Fondos de Ahorro
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      Muchas empresas jaliscienses los ofrecen como prestación competitiva. En 2026, deben reflejarse por separado en el CFDI de nómina, 
+                      <strong className="text-blue-700"> no como "otras percepciones"</strong>.
+                    </p>
+                  </div>
+
+                  {/* Teletrabajo */}
+                  <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-xl">
+                    <h4 className="text-xl font-bold text-navy mb-3">
+                      🏠 Teletrabajo en la ZMG
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed mb-3">
+                      Si tienes empleados en 3 municipios distintos (ej: empleado vive en Tlajomulco, oficina en Zapopan, y trabaja desde casa), 
+                      debes tener un anexo al contrato específico que detalle gastos de internet/energía.
+                    </p>
+                    <p className="text-gray-700 leading-relaxed">
+                      <strong>Estos no son salario</strong>, pero sí deducibles para la empresa.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ScrollAnimation>
+
+        {/* Checklist Section */}
+        <ScrollAnimation>
+          <section className="mb-16">
+            <div className="bg-gradient-to-br from-navy to-turquoise p-8 lg:p-10 rounded-2xl text-white shadow-2xl">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-8 flex items-center gap-3">
+                <CheckCircle className="w-9 h-9" />
+                Checklist de Supervivencia para Jalisco (Febrero 2026)
+              </h2>
+              
+              <div className="space-y-4">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/20 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 border-2 border-white rounded mt-1 flex-shrink-0"></div>
+                    <p className="text-lg leading-relaxed">
+                      Revisar todos los contratos (especialmente en manufactura y construcción) para ajustar horarios a 40 horas.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/20 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 border-2 border-white rounded mt-1 flex-shrink-0"></div>
+                    <p className="text-lg leading-relaxed">
+                      Capacitar a tu contador o externo en los nuevos lineamientos del SAT Occidente para nómina electrónica.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/20 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 border-2 border-white rounded mt-1 flex-shrink-0"></div>
+                    <div>
+                      <p className="text-lg leading-relaxed mb-2">
+                        Contratar un software de nómina que calcule automáticamente:
+                      </p>
+                      <ul className="ml-6 space-y-1 text-white/90">
+                        <li>• Prima dominical para sectores con turnos rotativos</li>
+                        <li>• Día de la Charreada como día festivo obligatorio</li>
+                        <li>• Límites de vales de despensa y fondos de ahorro</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/20 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 border-2 border-white rounded mt-1 flex-shrink-0"></div>
+                    <p className="text-lg leading-relaxed">
+                      Documentar esquemas de teletrabajo según el Código del Trabajo de Jalisco.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/20 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 border-2 border-white rounded mt-1 flex-shrink-0"></div>
+                    <p className="text-lg leading-relaxed">
+                      Realizar una auditoría previa cruzando nómina vs. IMSS antes del cierre de febrero.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
         </ScrollAnimation>
 
         {/* CTA Section */}
         <ScrollAnimation>
-          <div className="bg-gradient-to-br from-navy to-turquoise p-8 lg:p-12 rounded-2xl text-white text-center shadow-2xl">
-            <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-              ¿Necesitas ayuda para implementar estos cambios?
-            </h3>
-            <p className="text-lg opacity-90 mb-6 max-w-2xl mx-auto">
-              Nuestro equipo de expertos puede ayudarte a adaptar tu nómina a las nuevas regulaciones de 2026
+          <div className="bg-gradient-to-br from-turquoise via-turquoise to-navy p-8 lg:p-12 rounded-2xl text-white text-center shadow-2xl">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Users className="w-10 h-10" />
+              <h3 className="text-3xl lg:text-4xl font-bold">
+                Conoce Nommy
+              </h3>
+            </div>
+            <p className="text-xl lg:text-2xl opacity-95 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Compara cómo nuestra plataforma puede ayudarte a estar al día con las nuevas leyes en temas de nómina de acuerdo a la Ley 2026
             </p>
             <Link
               href="/demo"
-              className="inline-block bg-white text-navy px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="inline-block bg-white text-navy px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Solicitar Demo
+              Solicitar Demo Gratis
             </Link>
           </div>
         </ScrollAnimation>
-
-        {/* Share Section */}
-        
-      
       </article>
     </div>
   )
