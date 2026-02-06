@@ -302,12 +302,20 @@ export default function NominaJalisco2026() {
             </div>
           </section>
         </ScrollAnimation>
-
+        <section className="bg-navy/5 py-12">
+            <Link href="/demo">
+            <img
+                src="/Blog.jpg"
+                alt="Blog Image"
+                className="w-full max-w-4xl mx-auto rounded-xl shadow-lg cursor-pointer"
+            />
+            </Link>
+        </section>
         {/* Checklist Section */}
         <ScrollAnimation>
           <section className="mb-16">
-            <div className="bg-gradient-to-br from-navy to-turquoise p-8 lg:p-10 rounded-2xl text-white shadow-2xl">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-8 flex items-center gap-3">
+            <div className="bg-gradient-to-br from-navy to-turquoise p-8 lg:p-10 rounded-2xl text-white shadow-2xl text-justify">
+              <h2 className="text-3xl lg:text-2xl font-bold mb-8 flex items-center gap-3">
                 <CheckCircle className="w-9 h-9" />
                 Checklist de Supervivencia para Jalisco (Febrero 2026)
               </h2>
@@ -385,7 +393,7 @@ export default function NominaJalisco2026() {
               href="/demo"
               className="inline-block bg-white text-navy px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Solicitar Demo Gratis
+              Solicitar Demo 
             </Link>
           </div>
         </ScrollAnimation>
