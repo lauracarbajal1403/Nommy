@@ -43,6 +43,19 @@ export default function ResourcesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <NominikChatbot />
+      {/* Hero */} 
+      <section className="relative bg-gradient-to-br from-navy via-navy to-turquoise py-24 text-white overflow-hidden"> 
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10">
+        </div> 
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+           <ScrollAnimation> 
+              <div className="text-center max-w-4xl mx-auto">
+                 <span className="inline-block px-4 py-2 bg-turquoise/20 rounded-full text-sm font-medium mb-6 border border-turquoise/30"> Centro de Recursos </span> 
+                 <h1 className="text-5xl font-bold mb-6"> Recursos para potenciar tu gestión de{" "} <span className="text-turquoise">RRHH</span> </h1> <p className="text-xl opacity-90"> Aprende, mejora y mantente actualizado con contenido especializado para tu empresa </p> 
+              </div> 
+            </ScrollAnimation>
+        </div> 
+      </section>
 
       {/* Featured Article */}
       <section className="py-12">
