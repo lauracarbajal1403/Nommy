@@ -121,15 +121,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="bg-navy/5 py-12">
-        <Link href="/demo">
-          <img
-            src="/Blog.jpg"
-            alt="Blog Image"
-            className="w-full max-w-4xl mx-auto rounded-xl shadow-lg cursor-pointer"
-          />
-        </Link>
-      </section>
+      
 
       {/* Articles Grid 
       <section className="py-16">
