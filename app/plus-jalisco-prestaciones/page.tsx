@@ -275,8 +275,8 @@ export default function PlusJaliscoPrestaciones() {
             </div>
           </section>
         </ScrollAnimation>
-        <ScrollAnimation>
-            <section className="bg-navy/5 py-12">
+      
+        <section className="bg-navy/5 py-12">
             <Link href="/demo">
             <img
                 src="/Blog.jpg"
@@ -285,7 +285,7 @@ export default function PlusJaliscoPrestaciones() {
             />
             </Link>
         </section>
-      </ScrollAnimation>
+    
         {/* Checklist Section */}
         <ScrollAnimation>
           <section className="mb-12">
@@ -385,7 +385,7 @@ export default function PlusJaliscoPrestaciones() {
                 href="/demo"
                 className="inline-block bg-white text-navy px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                Solicitar Demo Gratuita
+                Solicitar Demo
               </Link>
             </div>
           </div>
