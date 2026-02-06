@@ -9,7 +9,7 @@ export default function PlusJaliscoPrestaciones() {
       <div className="bg-navy/5 border-b border-navy/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link 
-            href="/recursos" 
+            href="/resources" 
             className="inline-flex items-center text-navy hover:text-turquoise transition-colors font-medium"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -372,7 +372,7 @@ export default function PlusJaliscoPrestaciones() {
               </div>
 
               <Link
-                href="/contacto"
+                href="/demo"
                 className="inline-block bg-white text-navy px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Solicitar Demo Gratuita
@@ -382,19 +382,7 @@ export default function PlusJaliscoPrestaciones() {
         </ScrollAnimation>
 
         {/* Share Section */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <p className="text-gray-600">¿Te resultó útil este artículo?</p>
-            <div className="flex gap-3">
-              <button className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm font-medium text-gray-700">
-                👍 Útil
-              </button>
-              <button className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm font-medium text-gray-700">
-                Compartir
-              </button>
-            </div>
-          </div>
-        </div>
+        
       </article>
     </div>
   )
