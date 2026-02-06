@@ -68,7 +68,7 @@ export default function ResourcesPage() {
           </ScrollAnimation>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-10 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       {/* Featured Article */}
