@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "NOMMY - El aliado de tu equipo de RRHH",
   description:
     "Herramienta SaaS para gestión de nómina y recursos humanos. Automatiza tus procesos de nómina con precisión y tranquilidad.",
-  keywords: "nómina, recursos humanos, RRHH, payroll, SaaS, automatización",
+  keywords: "nómina, recursos humanos, RRHH, payroll, SaaS, automatización, gestión de nómina, software de nómina, nómina electrónica, cumplimiento fiscal",
   icons: {
     icon: [
       {
