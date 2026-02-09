@@ -21,7 +21,6 @@ export const metadata: Metadata = {
       {
         url: "/nommy-icon.png",
         type: "image/png",
-        media: "(prefers-color-scheme: light)",
       },
     ],
   },
