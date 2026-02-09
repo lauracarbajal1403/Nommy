@@ -29,7 +29,7 @@ export default function NominaJalisco2026() {
               </span>
               <span className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4" />
-                15 Enero 2026
+                06 Febrero 2026
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock className="w-4 h-4" />
@@ -180,10 +180,10 @@ export default function NominaJalisco2026() {
             {/* Change 2 */}
             <div className="mb-12">
               <div className="bg-white border-2 border-navy rounded-2xl overflow-hidden shadow-lg">
-                <div className="bg-gradient-to-r from-navy to-navy/80 p-6">
+                <div className="bg-gradient-to-r from-turquoise to-turquoise/80 p-6">
                   <div className="flex items-start gap-4">
                     <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl font-bold text-navy">2</span>
+                      <span className="text-2xl font-bold text-turquoise">2</span>
                     </div>
                     <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight">
                       El SAT y la Nómina Electrónica 2.0: Vigilancia Estricta en Jalisco
@@ -247,10 +247,10 @@ export default function NominaJalisco2026() {
             {/* Change 3 */}
             <div className="mb-12">
               <div className="bg-white border-2 border-[#008000] rounded-2xl overflow-hidden shadow-lg">
-                <div className="bg-gradient-to-r from-[#008000] to-[#006400] p-6">
+                <div className="bg-gradient-to-r from-turquoise to-turquoise/80 p-6">
                   <div className="flex items-start gap-4">
                     <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl font-bold text-[#008000]">3</span>
+                      <span className="text-2xl font-bold text-turquoise">3</span>
                     </div>
                     <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight">
                       El "Plus Jalisco": Prestaciones Locales que Impactan Nómina
@@ -391,9 +391,9 @@ export default function NominaJalisco2026() {
             </p>
             <Link
               href="/demo"
-              className="inline-block bg-white text-navy px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 inline-flex items-center group btn-shadow"
             >
-              Solicitar Demo 
+              ¡Solicita una Demo Gratis! 
             </Link>
           </div>
         </ScrollAnimation>

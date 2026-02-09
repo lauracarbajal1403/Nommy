@@ -13,8 +13,8 @@ export default function ResourcesPage() {
       icon: BookOpen,
       image: "/bloggy.jpg",
       link: "/nomina-jalisco-2026",
-      readTime: "5 min",
-      date: "15 Ene 2026",
+      readTime: "8 min",
+      date: "6 Feb 2026",
     },
     {/*
     {
@@ -43,30 +43,30 @@ export default function ResourcesPage() {
   const [featured, ...articles] = resources
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <NominikChatbot />
+    <div>
+      
       {/* Hero */} 
-      <section className="relative bg-gradient-to-br from-navy via-navy to-turquoise py-32 lg:py-60 text-white overflow-hidden"> 
+      <section className="relative py-16 lg:py-20 flex items-center text-white bg-gradient-to-br from-navy via-navy to-turquoise">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div> 
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollAnimation> 
-            <div className="text-center max-w-4xl mx-auto">
-              <span className="inline-block px-4 py-4 bg-turquoise/20 backdrop-blur-sm rounded-full text-sm font-medium mb-8 border border-turquoise/30">
-                Centro de Recursos
-              </span> 
-              
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-                Recursos para potenciar tu gestión de{" "}
-                <span className="text-turquoise">RRHH</span>
-              </h1> 
-              
-              <p className="text-lg sm:text-xl lg:text-2xl opacity-90 leading-relaxed max-w-3xl mx-auto">
-                Aprende, mejora y mantente actualizado con contenido especializado para tu empresa
-              </p> 
-            </div> 
-          </ScrollAnimation>
-        </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+              <div className="text-center max-w-4xl mx-auto">
+                <span className="inline-block px-4 py-4 bg-turquoise/20 backdrop-blur-sm rounded-full text-sm font-medium mb-8 border border-turquoise/30">
+                  Centro de Recursos
+                </span> 
+                
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+                  Recursos para potenciar tu gestión de{" "}
+                  <span className="text-turquoise">RRHH</span>
+                </h1> 
+                
+                <p className="text-lg sm:text-xl lg:text-2xl opacity-90 leading-relaxed max-w-3xl mx-auto">
+                  Aprende, mejora y mantente actualizado con contenido especializado para tu empresa
+                </p> 
+              </div> 
+          
+          </div>
         
         <div className="absolute bottom-10 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
       </section>
@@ -120,7 +120,7 @@ export default function ResourcesPage() {
           </ScrollAnimation>
         </div>
       </section>
-
+      <NominikChatbot />
       
 
       {/* Articles Grid 
