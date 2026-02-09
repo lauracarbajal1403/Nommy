@@ -393,7 +393,7 @@ export default function NominaJalisco2026() {
               href="/demo"
               className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 inline-flex items-center group btn-shadow"
             >
-              ¡Solicita una Demo Gratis! 
+              ¡Demo Gratis! 
             </Link>
           </div>
         </ScrollAnimation>
