@@ -289,14 +289,14 @@ export default function PricingPage() {
                               {feature.basic ? (
                                 <Check className="w-6 h-6 text-turquoise mx-auto" strokeWidth={3} />
                               ) : (
-                                <X className="w-6 h-6 text-gray-300 mx-auto" strokeWidth={3} />
+                                <X className="w-6 h-6 text-turquoise-300 mx-auto" strokeWidth={3} />
                               )}
                             </td>
                             <td className="px-6 py-4 text-center bg-turquoise/5">
                               {feature.essential ? (
                                 <Check className="w-6 h-6 text-turquoise mx-auto" strokeWidth={3} />
                               ) : (
-                                <X className="w-6 h-6 text-gray-300 mx-auto" strokeWidth={3} />
+                                <X className="w-6 h-6 text-turquoise mx-auto" strokeWidth={3} />
                               )}
                             </td>
                             <td className="px-6 py-4 text-center">
