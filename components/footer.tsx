@@ -85,14 +85,14 @@ export default function Footer() {
                 <p className="text-navy text-sm">© 2025 NOMMY. Todos los derechos reservados.</p>
                 <a
                   className="text-turquoise hover:text-navy transition-colors duration-300 text-sm mt-2 sm:mt-0"
-                  href="/app/terminos"
+                  href="/terminos"
                   target="_blank"
                   rel="noopener noreferrer"
                   
                 >Términos y condiciones</a>
                 <a
                   className="text-turquoise hover:text-navy transition-colors duration-300 text-sm mt-2 sm:mt-0"
-                  href="https://drive.google.com/file/d/1YaydY0xHt1kNv28WGSQoBp-I2-ZJ_CWk/view?usp=sharing"
+                  href="/aviso"
                   target="_blank"
                   rel="noopener noreferrer"
                   
