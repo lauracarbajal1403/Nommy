@@ -202,7 +202,7 @@ export default function PricingPage() {
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-turquoise flex-shrink-0 mt-0.5" />
-                      <span className="w-5 h-5 text-turquoise flex-shrink-0 mt-0.5">
+                      <span className="text-gray-300 ">
                         {feature.includes("APP móvil") ||
                         feature.includes("Conexión IDSE") ||
                         feature.includes("IA") ? (
