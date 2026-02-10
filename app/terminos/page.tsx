@@ -130,36 +130,7 @@ const TerminosCondicionesNommy = () => {
         </p>
       </header>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 bg-[#fafaf8]/95 backdrop-blur-lg border-b border-[#e5e5e5] py-4 z-50 opacity-0 animate-fadeIn" style={{animationDelay: '0.7s'}}>
-        <div className="max-w-[900px] mx-auto px-6">
-          <div className="flex gap-6 flex-wrap justify-center">
-            {[
-              { id: 'generales', label: 'Condiciones Generales' },
-              { id: 'servicios', label: 'Servicios' },
-              { id: 'cuenta', label: 'Cuenta' },
-              { id: 'adquisicion', label: 'Proceso de Adquisición' },
-              { id: 'politicas', label: 'Políticas' },
-              { id: 'propiedad', label: 'Propiedad Intelectual' },
-              { id: 'privacidad', label: 'Privacidad' },
-              { id: 'contacto', label: 'Contacto' }
-            ].map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`text-sm font-medium transition-colors relative group ${
-                  activeSection === id ? 'text-blue-600' : 'text-[#525252] hover:text-blue-600'
-                }`}
-              >
-                {label}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all ${
-                  activeSection === id ? 'w-full' : 'w-0 group-hover:w-full'
-                }`}></span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </nav>
+      
 
       {/* Main Content */}
       <main className="max-w-[900px] mx-auto px-6 py-8">

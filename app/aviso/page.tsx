@@ -130,36 +130,7 @@ const AvisoPrivacidadNommy = () => {
         </p>
       </header>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 bg-[#fafaf8]/95 backdrop-blur-lg border-b border-[#e5e5e5] py-4 z-50 opacity-0 animate-fadeIn" style={{animationDelay: '0.7s'}}>
-        <div className="max-w-[900px] mx-auto px-6">
-          <div className="flex gap-6 flex-wrap justify-center">
-            {[
-              { id: 'identidad', label: 'Identidad' },
-              { id: 'alcance', label: 'Alcance' },
-              { id: 'finalidad', label: 'Finalidad' },
-              { id: 'datos', label: 'Datos Sensibles' },
-              { id: 'transferencia', label: 'Transferencia' },
-              { id: 'arco', label: 'Derechos ARCO' },
-              { id: 'cookies', label: 'Cookies' },
-              { id: 'modificaciones', label: 'Modificaciones' }
-            ].map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`text-sm font-medium transition-colors relative group ${
-                  activeSection === id ? 'text-emerald-600' : 'text-[#525252] hover:text-emerald-600'
-                }`}
-              >
-                {label}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-emerald-600 transition-all ${
-                  activeSection === id ? 'w-full' : 'w-0 group-hover:w-full'
-                }`}></span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </nav>
+      
 
       {/* Main Content */}
       <main className="max-w-[900px] mx-auto px-6 py-8">
