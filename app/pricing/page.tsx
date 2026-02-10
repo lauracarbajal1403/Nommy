@@ -1,8 +1,9 @@
 import Link from "next/link"
-import { Check, Star, ChevronDown } from "lucide-react"
+import { Check, Star, ChevronDown, X } from "lucide-react"
 import ScrollAnimation from "@/components/scroll-animation"
 import WhatsAppButton from "@/components/whatsapp-button"
-import  NominikChatbot  from "@/app/nominik"
+import NominikChatbot from "@/app/nominik"
+
 export default function PricingPage() {
   const plans = [
     {
@@ -10,10 +11,10 @@ export default function PricingPage() {
       subtitle: "De 1 a 19 colaboradores",
       texto: "Si tu empresa está empezando o en crecimiento y quieres profesionalizar tu nómina sin gastar de más",
       features: [
+        "Gestión de múltiples empresas",
+        "Timbrado ilimitado ",
         "Cálculo y automatización de Nómina",
-        "Control de personal",
-        "Comunicación Organizacional",
-        "Cumplimiento NOM-035",
+        "Control de asistencia e incidencias ",
       ],
       price: "$80 USD",
       priceSubtext: "por mes",
@@ -27,7 +28,7 @@ export default function PricingPage() {
       texto:
         "Si buscas optimizar procesos, integrar tecnología y darle más valor a tus equipos, este es tu mejor aliado",
       intro: "Todo lo que incluye el Plan Basic más...",
-      features: ["Conexión IDSE", "Reclutamiento asistido por IA", "APP móvil para colaboradores"],
+      features: ["Conexión IDSE", "Reclutamiento asistido por IA", "Gestión y control del proceso de selección", "Personalización de etapas", "APP móvil para colaboradores"],
       price: "$6 USD",
       oldPrice: "$6 USD",
       newPrice: "$4 USD",
@@ -52,6 +53,73 @@ export default function PricingPage() {
     },
   ]
 
+  const comparisonFeatures = [
+    {
+      category: "Cálculo de Nómina",
+      features: [
+        { name: "Multiusuario multiempresa", basic: true, essential: true, enterprise: true },
+        { name: "Timbrado ilimitado", basic: true, essential: true, enterprise: true },
+        { name: "Conexión exclusiva IDSE", basic: false, essential: true, enterprise: true },
+        { name: "Cálculo de multi nómina", basic: true, essential: true, enterprise: true, highlighted: true },
+        { name: "Nóminas extraordinarias: Finiquitos, liquidaciones, PTU, etc", basic: false, essential: true, enterprise: true },
+        { name: "Carga masiva de históricos con CFDI", basic: false, essential: true, enterprise: true, highlighted: true },
+        { name: "Calendario", basic: true, essential: true, enterprise: true },
+        { name: "Layouts bancarios para dispersión de nómina, banca empresarial", basic: true, essential: true, enterprise: true },
+        { name: "Cálculo de pensiones en nómina", basic: false, essential: true, enterprise: true },
+        { name: "Cálculos de créditos en nómina", basic: true, essential: true, enterprise: true },
+        { name: "Roles y permisos de administrador", basic: true, essential: true, enterprise: true },
+        { name: "EMA/EBA", basic: false, essential: true, enterprise: true },
+        { name: "Confronta IMSS", basic: false, essential: true, enterprise: true },
+        { name: "Confronta SAT", basic: false, essential: true, enterprise: true },
+        { name: "Exportación SUA TXT", basic: false, essential: true, enterprise: true },
+        { name: "Cálculo de nómina", basic: false, essential: true, enterprise: true },
+        { name: "Envío de recibos vía App", basic: true, essential: true, enterprise: true },
+        { name: "Nóminas especiales", basic: false, essential: true, enterprise: true, highlighted: true },
+        { name: "API conexión multisistema ERP", basic: false, essential: false, enterprise: true },
+        { name: "Calculadores SD, SDI, SBC", basic: true, essential: true, enterprise: true },
+        { name: "Servicio personalizado con ejecutivo de cuenta", basic: true, essential: true, enterprise: true },
+        { name: "Dashboards interactivo de gastos de nómina, retención INFONAVIT e INFONACOT y gastos por departamento", basic: false, essential: true, enterprise: true },
+        { name: "Soporte 24/7", basic: true, essential: true, enterprise: true },
+      ]
+    },
+    {
+      category: "Gestión de personal",
+      features: [
+        { name: "App Móvil", basic: false, essential: true, enterprise: true },
+        { name: "Gestión de vacaciones", basic: true, essential: true, enterprise: true },
+        { name: "Gestión de Incidencias", basic: true, essential: true, enterprise: true },
+        { name: "Directorio", basic: false, essential: true, enterprise: true },
+        { name: "Organigrama", basic: false, essential: true, enterprise: true },
+        { name: "Portal de colaborador", basic: false, essential: true, enterprise: true },
+        { name: "Comunicación interna", basic: false, essential: true, enterprise: true },
+        { name: "Engagement interactivo", basic: false, essential: true, enterprise: true },
+      ]
+    },
+    {
+      category: "Gestión de tiempo",
+      features: [
+        { name: "Check in/ Check Out por geolocalización", basic: false, essential: true, enterprise: true },
+        { name: "Reconocimiento facial", basic: false, essential: true, enterprise: true },
+        { name: "Reloj checador digital", basic: false, essential: true, enterprise: true },
+        { name: "Interpretación de faltas, retrasos, prima, festivos, descansos y salidas", basic: false, essential: true, enterprise: true },
+        { name: "Control de turnos y asistencia", basic: false, essential: true, enterprise: true },
+        { name: "Reportes de tiempo y asistencia", basic: false, essential: true, enterprise: true },
+        { name: "Asignación de horarios individual/masivo", basic: false, essential: true, enterprise: true },
+      ]
+    },
+    {
+      category: "Gestión de talento",
+      features: [
+        { name: "Beneficios", basic: false, essential: true, enterprise: true },
+        { name: "Reclutamiento con IA", basic: false, essential: true, enterprise: true },
+        { name: "Evaluaciones de desempeño", basic: false, essential: true, enterprise: true },
+        { name: "Encuestas NOM 035", basic: false, essential: true, enterprise: true },
+        { name: "Comunicación masiva en plataformas (OCC, INDEED, LINKEDIN ETC)", basic: false, essential: true, enterprise: true },
+        { name: "Plantillas de correo automático para etapas de reclutamiento", basic: false, essential: true, enterprise: true },
+      ]
+    }
+  ]
+
   const faqs = [
     {
       question: "¿La implementación está incluida en la mensualidad?",
@@ -74,7 +142,6 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-turquoise/15 to-navy/15">
       {/* Encabezado */}
-      
       <section className="py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollAnimation>
@@ -91,6 +158,15 @@ export default function PricingPage() {
                 Cada negocio es distinto, pero en todos la nómina importa. Encuentra aquí la opción que mejor se adapta
                 a ti.
               </p>
+              
+              <div className="mt-8">
+                <a
+                  href="#comparison-table"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-turquoise to-navy hover:shadow-xl hover:from-turquoise/90 hover:to-navy/90 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95"
+                >
+                  Comparar Planes Detalladamente
+                </a>
+              </div>
             </div>
           </ScrollAnimation>
         </div>
@@ -120,14 +196,13 @@ export default function PricingPage() {
                   <div className="text-lg font-bold text-gray-800">{plan.subtitle}</div>
                   <div className="text-lg font-light text-gray-800">{plan.texto}</div>
                   {plan.intro && <div className="text-sm italic text-gray-600">{plan.intro}</div>}
-                  
                 </div>
 
                 <div className="mt-8 space-y-4">
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-turquoise flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">
+                      <span className="text-[#274263]">
                         {feature.includes("APP móvil") ||
                         feature.includes("Conexión IDSE") ||
                         feature.includes("IA") ? (
@@ -155,6 +230,91 @@ export default function PricingPage() {
               </div>
             </ScrollAnimation>
           ))}
+        </div>
+        
+        
+      </section>
+
+      {/* Tabla de Comparación de Funcionalidades */}
+      <section id="comparison-table" className="py-16 bg-white/50 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollAnimation>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-navy mb-4">Comparación Detallada de Funcionalidades</h2>
+              <p className="text-xl text-gray-600">Explora todas las características de cada plan</p>
+            </div>
+          </ScrollAnimation>
+
+          <div className="overflow-x-auto">
+            <div className="inline-block min-w-full align-middle">
+              <div className="overflow-hidden shadow-xl rounded-lg border border-gray-200">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gradient-to-r from-turquoise to-navy">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider sticky left-0 bg-navy z-10">
+                        Funcionalidad
+                      </th>
+                      <th className="px-6 py-4 text-center text-sm font-bold text-white uppercase tracking-wider">
+                        Plan Basic
+                      </th>
+                      <th className="px-6 py-4 text-center text-sm font-bold text-white uppercase tracking-wider bg-turquoise/20">
+                        Plan Essential
+                      </th>
+                      <th className="px-6 py-4 text-center text-sm font-bold text-white uppercase tracking-wider">
+                        Plan Enterprise
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {comparisonFeatures.map((category, catIndex) => (
+                      <>
+                        <tr key={`category-${catIndex}`} className="bg-gradient-to-r from-turquoise/10 to-navy/10">
+                          <td colSpan={4} className="px-6 py-4 text-lg font-bold text-navy">
+                            {category.category}
+                          </td>
+                        </tr>
+                        {category.features.map((feature, featIndex) => (
+                          <tr 
+                            key={`feature-${catIndex}-${featIndex}`} 
+                            className={`hover:bg-gray-50 transition-colors ${feature.highlighted ? 'bg-yellow-50' : ''}`}
+                          >
+                            <td className="px-6 py-4 text-sm text-gray-900 sticky left-0 bg-white">
+                              {feature.highlighted ? (
+                                <span className="font-semibold text-turquoise">{feature.name}</span>
+                              ) : (
+                                feature.name
+                              )}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              {feature.basic ? (
+                                <Check className="w-6 h-6 text-turquoise mx-auto" strokeWidth={3} />
+                              ) : (
+                                <X className="w-6 h-6 text-gray-300 mx-auto" strokeWidth={3} />
+                              )}
+                            </td>
+                            <td className="px-6 py-4 text-center bg-turquoise/5">
+                              {feature.essential ? (
+                                <Check className="w-6 h-6 text-turquoise mx-auto" strokeWidth={3} />
+                              ) : (
+                                <X className="w-6 h-6 text-gray-300 mx-auto" strokeWidth={3} />
+                              )}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              {feature.enterprise ? (
+                                <Check className="w-6 h-6 text-turquoise mx-auto" strokeWidth={3} />
+                              ) : (
+                                <X className="w-6 h-6 text-gray-300 mx-auto" strokeWidth={3} />
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
