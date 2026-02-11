@@ -122,7 +122,7 @@ const AvisoPrivacidadNommy = () => {
         <h1 className="font-['Crimson_Pro'] text-5xl md:text-6xl font-bold text-emerald-600 mb-4 opacity-0 animate-slideUp" style={{animationDelay: '0.1s'}}>
           Nommy
         </h1>
-        <h2 className="font-['Crimson_Pro'] text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-2 opacity-0 animate-slideUp" style={{animationDelay: '0.3s'}}>
+        <h2 className="font-['Crimson_Pro'] text-3xl md:text-4xl font-bold text-[#274263] mb-2 opacity-0 animate-slideUp" style={{animationDelay: '0.3s'}}>
           Aviso de Privacidad Completo
         </h2>
         <p className="text-lg text-[#525252] opacity-0 animate-slideUp" style={{animationDelay: '0.5s'}}>
