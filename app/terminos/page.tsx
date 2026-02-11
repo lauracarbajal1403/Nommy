@@ -119,9 +119,7 @@ const TerminosCondicionesNommy = () => {
       {/* Header */}
       <header className="text-center py-12 px-6 relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-0 animate-lineGrow" style={{width: '200px'}}></div>
-        <h1 className="font-['Crimson_Pro'] text-5xl md:text-6xl font-bold text-blue-600 mb-4 opacity-0 animate-slideUp" style={{animationDelay: '0.1s'}}>
-          Nommy
-        </h1>
+        
         <h2 className="font-['Crimson_Pro'] text-3xl md:text-4xl font-bold text-[#274263] mb-2 opacity-0 animate-slideUp" style={{animationDelay: '0.3s'}}>
           Términos y Condiciones de Uso
         </h2>
