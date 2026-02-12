@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    const recipient = recipientEmail || "ventas@nommy.mx"
+    const recipient = recipientEmail || "laura.carbajal@nommy.mx"
     console.log("[send-demo-request] Sending demo request email to:", recipient)
 
     // Send email using MailService

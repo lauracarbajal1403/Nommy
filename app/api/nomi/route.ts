@@ -71,7 +71,7 @@ export async function POST(req: Request) {
 
     // 5️⃣ Enviar correo con MailService
     await MailService.SendMail({
-      to: "ventas@nommy.mx",
+      to: "laura.carbajal@nommy.mx",
       subject: "🧠 Nueva conversación – Asesoría solicitada",
       html: `
         <!DOCTYPE html>

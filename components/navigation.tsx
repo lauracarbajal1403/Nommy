@@ -57,7 +57,7 @@ export default function Navigation() {
                 isActiveLink("/pricing") ? "text-turquoise" : "text-navy hover:text-turquoise"
               }`}
             >
-              Recursos
+              Bloggy
             </Link>
             
             <Link

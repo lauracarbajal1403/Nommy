@@ -3,6 +3,7 @@ import { Check, Star, ChevronDown, X } from "lucide-react"
 import ScrollAnimation from "@/components/scroll-animation"
 import WhatsAppButton from "@/components/whatsapp-button"
 import NominikChatbot from "@/app/nominik"
+import  Fragment from "react"
 
 export default function PricingPage() {
   const plans = [
@@ -234,85 +235,75 @@ export default function PricingPage() {
         
       </section>
       
-      <section id="comparison-table" className="py-16 bg-white/50 scroll-mt-20">
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          
-            <div className="overflow-x-auto">
-              <div className="inline-block min-w-full align-middle px-4 sm:px-0">
-                <div className="overflow-hidden shadow-xl rounded-lg border border-gray-200">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gradient-to-r from-turquoise to-navy">
-                      <tr>
-                        <th className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4text-left text-xs sm:text-sm font-bold text-white uppercase tracking-wider sticky left-0 bg-navy z-10 lg:min-w-[200px]">
-                          Funcionalidad
-                        </th>
-                        <th className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 text-center text-xs sm:text-sm font-bold text-white uppercase tracking-wider lg:min-w-[120px]">
-                          Plan Basic
-                        </th>
-                        <th className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4text-center text-xs sm:text-sm font-bold text-white uppercase tracking-wider bg-turquoise/20 lg:min-w-[120px]">
-                          Plan Essential
-                        </th>
-                        <th className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 text-center text-xs sm:text-sm font-bold text-white uppercase tracking-wider lg:min-w-[120px]">
-                          Plan Enterprise
-                        </th>
+      {/* MOBILE */}
+    <section
+      id="comparison-table-mobile"
+      className="block lg:hidden py-16 bg-white/50 scroll-mt-20"
+    >
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="overflow-x-auto">
+          <div className="overflow-hidden shadow-xl rounded-lg border border-gray-200">
+            <table className="min-w-full divide-y divide-gray-200 text-xs">
+              <thead className="bg-gradient-to-r from-turquoise to-navy">
+                <tr>
+                  <th className="px-2 py-3 text-left font-bold text-white uppercase sticky left-0 bg-navy z-10">
+                    Funcionalidad
+                  </th>
+                  <th className="px-2 py-3 text-center font-bold text-white uppercase">
+                    Basic
+                  </th>
+                  <th className="px-2 py-3 text-center font-bold text-white uppercase bg-turquoise/20">
+                    Essential
+                  </th>
+                  <th className="px-2 py-3 text-center font-bold text-white uppercase">
+                    Enterprise
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody className="bg-white divide-y divide-gray-200">
+                {comparisonFeatures.map((category, catIndex) => (
+                  <React.Fragment key={catIndex}>
+                    <tr className="bg-gradient-to-r from-turquoise/10 to-navy/10">
+                      <td colSpan={4} className="px-3 py-3 font-bold text-navy">
+                        {category.category}
+                      </td>
+                    </tr>
+
+                    {category.features.map((feature, featIndex) => (
+                      <tr
+                        key={`${catIndex}-${featIndex}`}
+                        className={`hover:bg-gray-50 ${
+                          feature.highlighted ? "bg-yellow-50" : ""
+                        }`}
+                      >
+                        <td className="px-2 py-3 sticky left-0 bg-white z-10 break-words">
+                          {feature.name}
+                        </td>
+
+                        <td className="text-center">
+                          {feature.basic ? <Check className="w-5 h-5 mx-auto text-turquoise" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
+                        </td>
+
+                        <td className="text-center bg-turquoise/5">
+                          {feature.essential ? <Check className="w-5 h-5 mx-auto text-turquoise" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
+                        </td>
+
+                        <td className="text-center">
+                          {feature.enterprise ? <Check className="w-5 h-5 mx-auto text-turquoise" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {comparisonFeatures.map((category, catIndex) => (
-                        <>
-                          <tr key={`category-${catIndex}`} className="bg-gradient-to-r from-turquoise/10 to-navy/10">
-                            <td colSpan={4} className="px-2 sm:px-4 lg:px-6 py-2 text-base sm:text-lg font-bold text-navy">
-                              {category.category}
-                            </td>
-                          </tr>
-                          {category.features.map((feature, featIndex) => (
-                            <tr 
-                              key={`feature-${catIndex}-${featIndex}`} 
-                              className={`hover:bg-gray-50 transition-colors ${feature.highlighted ? 'bg-yellow-50' : ''}`}
-                            >
-                              <td className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 text-xs sm:text-sm text-gray-900 sticky left-0 bg-white z-10 border-b border-gray-200 break-words
-">
-                                {feature.highlighted ? (
-                                  <span className="font-semibold text-turquoise">{feature.name}</span>
-                                ) : (
-                                  feature.name
-                                )}
-                              </td>
-                              <td className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 text-center border-b border-gray-200">
-                                {feature.basic ? (
-                                  <Check className="w-5 h-5 sm:w-6 sm:h-6 text-turquoise mx-auto" strokeWidth={3} />
-                                ) : (
-                                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#274263] mx-auto" strokeWidth={3} />
-                                )}
-                              </td>
-                              <td className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 text-center bg-turquoise/5 border-b border-gray-200">
-                                {feature.essential ? (
-                                  <Check className="w-5 h-5 sm:w-6 sm:h-6 text-turquoise mx-auto" strokeWidth={3} />
-                                ) : (
-                                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#274263] mx-auto" strokeWidth={3} />
-                                )}
-                              </td>
-                              <td className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 text-center border-b border-gray-200">
-                                {feature.enterprise ? (
-                                  <Check className="w-5 h-5 sm:w-6 sm:h-6 text-turquoise mx-auto" strokeWidth={3} />
-                                ) : (
-                                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#274263] mx-auto" strokeWidth={3} />
-                                )}
-                              </td>
-                            </tr>
-                          ))}
-                        </>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          
+                    ))}
+                  </>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
+
+
 
       {/* FAQ */}
       <section className="py-16 bg-white/50">
