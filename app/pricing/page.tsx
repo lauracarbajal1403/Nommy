@@ -162,7 +162,7 @@ export default function PricingPage() {
               <div className="mt-8">
                 <a
                   href="#comparison-table"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-turquoise to-[#274263] hover:shadow-xl hover:from-turquoise/90 hover:to-[#274263]/90 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-turquoise to-navy hover:shadow-xl hover:from-turquoise/90 hover:to-navy/90 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95"
                 >
                   Comparar Planes Detalladamente
                 </a>
@@ -192,7 +192,7 @@ export default function PricingPage() {
                 )}
 
                 <div className="text-center space-y-4">
-                  <h3 className="text-2xl font-bold text-[#274263]">{plan.name}</h3>
+                  <h3 className="text-2xl font-bold text-navy">{plan.name}</h3>
                   <div className="text-lg font-bold text-gray-800">{plan.subtitle}</div>
                   <div className="text-lg font-light text-gray-800">{plan.texto}</div>
                   {plan.intro && <div className="text-sm italic text-gray-600">{plan.intro}</div>}
@@ -221,7 +221,7 @@ export default function PricingPage() {
                     className={`w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95 ${
                       plan.customButton
                         ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 hover:shadow-lg text-lg py-4 font-bold"
-                        : "bg-gradient-to-r from-turquoise to-[#274263] text-white hover:shadow-xl hover:from-turquoise/90 hover:to-[#274263]/90"
+                        : "bg-gradient-to-r from-turquoise to-navy text-white hover:shadow-xl hover:from-turquoise/90 hover:to-navy/90"
                     }`}
                   >
                     {plan.cta}
@@ -244,9 +244,9 @@ export default function PricingPage() {
         <div className="overflow-x-auto">
           <div className="overflow-hidden shadow-xl rounded-lg border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200 text-xs">
-              <thead className="bg-gradient-to-r from-turquoise to-[#274263]">
+              <thead className="bg-gradient-to-r from-turquoise to-navy">
                 <tr>
-                  <th className="px-2 py-3 text-left font-bold text-white uppercase sticky left-0 bg-[#274263] z-10">
+                  <th className="px-2 py-3 text-left font-bold text-white uppercase sticky left-0 bg-navy z-10">
                     Funcionalidad
                   </th>
                   <th className="px-2 py-3 text-center font-bold text-white uppercase">
@@ -264,8 +264,8 @@ export default function PricingPage() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {comparisonFeatures.map((category, catIndex) => (
                   <React.Fragment key={catIndex}>
-                    <tr className="bg-gradient-to-r from-turquoise/10 to-[#274263]/10">
-                      <td colSpan={4} className="px-3 py-3 font-bold text-[#274263]">
+                    <tr className="bg-gradient-to-r from-turquoise/10 to-navy/10">
+                      <td colSpan={4} className="px-3 py-3 font-bold text-navy">
                         {category.category}
                       </td>
                     </tr>
