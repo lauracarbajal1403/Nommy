@@ -140,19 +140,19 @@ export default function PricingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-[#00CED1]/15 to-[#274263]/15">
+    <div className="min-h-screen bg-gradient-to-br from-white via-turquoise/15 to-[#274263]/15">
       {/* Encabezado */}
       <section className="py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollAnimation>
             <div className="space-y-6">
-              <span className="text-2xl lg:text-6xl font-bold text-[#00CED1]">Elige el plan que hará</span>
+              <span className="text-2xl lg:text-6xl font-bold text-turquoise">Elige el plan que hará</span>
               <span className="text-2xl lg:text-6xl font-bold text-[#274263]"> crecer a tu empresa</span>
 
               <div className="space-y-10">
-                <span className="text-4xl lg:text-4xl font-bold text-[#00CED1]">¿Cuál</span>
+                <span className="text-4xl lg:text-4xl font-bold text-turquoise">¿Cuál</span>
                 <span className="text-4xl lg:text-4xl font-bold text-[#274263]"> plan </span>
-                <span className="text-4xl lg:text-4xl font-bold text-[#00CED1]">será el tuyo?</span>
+                <span className="text-4xl lg:text-4xl font-bold text-turquoise">será el tuyo?</span>
               </div>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Cada negocio es distinto, pero en todos la nómina importa. Encuentra aquí la opción que mejor se adapta
@@ -162,7 +162,7 @@ export default function PricingPage() {
               <div className="mt-8">
                 <a
                   href="#comparison-table"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-[#00CED1] to-[#274263] hover:shadow-xl hover:from-[#00CED1]/90 hover:to-[#274263]/90 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-turquoise to-[#274263] hover:shadow-xl hover:from-turquoise/90 hover:to-[#274263]/90 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95"
                 >
                   Comparar Planes Detalladamente
                 </a>
@@ -179,12 +179,12 @@ export default function PricingPage() {
             <ScrollAnimation key={plan.name} delay={index * 0.1}>
               <div
                 className={`relative bg-white rounded-2xl shadow-lg p-8 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 ${
-                  plan.popular ? "ring-2 ring-[#00CED1] scale-105" : ""
+                  plan.popular ? "ring-2 ring-turquoise scale-105" : ""
                 }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-[#00CED1] text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1">
+                    <div className="bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1">
                       <Star className="w-4 h-4" />
                       Más Popular
                     </div>
@@ -201,7 +201,7 @@ export default function PricingPage() {
                 <div className="mt-8 space-y-4">
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-[#00CED1] flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-turquoise flex-shrink-0 mt-0.5" />
                       <span className="text-gray-300 ">
                         {feature.includes("APP móvil") ||
                         feature.includes("Conexión IDSE") ||
@@ -221,7 +221,7 @@ export default function PricingPage() {
                     className={`w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95 ${
                       plan.customButton
                         ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 hover:shadow-lg text-lg py-4 font-bold"
-                        : "bg-gradient-to-r from-[#00CED1] to-[#274263] text-white hover:shadow-xl hover:from-[#00CED1]/90 hover:to-[#274263]/90"
+                        : "bg-gradient-to-r from-turquoise to-[#274263] text-white hover:shadow-xl hover:from-turquoise/90 hover:to-[#274263]/90"
                     }`}
                   >
                     {plan.cta}
@@ -244,7 +244,7 @@ export default function PricingPage() {
         <div className="overflow-x-auto">
           <div className="overflow-hidden shadow-xl rounded-lg border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200 text-xs">
-              <thead className="bg-gradient-to-r from-[#00CED1] to-[#274263]">
+              <thead className="bg-gradient-to-r from-turquoise to-[#274263]">
                 <tr>
                   <th className="px-2 py-3 text-left font-bold text-white uppercase sticky left-0 bg-[#274263] z-10">
                     Funcionalidad
@@ -252,7 +252,7 @@ export default function PricingPage() {
                   <th className="px-2 py-3 text-center font-bold text-white uppercase">
                     Basic
                   </th>
-                  <th className="px-2 py-3 text-center font-bold text-white uppercase bg-[#00CED1]/20">
+                  <th className="px-2 py-3 text-center font-bold text-white uppercase bg-turquoise/20">
                     Essential
                   </th>
                   <th className="px-2 py-3 text-center font-bold text-white uppercase">
@@ -264,7 +264,7 @@ export default function PricingPage() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {comparisonFeatures.map((category, catIndex) => (
                   <React.Fragment key={catIndex}>
-                    <tr className="bg-gradient-to-r from-[#00CED1]/10 to-[#274263]/10">
+                    <tr className="bg-gradient-to-r from-turquoise/10 to-[#274263]/10">
                       <td colSpan={4} className="px-3 py-3 font-bold text-[#274263]">
                         {category.category}
                       </td>
@@ -282,15 +282,15 @@ export default function PricingPage() {
                         </td>
 
                         <td className="text-center">
-                          {feature.basic ? <Check className="w-5 h-5 mx-auto text-[#00CED1]" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
+                          {feature.basic ? <Check className="w-5 h-5 mx-auto text-turquoise" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
                         </td>
 
-                        <td className="text-center bg-[#00CED1]/5">
-                          {feature.essential ? <Check className="w-5 h-5 mx-auto text-[#00CED1]" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
+                        <td className="text-center bg-turquoise/5">
+                          {feature.essential ? <Check className="w-5 h-5 mx-auto text-turquoise" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
                         </td>
 
                         <td className="text-center">
-                          {feature.enterprise ? <Check className="w-5 h-5 mx-auto text-[#00CED1]" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
+                          {feature.enterprise ? <Check className="w-5 h-5 mx-auto text-turquoise" strokeWidth={3} /> : <X className="w-5 h-5 mx-auto text-[#274263]" strokeWidth={3} />}
                         </td>
                       </tr>
                     ))}
@@ -320,10 +320,10 @@ export default function PricingPage() {
               <ScrollAnimation key={index} delay={index * 0.1}>
                 <details className="group bg-white rounded-lg shadow-sm border border-gray-200 transition-all duration-300 hover:shadow-md hover:scale-[1.02]">
                   <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-all duration-200">
-                    <h3 className="text-lg font-semibold text-[#274263] pr-4 group-hover:text-[#00CED1] transition-colors">
+                    <h3 className="text-lg font-semibold text-[#274263] pr-4 group-hover:text-turquoise transition-colors">
                       {faq.question}
                     </h3>
-                    <ChevronDown className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 group-hover:text-[#00CED1]" />
+                    <ChevronDown className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 group-hover:text-turquoise" />
                   </summary>
                   <div className="px-6 pb-6">
                     <p className="text-gray-700 leading-relaxed">{faq.answer}</p>

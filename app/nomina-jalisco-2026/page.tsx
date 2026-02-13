@@ -13,7 +13,7 @@ export default function NominaJalisco2026() {
             className="inline-flex items-center text-navy hover:text-turquoise transition-colors font-medium"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Volver a Recursos
+            Volver a Bloggy
           </Link>
         </div>
       </div>
