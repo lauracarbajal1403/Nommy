@@ -3,7 +3,7 @@ import { Check, Star, ChevronDown, X } from "lucide-react"
 import ScrollAnimation from "@/components/scroll-animation"
 import WhatsAppButton from "@/components/whatsapp-button"
 import NominikChatbot from "@/app/nominik"
-import  Fragment from "react"
+import  React from "react"
 
 export default function PricingPage() {
   const plans = [
