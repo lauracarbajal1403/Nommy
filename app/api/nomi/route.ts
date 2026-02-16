@@ -1,5 +1,13 @@
 import { NextResponse } from "next/server";
-import { MailService } from "@/lib/mail.service";
+import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+
+const ses = new SESClient({
+  region: "us-east-1",
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+  },
+});
 
 export async function POST(req: Request) {
   try {
@@ -53,7 +61,7 @@ export async function POST(req: Request) {
       { role: "assistant", content: assistantReply },
     ];
 
-    // 4️⃣ HTML bonito para correo
+    // 4️⃣ HTML bonito
     const conversationHtml = fullConversation
       .map(
         (msg) => `
@@ -69,88 +77,51 @@ export async function POST(req: Request) {
       )
       .join("");
 
-    // 5️⃣ Enviar correo con MailService
-    await MailService.SendMail({
-      to: "laura.carbajal@nommy.mx",
-      subject: "🧠 Nueva conversación – Asesoría solicitada",
-      html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8">
-            <style>
-              body { 
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-                line-height: 1.6; 
-                color: #333;
-                margin: 0;
-                padding: 0;
-                background-color: #f5f5f5;
-              }
-              .container { 
-                max-width: 700px; 
-                margin: 40px auto; 
-                background: white;
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-              }
-              .header { 
-                background: linear-gradient(135deg, #274263 0%, #2DD4BF 100%); 
-                color: white; 
-                padding: 30px; 
-                text-align: center;
-              }
-              .header h1 {
-                margin: 0;
-                font-size: 24px;
-                font-weight: 600;
-              }
-              .content { 
-                padding: 30px;
-              }
-              .footer { 
-                background: #f9fafb;
-                text-align: center; 
-                padding: 20px;
-                color: #6b7280; 
-                font-size: 13px;
-                border-top: 1px solid #e5e7eb;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="header">
-                <h1>🧠 Nueva Conversación del Chatbot</h1>
-              </div>
-              <div class="content">
-                <h2 style="color: #274263; margin-top: 0;">Conversación completa</h2>
-                ${conversationHtml}
-              </div>
-              <div class="footer">
-                <p>📅 ${new Date().toLocaleDateString('es-MX', { 
-                  weekday: 'long', 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}</p>
-                <p style="margin-top: 8px; color: #9ca3af;">
-                  Este correo fue enviado automáticamente desde el chatbot de NOMMY
-                </p>
-              </div>
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <body style="font-family: Arial, sans-serif; background:#f5f5f5; padding:20px;">
+          <div style="max-width:700px;margin:auto;background:white;border-radius:12px;overflow:hidden;">
+            <div style="background:linear-gradient(135deg,#274263,#2DD4BF);color:white;padding:30px;text-align:center;">
+              <h1 style="margin:0;">🧠 Nueva Conversación del Chatbot</h1>
             </div>
-          </body>
-        </html>
-      `,
+            <div style="padding:30px;">
+              ${conversationHtml}
+            </div>
+            <div style="background:#f9fafb;text-align:center;padding:20px;font-size:13px;color:#6b7280;">
+              ${new Date().toLocaleString("es-MX")}
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+
+    // 5️⃣ Enviar correo con SES (API)
+    const command = new SendEmailCommand({
+      Source: "no-reply@nommy.mx",
+      Destination: {
+        ToAddresses: ["laura.carbajal@nommy.mx"],
+      },
+      Message: {
+        Subject: {
+          Data: "🧠 Nueva conversación – Asesoría solicitada",
+          Charset: "UTF-8",
+        },
+        Body: {
+          Html: {
+            Data: htmlContent,
+            Charset: "UTF-8",
+          },
+        },
+      },
     });
+
+    await ses.send(command);
 
     return NextResponse.json({ text: assistantReply });
 
   } catch (error) {
-    console.error(error);
+    console.error("Error SES:", error);
     return NextResponse.json(
       { error: "Error al procesar el mensaje" },
       { status: 500 }
