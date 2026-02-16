@@ -238,7 +238,7 @@ export default function PricingPage() {
       {/* MOBILE */}
     <section
       id="comparison-table"
-      className="block lg:hidden py-16 bg-white/50 scroll-mt-20"
+      className="py-16 bg-white/50 scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="overflow-x-auto">
