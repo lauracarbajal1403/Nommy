@@ -93,7 +93,7 @@ export async function POST(req: Request) {
     // 5️⃣ Enviar correo con Resend
     await resend.emails.send({
       from: "no-reply@resend.dev",
-      to: ["laura.carbajal@nommy.mx"],
+      to: ["ventas@nommy.mx"],
       subject: "🧠 Nueva conversación – Asesoría solicitada",
       html: htmlContent,
     });

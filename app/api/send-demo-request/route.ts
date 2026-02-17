@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       )
     }
 
-    const recipient = recipientEmail || "laura.carbajal@nommy.mx"
+    const recipient = recipientEmail || "ventas@nommy.mx"
 
     const htmlContent = `
       <!DOCTYPE html>
