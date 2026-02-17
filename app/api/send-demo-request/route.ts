@@ -1,13 +1,7 @@
 import { NextResponse } from "next/server"
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses"
+import { Resend } from "resend"
 
-const ses = new SESClient({
-  region: "us-east-1",
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-  },
-})
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: Request) {
   try {
@@ -22,7 +16,7 @@ export async function POST(request: Request) {
       )
     }
 
-    const recipient = recipientEmail || "laura.carbajal@nommy.mx"
+    const recipient = recipientEmail || "ventas@nommy.mx"
 
     const htmlContent = `
       <!DOCTYPE html>
@@ -48,34 +42,27 @@ export async function POST(request: Request) {
       </html>
     `
 
-    const command = new SendEmailCommand({
-      Source: "no-reply@nommy.mx", // ⚠️ ESTE EMAIL debe estar verificado en SES
-      Destination: {
-        ToAddresses: ["laura.carbajal@nommy.mx"],
-      },
-      ReplyToAddresses: [email],
-      Message: {
-        Subject: {
-          Data: `Nueva solicitud de demo de NOMMY - ${company}`,
-          Charset: "UTF-8",
-        },
-        Body: {
-          Html: {
-            Data: htmlContent,
-            Charset: "UTF-8",
-          },
-        },
-      },
+    const { data, error } = await resend.emails.send({
+      from: "NOMMY <onboarding@resend.dev>", // ⚠️ luego cambia por tu dominio verificado
+      to: recipient,
+      subject: `Nueva solicitud de demo de NOMMY - ${company}`,
+      html: htmlContent,
     })
 
-    const result = await ses.send(command)
+    if (error) {
+      console.error("[send-demo-request] Resend error:", error)
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      )
+    }
 
-    console.log("[send-demo-request] Email sent successfully:", result.MessageId)
+    console.log("[send-demo-request] Email sent successfully:", data?.id)
 
     return NextResponse.json(
       {
         success: true,
-        messageId: result.MessageId,
+        messageId: data?.id,
       },
       { status: 200 }
     )

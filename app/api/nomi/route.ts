@@ -1,13 +1,7 @@
 import { NextResponse } from "next/server";
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+import { Resend } from "resend";
 
-const ses = new SESClient({
-  region: "us-east-1",
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
@@ -96,32 +90,18 @@ export async function POST(req: Request) {
       </html>
     `;
 
-    // 5️⃣ Enviar correo con SES (API)
-    const command = new SendEmailCommand({
-      Source: "no-reply@nommy.mx",
-      Destination: {
-        ToAddresses: ["laura.carbajal@nommy.mx"],
-      },
-      Message: {
-        Subject: {
-          Data: "🧠 Nueva conversación – Asesoría solicitada",
-          Charset: "UTF-8",
-        },
-        Body: {
-          Html: {
-            Data: htmlContent,
-            Charset: "UTF-8",
-          },
-        },
-      },
+    // 5️⃣ Enviar correo con Resend
+    await resend.emails.send({
+      from: "no-reply@resend.dev",
+      to: ["ventas@nommy.mx"],
+      subject: "🧠 Nueva conversación – Asesoría solicitada",
+      html: htmlContent,
     });
-
-    await ses.send(command);
 
     return NextResponse.json({ text: assistantReply });
 
   } catch (error) {
-    console.error("Error SES:", error);
+    console.error("Error Resend:", error);
     return NextResponse.json(
       { error: "Error al procesar el mensaje" },
       { status: 500 }
