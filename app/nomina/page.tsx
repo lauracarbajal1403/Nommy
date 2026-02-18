@@ -14,6 +14,7 @@ export default function ClimaLaboralPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
   })
 
   // 2. Función que maneja el envío de datos y la descarga
@@ -51,7 +52,7 @@ export default function ClimaLaboralPage() {
 
         // Limpiar y cerrar
         setShowModal(false)
-        setFormData({ name: "", email: "" })
+        setFormData({ name: "", email: "", phone: "" })
         
         // Opcional: Redirigir o mostrar éxito
         // window.open('/gracias', '_blank')
@@ -106,6 +107,20 @@ export default function ClimaLaboralPage() {
                   placeholder="nombre@empresa.com"
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-turquoise focus:ring-2 focus:ring-turquoise/20 outline-none text-navy"
                 />
+
+              </div>
+
+               <div>
+                <label className="block text-sm font-semibold text-navy mb-2">Número de Telefono</label>
+                <input
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  placeholder="nombre@empresa.com"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-turquoise focus:ring-2 focus:ring-turquoise/20 outline-none text-navy"
+                />
+                
               </div>
 
               {message && <p className="text-red-500 text-sm">{message}</p>}

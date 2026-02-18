@@ -6,10 +6,10 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, email, company, employees, phone, message, recipientEmail } = body
+    const { name, email,  phone, recipientEmail } = body
 
     // Validate required fields
-    if (!name || !email) {
+    if (!name || !email || !phone) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
             <div style="padding:30px;">
               <p><strong>Nombre:</strong> ${name}</p>
               <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Teléfono:</strong> ${phone}</p>
               
             </div>
             <div style="text-align:center;padding:20px;font-size:12px;color:#888;">
