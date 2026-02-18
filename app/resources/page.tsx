@@ -17,8 +17,8 @@ export default function ResourcesPage() {
       date: "6 Feb 2026",
     },
     {
-      title: "Nómina en Jalisco 2026: Ley 40 horas",
-      description: "Si eres Empresario Jalisciense esta guía práctica es para ti: Te compartimos como la Nómina de 2026 Exige Estos 3 Cambios Inmediatos",
+      title: "Encuestas de clima laboral",
+      description: "La herramienta estratégica que tu departamento de RRHH no puede ignorar.",
       category: "Blog",
       icon: BookOpen,
       image: "/portada.jpg",
