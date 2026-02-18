@@ -24,7 +24,7 @@ export default function ResourcesPage() {
       image: "/portada.jpg",
       link: "/nomina",
       readTime: "4 min de lectura",
-      date: "10 Ene 2026",
+      date: "18 Feb 2026",
     },
   ];
 
