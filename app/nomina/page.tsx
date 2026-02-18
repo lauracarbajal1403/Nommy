@@ -117,7 +117,7 @@ export default function ClimaLaboralPage() {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  placeholder="nombre@empresa.com"
+                  placeholder="55 1234 5678"
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-turquoise focus:ring-2 focus:ring-turquoise/20 outline-none text-navy"
                 />
                 
