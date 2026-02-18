@@ -292,14 +292,14 @@ export default function ClimaLaboralPage() {
 
           {/* Conclusión & Final CTA */}
           <ScrollAnimation>
-            <div className="bg-gradient-to-br from-turquoise via-turquoise to-navy p-10 rounded-3xl text-white text-center shadow-2xl mt-12 py-20">
+            <div className="bg-gradient-to-br from-turquoise via-turquoise to-navy p-10 rounded-3xl text-white text-center shadow-2xl mt-12 py-10">
               <h3 className="text-3xl font-bold mb-6">
                 Haz que tu próxima encuesta sea una decisión estratégica
               </h3>
               <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
                 No te compliques con análisis interminables en Excel. Convierte el clima laboral en un KPI gestionable hoy mismo.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center py-20">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center py-10">
                 <Link
                   href="/demo"
                   className="bg-navy text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-lg"
