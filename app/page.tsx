@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Check,  Receipt, DollarSign, Zap } from 'lucide-react'
 import ScrollAnimation from "@/components/scroll-animation"
 import  NominikChatbot  from "@/app/nominik"
 export default function HomePage() {
@@ -8,81 +8,169 @@ export default function HomePage() {
     <div className="overflow-hidden">
       <NominikChatbot />
      
-      <section className="relative py-16 lg:py-20 flex items-center bg-gradient-to-br from-white via-turquoise/15 to-navy/15">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col gap-12 items-center">
-            {/* Text at the top */}
-            
-
-            {/* Video in the middle */}
-            <ScrollAnimation animation="slide-in-right">
-              <div className="relative flex justify-center w-full">
-                <video
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/video-dcrtXKPVRIL4IiLdxQMdgZqdG2s3K3.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full max-w-4xl rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation animation="slide-in-left">
-              <div className="space-y-8 text-center">
-                <div className="flex flex-col items-center gap-6">
-                  <div className="flex-1">
-                    <span className="text-4xl lg:text-6xl  text-[#274263] font-bold">
-                      ¿Te viste reflejado? Perfecto.{" "}
+      {/* Value Proposition Section */}
+     <section className="relative bg-gradient-to-r from-navy to-turquoise overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
+          <ScrollAnimation>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              
+              {/* LEFT CONTENT */}
+              <div className="text-left text-white">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+                    La plataforma integral <br />
+                    para{" "}
+                    <span className="relative inline-block">
+                      gestionar tu talento
+                      <span className="absolute left-0 -bottom-2 h-2 w-full bg-turquoise rounded-full rotate-[-1deg]"></span>
                     </span>
-                    <span className="text-4xl lg:text-6xl  text-turquoise font-bold">Aquí comienza la solución.</span>
+                  </h2>
+
+                <p className="text-lg text-white/90 mb-8 max-w-xl">
+                  Centraliza nómina, control de asistencia, y beneficios en una sola
+                  plataforma. Ahorra tiempo y haz feliz a tu equipo con la mejor
+                  experiencia digital.
+                </p>
+
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                  <Link
+                    href="/demo"
+                    className="bg-turquoise hover:bg-navy text-white font-semibold px-6 py-3 rounded-full text-center transition"
+                  >
+                    ¡Agenda tu DEMO!
+                  </Link>
+
+                  <Link
+                    href="/demo"
+                    className="bg-navy hover:bg-turquoise text-white font-semibold px-6 py-3 rounded-full text-center transition"
+                  >
+                    ▶ Ver como funciona
+                  </Link>
+                </div>
+
+                {/* Benefits */}
+                <div className="flex flex-col sm:flex-row gap-6 text-sm font-medium">
+                  <div className="flex items-center gap-2">
+                    <Check className="text-turquoise w-5 h-5" />
+                    <span>0 Costo implementación</span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Check className="text-turquoise w-5 h-5" />
+                    <span>Soporte 24/7</span>
                   </div>
                 </div>
               </div>
-            </ScrollAnimation>
-            {/* Demo button at the bottom */}
-            <ScrollAnimation>
-              <Link
-                href="/demo"
-                className="inline-flex items-center btn-secondary text-base lg:text-lg group px-8 py-4 whitespace-nowrap"
-              >
-                ¡Agenda tu DEMO!
-                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300 flex-shrink-0" />
-              </Link>
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
+              
+              {/* RIGHT IMAGE */}
+              
+              <div className="relative w-full max-w-2xl mx-auto lg:mx-0">
+                 {/* Cel encima */}
+                <ScrollAnimation
+                  animation="slide-in-left"
+                  className="absolute top-10 left-10 z-20 w-1/2"
+                >
+                  <img
+                    src="/Cel.png"
+                    alt="Dashboard de NOMMY en múltiples dispositivos"
+                    className="w-full rounded-xl shadow-xl"
+                  />
+                </ScrollAnimation>
 
-      {/* Value Proposition Section - Reduced size */}
-      <section className="relative py-12 gradient-turquoise-navy">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <ScrollAnimation>
-            <span className="text-2xl lg:text-4xl font-bold text-white mb-8 max-w-3xl mx-auto">Creamos</span>
-            <span className="text-2xl lg:text-4xl font-bold text-[#274263] mb-8 max-w-3xl mx-auto"> Nommy </span>
-            <span className="text-2xl lg:text-4xl font-bold text-white mb-8 max-w-3xl mx-auto">
-              {" "}
-              para darte tiempo, precisión y tranquilidad en cada cierre de nómina.
-            </span>
-            <div className="mt-8">
-              {/*
-              <img
-                  src="/evolucion-new.png"
-                  alt="Dashboard de NOMMY en múltiples dispositivos"
-                  className="w-full max-w-4xl mx-auto rounded-xl"
-                />
-                Hero Section */}
-              <img
-                src="/Nommy_Quiet12.png"
-                alt="Dashboard de NOMMY en múltiples dispositivos"
-                className="w-full max-w-4xl mx-auto rounded-xl"
-              />
+        {/* Tablet atrás */}
+                <ScrollAnimation
+                  animation="slide-in-right"
+                  className="relative z-0"
+                >
+                  <img
+                    src="/Tablet.png"
+                    alt="Dashboard de NOMMY en múltiples dispositivos"
+                    className="w-full rounded-xl mt-6"
+                  />
+                </ScrollAnimation>
+              </div>
             </div>
           </ScrollAnimation>
         </div>
       </section>
 
+      {/* Value Proposition Section - Reduced size */}
+      {/* Features Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Header */}
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
+              Todo lo que necesitas 
+            </h2>
+            <p className="text-lg text-turquoise max-w-2xl mx-auto">
+              Centraliza la gestión de nómina, talento y más beneficios en una{" "}
+              <span className="font-semibold">sola experiencia.</span>
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 py-8">
+  
+            {/* Card 1 */}
+            <div className="bg-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+              <div className="w-14 h-14 rounded-full  flex items-center justify-center mb-4">
+                <img src="/estrategia.png" className="w-7 h-7 text-navy" />
+              </div>
+
+              <h3 className="font-semibold text-turquoise text-lg mb-3">
+                Optimiza tu estrategia de nómina con Nommy
+              </h3>
+
+              <p className="text-sm text-navy leading-relaxed">
+                Nommy automatiza procesos de nómina tediosos reduciendo errores,
+                centralizando toda tu gestión de los colaboradores en una sola
+                plataforma intuitiva.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+              <div className="w-14 h-14 rounded-full bg-gray-500 flex items-center justify-center mb-4">
+                <img src="/mov.png" className="w-7 h-7 text-navy" />
+              </div>
+
+              <h3 className="font-semibold text-turquoise text-lg mb-3">
+                Sincronización de movimientos afiliatorios en tiempo
+              </h3>
+
+              <p className="text-sm text-navy leading-relaxed">
+                Optimiza tu carga fiscal cumpliendo con todas las normativas del SAT
+                y leyes laborales vigentes.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+              <div className="w-14 h-14 rounded-full  flex items-center justify-center mb-4">
+                <img src="/ia.png" className="w-7 h-7 text-navy" />
+              </div>
+
+              <h3 className="font-semibold text-turquoise text-lg mb-3">
+                Reclutamiento con Nommy IA
+              </h3>
+
+              <p className="text-sm text-navy leading-relaxed">
+                El match perfecto entre tu empresa y el talento que buscas.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      
+
+      {/* Benefits Section - Flush alignment with section above */}
+      
       {/* Tool Showcase */}
-      <section className="relative py-20 bg-gradient-to-br from-white to-gray-50">
+      <section className="relative py-20 bg-gradient-to-br from-turquoise/10 to-navy/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <ScrollAnimation animation="slide-in-left">
@@ -103,7 +191,7 @@ export default function HomePage() {
 
             <ScrollAnimation animation="slide-in-right">
               <div className="relative">
-                <img src="/evolucion-new.png" alt="Dashboard de NOMMY" className="w-full rounded-xl" />
+                <img src="/pc-nommy-s.png" alt="Dashboard de NOMMY" className="w-full rounded-xl" />
 
                 {/* Benefits Section - Flush alignment with section above
                 <img src="/portal-nommy.png" alt="Dashboard de NOMMY" className="w-full rounded-xl" />
@@ -113,14 +201,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Benefits Section - Flush alignment with section above */}
-      <section className="relative bg-gradient-to-br from-turquoise/10 to-navy/5">
+      <section className="relative bg-gradient-to-br from-navy to-turquoise">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
             <ScrollAnimation animation="slide-in-left">
-              <div className="space-y-8 text-left">
-                <h2 className="text-3xl lg:text-4xl font-bold text-turquoise">
+              <div className="space-y-8 text-left ">
+                <h2 className="text-3xl lg:text-4xl font-bold text-white">
                   En optimizar procesos, reducir errores y ahorrar costos
                 </h2>
                 <div className="space-y-4">
@@ -134,7 +220,7 @@ export default function HomePage() {
                     <ScrollAnimation key={index} delay={index * 200}>
                       <div className="flex items-center space-x-3 group">
                         <img src="/Icono.png" className="w-6 h-6 flex-shrink-0" />
-                        <span className="text-lg text-gray-700">{benefit}</span>
+                        <span className="text-lg text-white">{benefit}</span>
                       </div>
                     </ScrollAnimation>
                   ))}
@@ -144,13 +230,172 @@ export default function HomePage() {
 
             <ScrollAnimation animation="slide-in-right">
               <div className="relative flex justify-center">
-                <img src="/dashi.png" alt="Dashboard nommy" className="w-full max-w-sm mx-auto" />
+                <img src="/dashi.png" alt="Dashboard nommy" className="w-full-mx-auto" />
               </div>
             </ScrollAnimation>
           </div>
         </div>
       </section>
+      {/* Steps Section */}
+      <section className="bg-navy py-20 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              Simple, rápido y seguro
+            </h2>
+            <p className="text-white/80 max-w-2xl mx-auto text-lg">
+              Olvida las implementaciones eternas. Con Nommy, estarás operativo en lo
+              que tardas en leer esto.
+            </p>
+          </div>
+
+          {/* Content */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+            {/* LEFT IMAGE */}
+            <div className="flex justify-center lg:justify-start">
+              <img
+                src="/Monofinal.png"
+                alt="Proceso simple Nommy"
+                className="w-full max-w-sm"
+              />
+            </div>
+
+            {/* RIGHT STEPS */}
+            <div className="space-y-8">
+
+              {/* Step 1 */}
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-turquoise flex items-center justify-center font-bold">
+                  1
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1 text-2xl">Crea tu empresa</h3>
+                  <p className="text-white/80 text-xl leading-relaxed">
+                    Ingresa los datos de la empresa la cual deseas realizar el cálculo
+                    de nómina.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-turquoise flex items-center justify-center font-bold">
+                  2
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1 text-2xl">
+                    Agrega a tus colaboradores
+                  </h3>
+                  <p className="text-white/80 text-xl leading-relaxed">
+                    Carga de manera manual o masiva el listado de tus colaboradores en
+                    minutos usando nuestras plantillas de Excel.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-turquoise flex items-center justify-center font-bold">
+                  3
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1 text-2xl">Timbrado de Nómina</h3>
+                  <p className="text-white/80 text-xl leading-relaxed">
+                    Obtén los layouts bancarios para desarrollar el respectivo
+                    timbrado de tu nómina y listo así de fácil es calcular tu nómina
+                    con Nommy.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Audience Section */}
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+          {/* Header */}
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navyleading-tight">
+              ¿Eres de los que hacen que las cosas pasen?{" "}
+              <span className="text-turquoise text-bold">Nosotros también.</span>
+            </h2>
+
+            <p className="mt-4 text-lg text-turquoise max-w-3xl mx-auto">
+              Ya seas la mente que decide, las manos que ejecutan o el motor que lo
+              hace posible. Te acompañamos en los focos y en el día a día.
+            </p>
+          </div>
+        </div>
+
+        {/* Cards Strip */}
+        <div className="bg-turquoise py-8">
+          <div className="max-w-7xl mx-auto">
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+
+              {/* Card 1 */}
+              <div className="p-8 text-white border-white/20 lg:border-r">
+                <div className="text-white/70 font-semibold mb-6">01</div>
+
+                <h3 className="font-bold text-xl text-white mb-2">
+                  Líderes RRHH
+                </h3>
+
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Convierte procesos en estrategia y talento en imparable.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="p-8 text-white border-white/20 lg:border-r">
+                <div className="text-white/70 font-semibold mb-6">02</div>
+
+                <h3 className="font-bold text-xl mb-2">
+                  Dueño de empresa
+                </h3>
+
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Tu empresa, tu visión, tu control. Sin sorpresas.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="p-8 text-white border-white/20 lg:border-r">
+                <div className="text-white/70 font-semibold mb-6">03</div>
+
+                <h3 className="font-bold text-xl mb-2">
+                  Alas para tu negocio
+                </h3>
+
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Es momento de despegar de la mano de Nommy.
+                </p>
+              </div>
+
+              {/* Card 4 */}
+              <div className="p-8 text-white">
+                <div className="text-white/70 font-semibold mb-6">04</div>
+
+                <h3 className="font-bold text-xl mb-2">
+                  Despachos Contables
+                </h3>
+
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Unifica la gestión de tus clientes, controla la rentabilidad por
+                  proyecto y haz crecer tu equipo sin perder de vista los plazos clave.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="relative py-20 bg-gradient-to-br from-navy to-turquoise">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <ScrollAnimation>
