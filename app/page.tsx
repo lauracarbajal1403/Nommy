@@ -321,7 +321,7 @@ export default function HomePage() {
 
           {/* Header */}
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navyleading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy">
               ¿Eres de los que hacen que las cosas pasen?{" "}
               <span className="text-turquoise text-bold">Nosotros también.</span>
             </h2>
