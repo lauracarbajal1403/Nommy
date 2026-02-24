@@ -6,6 +6,17 @@ import NominikChatbot from "@/app/nominik"
 
 export default function ResourcesPage() {
   const resources = [
+    
+    {
+      title: "Encuestas de clima laboral",
+      description: "La herramienta estratégica que tu departamento de RRHH no puede ignorar.",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/portada.jpg",
+      link: "/nomina",
+      readTime: "10 min de lectura",
+      date: "18 Feb 2026",
+    },
     {
       title: "Nómina en Jalisco 2026",
       description: "Si eres empresario Jalisciense esta guía práctica es para ti. Te compartimos cómo la nómina de 2026 exige estos 3 cambios inmediatos.",
@@ -15,16 +26,6 @@ export default function ResourcesPage() {
       link: "/nomina-jalisco-2026",
       readTime: "8 min de lectura",
       date: "6 Feb 2026",
-    },
-    {
-      title: "Encuestas de clima laboral",
-      description: "La herramienta estratégica que tu departamento de RRHH no puede ignorar.",
-      category: "Blog",
-      icon: BookOpen,
-      image: "/portada.jpg",
-      link: "/nomina",
-      readTime: "4 min de lectura",
-      date: "18 Feb 2026",
     },
   ];
 
@@ -41,7 +42,7 @@ export default function ResourcesPage() {
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
             <span className="absolute top-6 left-6 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-              ⭐ {isFeatured ? "Destacado" : "Nuevo Blog"}
+              ⭐ {isFeatured ? "Nuevo Blog" : "Destacado"}
             </span>
           </div>
 

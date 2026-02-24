@@ -173,7 +173,7 @@ export default function PricingPage() {
       </section>
 
       {/* Planes */}
-      <section className="py-16 lg:py-0">
+      <section className="py-16 lg:py-0" id = "planes">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.slice(0).map((plan, index) => (
             <ScrollAnimation key={plan.name} delay={index * 0.1}>
@@ -237,7 +237,7 @@ export default function PricingPage() {
       
       {/* MOBILE */}
     <section
-      id="comparison-table"
+      id="comparar"
       className="py-16 bg-white/50 scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto px-4">
@@ -315,7 +315,7 @@ export default function PricingPage() {
             </div>
           </ScrollAnimation>
 
-          <div className="space-y-4">
+          <div className="space-y-4" id = "faq">
             {faqs.map((faq, index) => (
               <ScrollAnimation key={index} delay={index * 0.1}>
                 <details className="group bg-white rounded-lg shadow-sm border border-gray-200 transition-all duration-300 hover:shadow-md hover:scale-[1.02]">
