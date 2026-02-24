@@ -25,10 +25,10 @@ const nominaCol2 = [
 ]
 
 const masSoluciones = [
-  { icon: "📚", title: "Reclutamiento asistido por IA", desc: "Diseña perfiles de puestos con IA.", badge: "Nuevo", href:"/reclutamiento_ia" },
+  { icon: "📚", title: "Reclutamiento asistido por IA", desc: "Diseña perfiles de puestos con IA.", badge: "Nuevo", href:"/inteligencia" },
   { icon: "📊", title: "NOM-035", desc: "Cumple con encuestas oficiales.", badge: "Nuevo", href:"/norma" },
-  { icon: "📋", title: "Control de horarios", desc: "Reporte de prenómina en minutos.", badge: null, href:"/control_horarios" },
-  { icon: "🧾", title: "Reportes dinámicos", desc: "Visualización y análisis de resultados.", badge: null, href:"/reportes" },
+  { icon: "📋", title: "Control de horarios", desc: "Reporte de prenómina en minutos.", badge: null, href:"/control_hora" },
+  { icon: "🧾", title: "Reportes dinámicos", desc: "Visualización y análisis de resultados.", badge: null, href:"/reportes_dina" },
   { icon: "✅", title: "Canales corporativos", desc: "Publica anuncios, beneficios y comunicados desde Nommy.", badge: null, href:"/norma" },
 ]
 
