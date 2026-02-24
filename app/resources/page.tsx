@@ -6,7 +6,6 @@ import NominikChatbot from "@/app/nominik"
 
 export default function ResourcesPage() {
   const resources = [
-    
     {
       title: "Encuestas de clima laboral",
       description: "La herramienta estratégica que tu departamento de RRHH no puede ignorar.",
@@ -14,7 +13,7 @@ export default function ResourcesPage() {
       icon: BookOpen,
       image: "/portada.jpg",
       link: "/nomina",
-      readTime: "10 min de lectura",
+      readTime: "3 min de lectura",
       date: "18 Feb 2026",
     },
     {
@@ -41,9 +40,11 @@ export default function ResourcesPage() {
               alt={resource.title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <span className="absolute top-6 left-6 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-              ⭐ {isFeatured ? "Nuevo Blog" : "Destacado"}
-            </span>
+            {isFeatured && (
+              <span className="absolute top-6 left-6 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                ⭐ Nuevo Blog
+              </span>
+            )}
           </div>
 
           {/* Contenido */}
@@ -68,7 +69,7 @@ export default function ResourcesPage() {
             </p>
 
             <div className="flex items-center text-turquoise font-bold gap-2 group-hover:gap-3 transition-all">
-              <span>{isFeatured ? "Leer artículo completo" : "Leer artículo completo"}</span>
+              <span>Leer artículo completo</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
@@ -100,9 +101,9 @@ export default function ResourcesPage() {
         <div className="space-y-12">
           {resources.map((item, index) => (
             <ScrollAnimation key={index}>
-              <ArticleCard 
-                resource={item} 
-                isFeatured={index === 0} 
+              <ArticleCard
+                resource={item}
+                isFeatured={index === 0}
               />
             </ScrollAnimation>
           ))}

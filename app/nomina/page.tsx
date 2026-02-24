@@ -165,7 +165,7 @@ export default function ClimaLaboralPage() {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4" />
-                  10 min de lectura
+                  3 min de lectura
                 </span>
               </div>
 
