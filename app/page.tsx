@@ -3,6 +3,8 @@ import Link from "next/link"
 import { ArrowRight, Check,  Receipt, DollarSign, Zap } from 'lucide-react'
 import ScrollAnimation from "@/components/scroll-animation"
 import  NominikChatbot  from "@/app/nominik"
+import NommyCalculator from "@/components/NommyCalculator"
+
 export default function HomePage() {
   return (
     <div className="overflow-hidden">
@@ -93,10 +95,11 @@ export default function HomePage() {
           </ScrollAnimation>
         </div>
       </section>
+      <NommyCalculator />
 
       {/* Value Proposition Section - Reduced size */}
       {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header */}
@@ -114,7 +117,7 @@ export default function HomePage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 py-8">
   
             {/* Card 1 */}
-            <div className="bg-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <div className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition">
               <div className="w-14 h-14 rounded-full  flex items-center justify-center mb-4">
                 <img src="/estrategia.png" className="w-7 h-7 text-navy" />
               </div>
@@ -131,7 +134,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <div className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition">
               <div className="w-14 h-14 rounded-full bg-gray-500 flex items-center justify-center mb-4">
                 <img src="/mov.png" className="w-7 h-7 text-navy" />
               </div>
@@ -147,7 +150,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <div className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition">
               <div className="w-14 h-14 rounded-full  flex items-center justify-center mb-4">
                 <img src="/ia.png" className="w-7 h-7 text-navy" />
               </div>

@@ -3,6 +3,8 @@ import ScrollAnimation from "@/components/scroll-animation"
 import WhatsAppButton from "@/components/whatsapp-button"
 import Link from "next/link"
 import  NominikChatbot  from "@/app/nominik"
+import IndustryCarousel from "@/components/IndustryCarousel"
+
 export default function ProductoPage() {
  
   const features = [
@@ -96,6 +98,8 @@ export default function ProductoPage() {
         </div>
       </section>
 
+      <IndustryCarousel />
+      
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation>
@@ -169,6 +173,7 @@ export default function ProductoPage() {
           </ScrollAnimation>
         </div>
       </section>
+      
 
       {/* Testimonial Section */}
       <section className="py-20 bg-gradient-to-br from-turquoise/5 to-navy/5">
