@@ -95,7 +95,7 @@ export default function HomePage() {
           </ScrollAnimation>
         </div>
       </section>
-      <NommyCalculator />
+      
 
       {/* Value Proposition Section - Reduced size */}
       {/* Features Section */}
@@ -167,6 +167,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <NommyCalculator />
 
       
 
