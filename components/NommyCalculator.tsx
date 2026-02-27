@@ -82,6 +82,39 @@ function AnimatedNumber({ value, prefix = "", suffix = "", decimals = 0 }) {
 
 function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffix = "", icon }) {
   const pct = ((value - min) / (max - min)) * 100
+  const [inputVal, setInputVal] = useState(String(value))
+  const [isFocused, setIsFocused] = useState(false)
+
+  // Keep inputVal in sync when value changes externally (e.g. slider drag)
+  useEffect(() => {
+    if (!isFocused) {
+      setInputVal(String(value))
+    }
+  }, [value, isFocused])
+
+  const handleInputChange = (e) => {
+    // Allow only digits
+    const raw = e.target.value.replace(/\D/g, "")
+    setInputVal(raw)
+  }
+
+  const handleInputBlur = () => {
+    setIsFocused(false)
+    const parsed = parseInt(inputVal, 10)
+    if (!isNaN(parsed)) {
+      const clamped = Math.min(Math.max(parsed, min), max)
+      // Round to nearest step
+      const stepped = Math.round(clamped / step) * step
+      onChange(stepped)
+      setInputVal(String(stepped))
+    } else {
+      setInputVal(String(value))
+    }
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") e.target.blur()
+  }
 
   return (
     <div className="mb-6">
@@ -90,11 +123,38 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
           <span className="text-base">{icon}</span>
           <span className="text-sm font-medium">{label}</span>
         </div>
-        <span className="text-sm font-semibold text-gray-800">
-          {prefix}
-          {value.toLocaleString("es-MX")}
-          {suffix}
-        </span>
+
+        {/* Editable value badge */}
+        <div
+          className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-sm font-semibold text-gray-800 border transition-all duration-150"
+          style={{
+            background: isFocused ? "rgba(0,188,212,0.06)" : "#f9fafb",
+            borderColor: isFocused ? "#00bcd4" : "#e5e7eb",
+            boxShadow: isFocused ? "0 0 0 3px rgba(0,188,212,0.12)" : "none",
+          }}
+        >
+          {prefix && <span className="text-gray-500">{prefix}</span>}
+          <input
+            type="text"
+            inputMode="numeric"
+            value={isFocused ? inputVal : value.toLocaleString("es-MX")}
+            onFocus={() => {
+              setIsFocused(true)
+              setInputVal(String(value))
+            }}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
+            onKeyDown={handleKeyDown}
+            className="bg-transparent outline-none text-right font-semibold text-gray-800"
+            style={{
+              width: `${Math.max(String(value).length, 3) + 1}ch`,
+              minWidth: "3ch",
+              maxWidth: "8ch",
+            }}
+            title="Escribe un valor directamente"
+          />
+          {suffix && <span className="text-gray-500 whitespace-nowrap">{suffix}</span>}
+        </div>
       </div>
 
       <div className="relative h-1.5 bg-gray-200 rounded-full">

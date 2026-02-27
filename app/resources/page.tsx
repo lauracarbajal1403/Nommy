@@ -26,6 +26,16 @@ export default function ResourcesPage() {
       readTime: "8 min de lectura",
       date: "6 Feb 2026",
     },
+    {
+      title: "Aspectos clave para fortalecer tu gestión de nómina en 2026",
+      description: "Conoce los aspectos clave que fortalecerán tu gestión de nómina en 2026. Desde la automatización hasta el cumplimiento normativo, descubre cómo optimizar tus procesos y garantizar la satisfacción de tus empleados.",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/bloggy3.png",
+      link: "/prod",
+      readTime: "8 min de lectura",
+      date: "06 Ene 2026",
+    },
   ];
 
   // Componente interno para mantener la consistencia
