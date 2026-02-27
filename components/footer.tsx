@@ -10,8 +10,10 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Logo - using new icon and text logo */}
             <div className="flex items-center space-x-3">
-              <Image src="/nommy-logo-new.png" alt="NOMMY" width={48} height={48} className="h-12 w-auto" />
-              <Image src="/nommy-text-new.png" alt="nommy" width={32} height={32} className="h-8 w-auto" />
+              <Link href="/" className="flex flex-col items-center">
+                <Image src="/nommy-logo-new.png" alt="NOMMY" width={16} height={16} className="h-4 w-auto" priority />
+                <Image src="/nommy-text-new.png" alt="nommy" width={32} height={32} className="h-8 w-auto" priority />
+              </Link>
             </div>
 
             {/* Contact Info */}

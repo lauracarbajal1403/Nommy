@@ -275,10 +275,10 @@ export default function Navigation() {
         }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-3">
-            <Image src="/nommy-logo-new.png" alt="NOMMY" width={48} height={48} className="h-12 w-auto" priority />
-            <Image src="/nommy-text-new.png" alt="nommy" width={32} height={32} className="h-8 w-auto" priority />
-          </Link>
+        <Link href="/" className="flex flex-col items-center">
+          <Image src="/nommy-logo-new.png" alt="NOMMY" width={16} height={16} className="h-4 w-auto" priority />
+          <Image src="/nommy-text-new.png" alt="nommy" width={32} height={32} className="h-8 w-auto" priority />
+        </Link>
 
         {/* Desktop Menu */}
         <div
