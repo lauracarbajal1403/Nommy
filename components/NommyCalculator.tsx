@@ -185,7 +185,7 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
 
 export default function NommyCalculator() {
   const [colaboradores, setColaboradores] = useState(50)
-  const [salario, setSalario] = useState(12000)
+  const salario = 15000
 
   const gastosOmision = calcGastosOmision(salario, colaboradores)
   const ahorroProd = calcAhorroProductividad(colaboradores)
@@ -278,18 +278,6 @@ export default function NommyCalculator() {
                 step={5}
                 onChange={setColaboradores}
                 icon="👥"
-              />
-
-              <Slider
-                label="Gasto Mensual"
-                value={salario}
-                min={5000}
-                max={80000}
-                step={500}
-                onChange={setSalario}
-                prefix="$"
-                suffix=" MXN"
-                icon="💰"
               />
 
               <div className="border-t border-gray-100 my-6" />
