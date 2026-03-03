@@ -37,14 +37,14 @@ export default function HomePage() {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     href="/demo"
-                    className="bg-turquoise hover:bg-navy text-white font-semibold px-6 py-3 rounded-full text-center transition"
+                    className="bg-turquoise hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition"
                   >
                     ¡DEMO GRATIS!
                   </Link>
 
                   <Link
                     href="/demo"
-                    className="bg-navy hover:bg-turquoise text-white font-semibold px-6 py-3 rounded-full text-center transition"
+                    className="bg-navy hover:bg-turquoise text-white font-bold px-6 py-3 rounded-full text-center transition"
                   >
                     ▶ Ver como funciona
                   </Link>
@@ -66,30 +66,32 @@ export default function HomePage() {
               
               {/* RIGHT IMAGE */}
               
-              <div className="relative w-full max-w-2xl mx-auto lg:mx-0">
-                 {/* Cel encima */}
+              <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: '500px' }}>
+  
+                {/* Tablet atrás - posicionada absolute también */}
+                <ScrollAnimation
+                  animation="slide-in-right"
+                  className="absolute bottom-0 right-0 z-10 w-[85%]"
+                >
+                  <img
+                    src="/Tablet.png"
+                    alt="Dashboard de NOMMY en tablet"
+                    className="w-full rounded-xl shadow-2xl"
+                  />
+                </ScrollAnimation>
+
+                {/* Cel encima */}
                 <ScrollAnimation
                   animation="slide-in-left"
-                  className="absolute top-10 left-10 z-20 w-1/2"
+                  className="absolute top-0 left-0 z-20 w-[28%]"
                 >
                   <img
                     src="/Cel.png"
-                    alt="Dashboard de NOMMY en múltiples dispositivos"
+                    alt="Dashboard de NOMMY en celular"
                     className="w-full rounded-xl shadow-xl"
                   />
                 </ScrollAnimation>
 
-        {/* Tablet atrás */}
-                <ScrollAnimation
-                  animation="slide-in-right"
-                  className="relative z-0"
-                >
-                  <img
-                    src="/Tablet.png"
-                    alt="Dashboard de NOMMY en múltiples dispositivos"
-                    className="w-full rounded-xl mt-6"
-                  />
-                </ScrollAnimation>
               </div>
             </div>
           </ScrollAnimation>
@@ -135,7 +137,7 @@ export default function HomePage() {
 
             {/* Card 2 */}
             <div className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition">
-              <div className="w-14 h-14 rounded-full bg-gray-500 flex items-center justify-center mb-4">
+              <div className="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center mb-4">
                 <img src="/mov.png" className="w-7 h-7 text-navy" />
               </div>
 
