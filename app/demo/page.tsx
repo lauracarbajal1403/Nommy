@@ -31,6 +31,7 @@ export default function DemoPage() {
   e.preventDefault()
   setIsLoading(true)
   setMessage("")
+  window.open('/gracias', '_blank')
 
   try {
     const response = await fetch("/api/send-demo-request", {
@@ -45,7 +46,6 @@ export default function DemoPage() {
 
     if (response.ok) {
       // Abrir página de agradecimiento en nueva pestaña
-      window.open('/gracias', '_blank')
       
       // Limpiar formulario
       setFormData({
