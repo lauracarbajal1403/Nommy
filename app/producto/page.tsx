@@ -233,7 +233,7 @@ export default function ProductoPage() {
                   href="/demo"
                   className="inline-block bg-white text-turquoise px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  ¡Agenda tu DEMO!
+                  ¡DEMO GRATIS!
                 </a>
               </div>
             </div>

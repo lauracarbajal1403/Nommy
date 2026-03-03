@@ -255,7 +255,7 @@ export default function SATNominaElectronica() {
                   href="/demo"
                   className="inline-block bg-white text-navy px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
-                  Solicitar Demo de Nommy
+                  DEMO GRATIS
                 </Link>
               </div>
             </div>

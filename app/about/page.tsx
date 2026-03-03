@@ -243,7 +243,7 @@ export default function AboutPage() {
                 href="/demo"
                 className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 shadow-nommy hover:shadow-nommy-lg"
               >
-                ¡Agenda tu DEMO!
+                ¡DEMO GRATIS!
               </a>
             </div>
           </ScrollAnimation>

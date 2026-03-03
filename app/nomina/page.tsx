@@ -304,7 +304,7 @@ export default function ClimaLaboralPage() {
                   href="/demo"
                   className="bg-navy text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-lg"
                 >
-                  Solicitar Demo Nommy
+                   Demo GRATIS
                 </Link>
                 <button 
                   onClick={() => setShowModal(true)}

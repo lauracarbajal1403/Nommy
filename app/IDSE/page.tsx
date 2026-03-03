@@ -138,7 +138,7 @@ export default function IDSEPage() {
                   href="/demo"
                   className="inline-flex items-center px-8 py-4 bg-white text-navy font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200"
                 >
-                  ¡Agenda tu DEMO!
+                  ¡DEMO GRATIS!
                 </Link>
               </div>
             </div>

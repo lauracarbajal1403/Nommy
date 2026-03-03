@@ -212,7 +212,7 @@ export default function NommyArticle() {
                 ))}
               </div>
               <a href="/demo" className="inline-block px-7 py-3 rounded-full font-bold text-sm" style={{ background: turquoise, color: navy }}>
-                Solicitar Demo de Nommy
+                DEMO GRATIS
               </a>
             </div>
           </div>

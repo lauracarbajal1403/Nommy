@@ -39,7 +39,7 @@ export default function HomePage() {
                     href="/demo"
                     className="bg-turquoise hover:bg-navy text-white font-semibold px-6 py-3 rounded-full text-center transition"
                   >
-                    ¡Agenda tu DEMO!
+                    ¡DEMO GRATIS!
                   </Link>
 
                   <Link
@@ -187,7 +187,7 @@ export default function HomePage() {
                 <h2 className="text-3xl lg:text-4xl font-bold text-turquoise">Somos una herramienta que te acompaña</h2>
                 */}
                 <Link href="/demo" className="btn-secondary inline-flex items-center group">
-                  ¡Agenda tu DEMO!
+                  ¡DEMO GRATIS!
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </Link>
               </div>
@@ -414,7 +414,7 @@ export default function HomePage() {
               href="/demo"
               className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 inline-flex items-center group btn-shadow"
             >
-              ¡Agenda tu DEMO!
+              ¡DEMO GRATIS!
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </Link>
           </ScrollAnimation>
