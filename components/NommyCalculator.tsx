@@ -273,9 +273,9 @@ export default function NommyCalculator() {
               <Slider
                 label="Empleados"
                 value={colaboradores}
-                min={10}
+                min={1}
                 max={500}
-                step={5}
+                step={1}
                 onChange={setColaboradores}
                 icon="👥"
               />
@@ -308,9 +308,9 @@ export default function NommyCalculator() {
               {/* Secondary KPIs */}
               <div className="grid grid-cols-3 gap-2 mb-5">
                 {[
-                  { label: "Omisión operativa", value: gastosOmision, prefix: "$" },
-                  { label: "Riesgo multas", value: multas, prefix: "$" },
-                  { label: "Tiempo libre", value: tiempoPct, suffix: "%" },
+                  { label: "Omisión operativa*", value: gastosOmision, prefix: "$" },
+                  { label: "Riesgo multas*", value: multas, prefix: "$" },
+                  { label: "Tiempo libre*", value: tiempoPct, suffix: "%" },
                 ].map((item, i) => (
                   <div key={i} className="bg-gray-50 rounded-xl p-3 text-center">
                     <div className="text-sm font-black text-gray-800">
@@ -335,7 +335,7 @@ export default function NommyCalculator() {
                 className="block w-full text-center text-white font-bold py-3 rounded-xl text-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
                 style={{ background: "linear-gradient(90deg, #0d3b6e, #00bcd4)" }}
               >
-                ¡Agenda tu DEMO gratis!
+                ¡DEMO GRATIS!
               </Link>
             </div>
           </div>
