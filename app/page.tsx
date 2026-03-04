@@ -54,7 +54,7 @@ export default function HomePage() {
                 <div className="flex flex-col sm:flex-row gap-6 text-sm font-medium">
                   <div className="flex items-center gap-2">
                     <Check className="text-turquoise w-5 h-5" />
-                    <span>0 Costo implementación</span>
+                    <span>$0 Costo implementación</span>
                   </div>
 
                   <div className="flex items-center gap-2">

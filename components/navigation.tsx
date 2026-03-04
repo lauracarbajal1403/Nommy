@@ -447,7 +447,7 @@ export default function Navigation() {
                 style={{ backgroundColor: "#152132", color: "#ffffff" }}
                 onClick={() => setIsOpen(false)}
               >
-                ¡Agenda tu DEMO!
+                ¡DEMO GRATIS!
           </Link>
         </div>
 
