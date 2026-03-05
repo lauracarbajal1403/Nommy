@@ -5,32 +5,37 @@ import { Check } from "lucide-react"
 
 // ─── Calculation Logic ────────────────────────────────────────────────────────
 
-function calcGastosOmision(salario, colaboradores) {
-  const nomina = salario * colaboradores * 12
-  return nomina * 0.167
+// Ahorro mensual: $520 MXN por colaborador
+const AHORRO_MENSUAL_POR_COLABORADOR = 520
+
+// Bajas tardías: $4,000 por colaborador (anual)
+function calcBajasTardias(colaboradores) {
+  return colaboradores * 4000
 }
 
+// Riesgo multas: $46,750 fijo anual
+function calcRiesgoMultas() {
+  return 46750
+}
+
+// Ahorro productividad: $3,035 por cada 70 colaboradores + $43.35 por cada colaborador adicional
 function calcAhorroProductividad(colaboradores) {
-  const base = Math.floor(colaboradores / 70) * 3035
-  const extras = Math.floor((colaboradores % 70) / 10) * (3035 / 7)
+  const gruposCompletos = Math.floor(colaboradores / 70)
+  const base = gruposCompletos * 3035
+  const colaboradoresExtra = colaboradores % 70
+  const extras = colaboradoresExtra * 43.35
   return base + extras
 }
 
-function calcRiesgoMultas(colaboradores) {
-  if (colaboradores <= 10) return 23000
-  return 23000 + (colaboradores - 10) * 2340
-}
-
+// Ahorro tiempo en % (para mostrar en KPI secundario)
 function calcAhorroTiempo(colaboradores) {
   const grupos = colaboradores / 70
   return Math.min(grupos * 20, 80)
 }
 
-function calcAhorroPesos(salario, colaboradores) {
-  const personalRRHH = Math.ceil(colaboradores / 70)
-  const costoRRHH = personalRRHH * 18000 * 12
-  const porcentaje = calcAhorroTiempo(colaboradores) / 100
-  return costoRRHH * porcentaje
+// Ahorro anual = bajas tardías + productividad
+function calcAhorroAnual(colaboradores) {
+  return calcBajasTardias(colaboradores) + calcAhorroProductividad(colaboradores)
 }
 
 // ─── Animated Number ──────────────────────────────────────────────────────────
@@ -85,7 +90,6 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
   const [inputVal, setInputVal] = useState(String(value))
   const [isFocused, setIsFocused] = useState(false)
 
-  // Keep inputVal in sync when value changes externally (e.g. slider drag)
   useEffect(() => {
     if (!isFocused) {
       setInputVal(String(value))
@@ -93,7 +97,6 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
   }, [value, isFocused])
 
   const handleInputChange = (e) => {
-    // Allow only digits
     const raw = e.target.value.replace(/\D/g, "")
     setInputVal(raw)
   }
@@ -103,7 +106,6 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
     const parsed = parseInt(inputVal, 10)
     if (!isNaN(parsed)) {
       const clamped = Math.min(Math.max(parsed, min), max)
-      // Round to nearest step
       const stepped = Math.round(clamped / step) * step
       onChange(stepped)
       setInputVal(String(stepped))
@@ -124,7 +126,6 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
           <span className="text-sm font-medium">{label}</span>
         </div>
 
-        {/* Editable value badge */}
         <div
           className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-sm font-semibold text-gray-800 border transition-all duration-150"
           style={{
@@ -185,16 +186,13 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
 
 export default function NommyCalculator() {
   const [colaboradores, setColaboradores] = useState(50)
-  const salario = 15000
 
-  const gastosOmision = calcGastosOmision(salario, colaboradores)
+  const ahorroMensual = AHORRO_MENSUAL_POR_COLABORADOR * colaboradores
+  const ahorroAnual = calcAhorroAnual(colaboradores)
+  const bajasTardias = calcBajasTardias(colaboradores)
+  const multas = calcRiesgoMultas()
   const ahorroProd = calcAhorroProductividad(colaboradores)
-  const multas = calcRiesgoMultas(colaboradores)
   const tiempoPct = calcAhorroTiempo(colaboradores)
-  const ahorroPesos = calcAhorroPesos(salario, colaboradores)
-
-  const ahorroMensual = (ahorroProd + ahorroPesos) / 12
-  const ahorroAnual = ahorroProd + ahorroPesos
 
   return (
     <section
@@ -306,9 +304,10 @@ export default function NommyCalculator() {
               </div>
 
               {/* Secondary KPIs */}
-              <div className="grid grid-cols-3 gap-2 mb-5">
+              <div className="grid grid-cols-2 gap-2 mb-5">
                 {[
-                  { label: "Omisión operativa*", value: gastosOmision, prefix: "$" },
+                  { label: "Ahorro productividad*", value: ahorroProd, prefix: "$" },
+                  { label: "Bajas tardías*", value: bajasTardias, prefix: "$" },
                   { label: "Riesgo multas*", value: multas, prefix: "$" },
                   { label: "Tiempo libre*", value: tiempoPct, suffix: "%" },
                 ].map((item, i) => (

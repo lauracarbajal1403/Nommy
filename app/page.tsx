@@ -83,7 +83,7 @@ export default function HomePage() {
                 {/* Cel encima */}
                 <ScrollAnimation
                   animation="slide-in-left"
-                  className="absolute top-0 left-0 z-20 w-[28%]"
+                  className="absolute top-0 left-0 z-20 w-[35%]"
                 >
                   <img
                     src="/Cel.png"

@@ -7,6 +7,16 @@ import NominikChatbot from "@/app/nominik"
 export default function ResourcesPage() {
   const resources = [
     {
+      title: "Retención de talento y decisiones que realmente impactan a tu empresa",
+      description: "Descubre los beneficios que retienen el talento.",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/portada1.png",
+      link: "/talento",
+      readTime: "4 min de lectura",
+      date: "23 Feb 2026",
+    },
+    {
       title: "Encuestas de clima laboral",
       description: "La herramienta estratégica que tu departamento de RRHH no puede ignorar.",
       category: "Blog",
@@ -31,7 +41,7 @@ export default function ResourcesPage() {
       description: "Conoce los aspectos clave que fortalecerán tu gestión de nómina en 2026. Desde la automatización hasta el cumplimiento normativo, descubre cómo optimizar tus procesos y garantizar la satisfacción de tus empleados.",
       category: "Blog",
       icon: BookOpen,
-      image: "/bloggy3.png",
+      image: "/portada.png",
       link: "/prod",
       readTime: "8 min de lectura",
       date: "06 Ene 2026",
@@ -44,7 +54,7 @@ export default function ResourcesPage() {
       <article className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all group cursor-pointer mb-8">
         <div className="grid md:grid-cols-2">
           {/* Imagen */}
-          <div className="relative h-64 md:h-auto overflow-hidden">
+          <div className="relative h-84  overflow-hidden">
             <img
               src={resource.image}
               alt={resource.title}
