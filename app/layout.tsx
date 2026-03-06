@@ -15,16 +15,11 @@ export const metadata: Metadata = {
   title: "NOMMY - El aliado de tu equipo de RRHH",
   description:
     "Herramienta SaaS para gestión de nómina y recursos humanos. Automatiza tus procesos de nómina con precisión y tranquilidad.",
-  keywords: "nómina, recursos humanos, RRHH, payroll, SaaS, automatización, gestión de nómina, software de nómina, nómina electrónica, cumplimiento fiscal",
+  keywords:
+    "nómina, recursos humanos, RRHH, payroll, SaaS, automatización, gestión de nómina, software de nómina, nómina electrónica, cumplimiento fiscal",
   icons: {
-    icon: [
-      {
-        url: "/nommy-logo-new.png",
-        type: "image/png",
-      },
-    ],
+    icon: [{ url: "/nommy-logo-new.png", type: "image/png" }],
   },
-    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -35,26 +30,21 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${inter.className} font-sans antialiased`}>
-        {/* Google Tag Manager */}
+        {/* Google tag (gtag.js) - carga el script de Google Ads/GA4 */}
         <Script
-            id="gtm-init"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-TFSH9C4P');`
-            }}
-          />
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TFSH9C4P"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17894332131"
+          strategy="afterInteractive"
+        />
+        {/* Inicialización de gtag */}
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17894332131');
+          `}
+        </Script>
+
         <Suspense fallback={<Loading />}>
           <Navigation />
           <main className="min-h-screen">{children}</main>
