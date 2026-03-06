@@ -511,7 +511,7 @@ export default function Navigation() {
               borderRadius: 8,
             }}
           >
-            ¡Agenda tu DEMO!
+            ¡DEMO GRATIS!
           </a>
         </div>
       )}
