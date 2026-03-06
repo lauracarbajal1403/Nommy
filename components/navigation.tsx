@@ -275,7 +275,7 @@ export default function Navigation() {
         }}
       >
         {/* Logo */}
-        <Link href="/" className="flex flex-col items-center">
+        <Link href="/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
           <Image src="/nommy-logo-new.png" alt="NOMMY" width={16} height={16} className="h-4 w-auto" priority />
           <Image src="/nommy-text-new.png" alt="nommy" width={32} height={32} className="h-8 w-auto" priority />
         </Link>
