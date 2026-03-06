@@ -279,6 +279,8 @@ export default function IndustryCarousel() {
             </p>
             <Link
               href="/demo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-white font-bold px-8 py-6 rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl"
               style={{ background: "linear-gradient(90deg, #274263, #00bcd4)" }}
             >
