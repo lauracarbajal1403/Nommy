@@ -440,6 +440,8 @@ export default function Navigation() {
           
           <Link
                 href="/demo"
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="block mx-3 my-2 px-6 py-3 rounded-full font-medium text-center transition-all duration-300 shadow-lg"
                 style={{ backgroundColor: "#152132", color: "#ffffff" }}
                 onClick={() => setIsOpen(false)}
@@ -496,7 +498,7 @@ export default function Navigation() {
             href="/demo"
             target="_blank" 
             rel="noopener noreferrer"
-            onClick={() => setIsOpen(false)}
+            
             style={{
               marginTop: 12,
               padding: "12px 0",
