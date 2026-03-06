@@ -296,6 +296,8 @@ export default function Talento() {
               </ul>
               <Link
                 href="/demo"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-white text-navy px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 DEMO GRATIS

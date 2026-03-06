@@ -129,6 +129,8 @@ export default function inteligenciaPage() {
                 </p>
                 <Link
                   href="/demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-8 py-4 bg-white text-navy font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200"
                 >
                   ¡DEMO GRATIS!

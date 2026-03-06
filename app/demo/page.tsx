@@ -5,6 +5,7 @@ import type { FormEvent } from "react"
 import { useState } from "react"
 import { CheckCircle } from "lucide-react"
 import ScrollAnimation from "@/components/scroll-animation"
+import IndustryCarousel from "@/components/IndustryCarousel"
 
 export default function DemoPage() {
   const [formData, setFormData] = useState({
@@ -282,6 +283,7 @@ export default function DemoPage() {
           </div>
         </div>
       </section>
+      <IndustryCarousel></IndustryCarousel>
     </div>
   )
 }

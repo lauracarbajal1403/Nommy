@@ -190,6 +190,8 @@ export default function nomina() {
             </p>
             <Link
               href="/demo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 inline-flex items-center"
             >
               ¡Demo Gratis!

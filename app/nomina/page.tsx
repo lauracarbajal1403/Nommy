@@ -302,6 +302,8 @@ export default function ClimaLaboralPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center py-10">
                 <Link
                   href="/demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-navy text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-lg"
                 >
                    Demo GRATIS

@@ -21,6 +21,7 @@ export default function PricingPage() {
       priceSubtext: "por mes",
       cta: "¡DEMO GRATIS!",
       href: "/demo",
+      
       popular: false,
     },
     {
@@ -218,6 +219,8 @@ export default function PricingPage() {
                 <div className="mt-8">
                   <Link
                     href={plan.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95 ${
                       plan.customButton
                         ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 hover:shadow-lg text-lg py-4 font-bold"

@@ -211,7 +211,7 @@ export default function NommyArticle() {
                   </div>
                 ))}
               </div>
-              <a href="/demo" className="inline-block px-7 py-3 rounded-full font-bold text-sm" style={{ background: turquoise, color: navy }}>
+              <a href="/demo" target="_blank" rel="noopener noreferrer" className="inline-block px-7 py-3 rounded-full font-bold text-sm" style={{ background: turquoise, color: navy }}>
                 DEMO GRATIS
               </a>
             </div>

@@ -241,6 +241,8 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/demo"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 shadow-nommy hover:shadow-nommy-lg"
               >
                 ¡DEMO GRATIS!
