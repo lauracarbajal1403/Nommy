@@ -431,14 +431,11 @@ export default function Navigation() {
           </div>
 
           {/* Bloggy — mega menu trigger */}
-          <Link
-                href="/resources"
-                className={`block px-3 py-2 transition-colors duration-300 ${
-                  isActiveLink("/resources") ? "text-turquoise" : "text-navy hover:text-turquoise"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                Bloggy
+          
+
+          
+          <Link href="/resources" className="flex flex-col items-center">
+              <Image src = "/bloggyy.png" alt="Bloggy"  className="inline-block w-16 mr-2"/>
           </Link>
           
           <Link
