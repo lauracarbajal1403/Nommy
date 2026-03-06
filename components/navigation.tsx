@@ -25,7 +25,7 @@ const nominaCol2 = [
 ]
 
 const masSoluciones = [
-  { icon: "📚", title: "Reclutamiento asistido por IA", desc: "Diseña perfiles de puestos con IA.", badge: "Destacado", href:"/inteligencia" },
+  { icon:  <img src="/NommyAI.png" alt="Reclutamiento" width={32} height={32} />, title: "Reclutamiento asistido por IA", desc: "Diseña perfiles de puestos con IA.", badge: "Destacado", href:"/inteligencia" },
   { icon: "📊", title: "NOM-035", desc: "Cumple con encuestas oficiales.", badge: "Destacado", href:"/norma" },
   { icon: "📋", title: "Control de horarios", desc: "Reporte de prenómina en minutos.", badge: null, href:"/control_hora" },
   { icon: "🧾", title: "Reportes dinámicos", desc: "Visualización y análisis de resultados.", badge: null, href:"/reportes_dina" },
@@ -275,7 +275,7 @@ export default function Navigation() {
         }}
       >
         {/* Logo */}
-        <Link href="/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
+        <Link href="/" className="flex flex-col items-center">
           <Image src="/nommy-logo-new.png" alt="NOMMY" width={16} height={16} className="h-4 w-auto" priority />
           <Image src="/nommy-text-new.png" alt="nommy" width={32} height={32} className="h-8 w-auto" priority />
         </Link>
@@ -494,6 +494,8 @@ export default function Navigation() {
           ))}
           <a
             href="/demo"
+            target="_blank" 
+            rel="noopener noreferrer"
             onClick={() => setIsOpen(false)}
             style={{
               marginTop: 12,

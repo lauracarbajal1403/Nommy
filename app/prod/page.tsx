@@ -11,7 +11,7 @@ export default function NommyArticle() {
       {/* Navigation */}
       <div style={{ borderBottom: "1px solid #e5e7eb", background: "#f9fafb" }}>
         <div className="max-w-3xl mx-auto px-6 py-4">
-          <a href="/recursos" className="inline-flex items-center gap-2 text-sm font-medium" style={{ color: navy }}>
+          <a href="/resources" className="inline-flex items-center gap-2 text-sm font-medium" style={{ color: navy }}>
             <ArrowLeft className="w-4 h-4" />
             Volver a Recursos
           </a>

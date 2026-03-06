@@ -12,7 +12,8 @@ export default function inteligenciaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation>
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Reclutamiento asistido con IA</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Conoce</h2>
+              <img src="/LOGOTE.png" alt="Nommy" className="w-full max-w-2xl mx-auto mb-8" />
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">Descubre cada ventaja que te ofrece Nommy</p>
             </div>
           </ScrollAnimation>

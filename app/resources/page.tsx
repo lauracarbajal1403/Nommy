@@ -33,7 +33,7 @@ export default function ResourcesPage() {
       icon: BookOpen,
       image: "/bloggy.jpg",
       link: "/nomina-jalisco-2026",
-      readTime: "8 min de lectura",
+      readTime: "5 min de lectura",
       date: "6 Feb 2026",
     },
     {
