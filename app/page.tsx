@@ -129,6 +129,10 @@ export default function HomePage() {
 
             {/* RIGHT IMAGE */}
             <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
+              <ScrollAnimation
+                  animation="slide-in-right"
+                  className="absolute bottom-0 right-0 z-10 w-[85%]"
+                >
               <div className="absolute bottom-0 right-0 z-10 w-[85%]">
                 <img
                   src="/Tablet.png"
@@ -136,12 +140,18 @@ export default function HomePage() {
                   className="w-full rounded-xl shadow-2xl"
                 />
               </div>
+              </ScrollAnimation>
               <div className="absolute top-0 left-0 z-20 w-[35%]">
+                <ScrollAnimation
+                  animation="slide-in-left"
+                  className="absolute top-0 left-0 z-20 w-[35%]"
+                >
                 <img
                   src="/Cel.png"
                   alt="Dashboard de NOMMY en celular"
                   className="w-full rounded-xl shadow-xl"
                 />
+                </ScrollAnimation>
               </div>
             </div>
 

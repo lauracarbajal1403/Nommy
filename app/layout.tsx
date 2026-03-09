@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Suspense } from "react"
-import Script from "next/script"
+import { GoogleTagManager } from "@next/third-parties/google"
 
 import "./globals.css"
 import Navigation from "@/components/navigation"
@@ -29,22 +29,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <GoogleTagManager gtmId="G-YYRDPQQVKE" />
       <body className={`${inter.className} font-sans antialiased`}>
-        {/* Google tag (gtag.js) - carga el script de Google Ads/GA4 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17894332131"
-          strategy="afterInteractive"
-        />
-        {/* Inicialización de gtag */}
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17894332131');
-          `}
-        </Script>
-
         <Suspense fallback={<Loading />}>
           <Navigation />
           <main className="min-h-screen">{children}</main>
