@@ -1,104 +1,151 @@
 "use client"
 import Link from "next/link"
+import { useEffect, useState } from "react";
 import { ArrowRight, Check,  Receipt, DollarSign, Zap } from 'lucide-react'
 import ScrollAnimation from "@/components/scroll-animation"
 import  NominikChatbot  from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
+const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina" ];
+function AnimatedPhrase() {
+  const [displayText, setDisplayText] = useState(PHRASES[0]);
+  const [isErasing, setIsErasing] = useState(false);
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(PHRASES[0].length);
 
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isErasing && charIndex === PHRASES[phraseIndex].length) {
+      // Pause before starting to erase
+      timeout = setTimeout(() => setIsErasing(true), 2500);
+    } else if (isErasing && charIndex > 0) {
+      // Erase one character at a time
+      timeout = setTimeout(() => setCharIndex((c) => c - 1), 40);
+    } else if (isErasing && charIndex === 0) {
+      // Move to next phrase and start typing
+      const next = (phraseIndex + 1) % PHRASES.length;
+      setPhraseIndex(next);
+      setIsErasing(false);
+    } else if (!isErasing && charIndex < PHRASES[phraseIndex].length) {
+      // Type one character at a time
+      timeout = setTimeout(() => setCharIndex((c) => c + 1), 60);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isErasing, phraseIndex]);
+
+  useEffect(() => {
+    if (!isErasing) {
+      setDisplayText(PHRASES[phraseIndex].slice(0, charIndex));
+    } else {
+      setDisplayText(PHRASES[phraseIndex].slice(0, charIndex));
+    }
+  }, [charIndex, isErasing, phraseIndex]);
+return (
+    <span className="relative inline-block">
+      <span>{displayText}</span>
+      {/* Blinking cursor */}
+      <span
+        className="inline-block w-[3px] h-[1em] bg-white ml-[2px] align-middle"
+        style={{
+          animation: "blink 0.75s step-end infinite",
+        }}
+      />
+      {/* Underline decoration */}
+      <span
+        className="absolute left-0 -bottom-2 h-2 rounded-full rotate-[-1deg]"
+        style={{
+          width: "100%",
+          background: "var(--turquoise, #2dd4bf)",
+          transition: "width 0.1s",
+        }}
+      />
+      <style>{`
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
+    </span>
+  );
+}
 export default function HomePage() {
   return (
     <div className="overflow-hidden">
       <NominikChatbot />
      
       {/* Value Proposition Section */}
-     <section className="relative bg-gradient-to-r from-navy to-turquoise overflow-hidden">
+      <section className="relative bg-gradient-to-r from-navy to-turquoise overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
-          <ScrollAnimation>
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              
-              {/* LEFT CONTENT */}
-              <div className="text-left text-white">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                    La plataforma integral <br />
-                    para{" "}
-                    <span className="relative inline-block">
-                      gestionar tu talento
-                      <span className="absolute left-0 -bottom-2 h-2 w-full bg-turquoise rounded-full rotate-[-1deg]"></span>
-                    </span>
-                  </h2>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-                <p className="text-lg text-white/90 mb-8 max-w-xl">
-                  Centraliza nómina, control de asistencia, y beneficios en una sola
-                  plataforma. Ahorra tiempo y haz feliz a tu equipo con la mejor
-                  experiencia digital.
-                </p>
+            {/* LEFT CONTENT */}
+            <div className="text-left text-white">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+                La plataforma integral <br />
+                para{" "}
+                <AnimatedPhrase />
+              </h2>
 
-                {/* Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <Link
-                    href="/demo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-turquoise hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition"
-                  >
-                    ¡DEMO GRATIS!
-                  </Link>
+              <p className="text-lg text-white/90 mb-8 max-w-xl">
+                Centraliza nómina, control de asistencia, y beneficios en una sola
+                plataforma. Ahorra tiempo y haz feliz a tu equipo con la mejor
+                experiencia digital.
+              </p>
 
-                  <Link
-                    href="/demo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-navy hover:bg-turquoise text-white font-bold px-6 py-3 rounded-full text-center transition"
-                  >
-                    ▶ Ver como funciona
-                  </Link>
-                </div>
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Link
+                  href="/demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-turquoise hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition"
+                >
+                  ¡DEMO GRATIS!
+                </Link>
 
-                {/* Benefits */}
-                <div className="flex flex-col sm:flex-row gap-6 text-sm font-medium">
-                  <div className="flex items-center gap-2">
-                    <Check className="text-turquoise w-5 h-5" />
-                    <span>$0 Costo implementación</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Check className="text-turquoise w-5 h-5" />
-                    <span>Soporte 24/7</span>
-                  </div>
-                </div>
+                <Link
+                  href="/demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-navy hover:bg-turquoise text-white font-bold px-6 py-3 rounded-full text-center transition"
+                >
+                  ▶ Ver como funciona
+                </Link>
               </div>
-              
-              {/* RIGHT IMAGE */}
-              
-              <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: '500px' }}>
-  
-                {/* Tablet atrás - posicionada absolute también */}
-                <ScrollAnimation
-                  animation="slide-in-right"
-                  className="absolute bottom-0 right-0 z-10 w-[85%]"
-                >
-                  <img
-                    src="/Tablet.png"
-                    alt="Dashboard de NOMMY en tablet"
-                    className="w-full rounded-xl shadow-2xl"
-                  />
-                </ScrollAnimation>
 
-                {/* Cel encima */}
-                <ScrollAnimation
-                  animation="slide-in-left"
-                  className="absolute top-0 left-0 z-20 w-[35%]"
-                >
-                  <img
-                    src="/Cel.png"
-                    alt="Dashboard de NOMMY en celular"
-                    className="w-full rounded-xl shadow-xl"
-                  />
-                </ScrollAnimation>
-
+              {/* Benefits */}
+              <div className="flex flex-col sm:flex-row gap-6 text-sm font-medium">
+                <div className="flex items-center gap-2">
+                  <Check className="text-turquoise w-5 h-5" />
+                  <span>$0 Costo implementación</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="text-turquoise w-5 h-5" />
+                  <span>Soporte 24/7</span>
+                </div>
               </div>
             </div>
-          </ScrollAnimation>
+
+            {/* RIGHT IMAGE */}
+            <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
+              <div className="absolute bottom-0 right-0 z-10 w-[85%]">
+                <img
+                  src="/Tablet.png"
+                  alt="Dashboard de NOMMY en tablet"
+                  className="w-full rounded-xl shadow-2xl"
+                />
+              </div>
+              <div className="absolute top-0 left-0 z-20 w-[35%]">
+                <img
+                  src="/Cel.png"
+                  alt="Dashboard de NOMMY en celular"
+                  className="w-full rounded-xl shadow-xl"
+                />
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
       
