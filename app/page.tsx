@@ -57,52 +57,6 @@ export default function HomePage() {
     phone: "",
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setMessage("")
-
-    try {
-      // 1. Resend → ventas@nommy.mx con los datos del lead
-      await fetch("/api/ebook", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          lastName: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-        }),
-      })
-
-      // 2. EmailJS → email del usuario con el ebook
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          name: formData.name,
-          email: formData.email, // en tu template EmailJS pon {{email}} como "To Email"
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      )
-
-      window.open('/graciass', '_blank')
-      setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
-
-    } catch (error) {
-      console.log("EmailJS error completo:", error)
-      console.log("EmailJS status:", error?.status)
-      console.log("EmailJS text:", error?.text)
-      setMessage("Error al enviar. Por favor intenta de nuevo.")
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   return (
     <div className="overflow-hidden">
@@ -184,86 +138,6 @@ export default function HomePage() {
 
       <NommyCalculator />
 
-     
-      <section className="relative py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-
-           
-            <div>
-              <p className="text-turquoise font-semibold text-sm uppercase tracking-widest mb-3">Ebook Gratuito</p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy leading-tight mb-8">
-                La guía de las multas de nómina con mayor peso en 2026{" "}
-                <span className="text-turquoise">y cómo evitarlas con Nommy</span>
-              </h2>
-              <h3 className="text-xl font-bold text-navy mb-6">¿Qué encontrarás en este descargable?</h3>
-              <div className="space-y-5">
-                {[
-                  { emoji: "📊", title: "Las multas de nómina más comunes en 2026", desc: "conoce las sanciones que más están afectando a las empresas y cuánto pueden llegar a costar." },
-                  { emoji: "⚠️", title: "Los errores que las provocan", desc: "descubre qué fallas en timbrado, movimientos ante el IMSS o declaraciones pueden generar sanciones." },
-                  { emoji: "📑", title: "Buenas prácticas para evitar multas", desc: "recomendaciones claras para mantener tu nómina en regla y evitar problemas con el SAT o el IMSS." },
-                  { emoji: "🚀", title: "Cómo prevenir errores con Nommy", desc: "automatiza cálculos, timbrado y reportes para reducir riesgos y mantener tu operación en cumplimiento." },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-9 h-9 rounded-full bg-turquoise/10 flex items-center justify-center text-lg">{item.emoji}</div>
-                    <p className="text-navy/80 text-base leading-relaxed">
-                      <strong className="text-navy">{item.title}:</strong> {item.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          
-            <div className="bg-gray-50 rounded-2xl p-8 shadow-md border border-gray-100">
-              <h3 className="text-xl font-bold text-navy text-center mb-6">
-                Obtén tu ebook gratis completando el formulario a continuación.
-              </h3>
-
-              
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  <input
-                    type="text" name="name" value={formData.name} onChange={handleChange}
-                    placeholder="Nombre*" required
-                    className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
-                  />
-                  <input
-                    type="text" name="lastName" value={formData.lastName} onChange={handleChange}
-                    placeholder="Apellido*" required
-                    className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
-                  />
-                </div>
-                <input
-                  type="email" name="email" value={formData.email} onChange={handleChange}
-                  placeholder="Email Empresarial*" required
-                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
-                />
-                <input
-                  type="tel" name="phone" value={formData.phone} onChange={handleChange}
-                  placeholder="Teléfono (+52 10 dígitos)*" required
-                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
-                />
-                <input
-                  type="text" name="company" value={formData.company} onChange={handleChange}
-                  placeholder="Empresa*" required
-                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
-                />
-
-                {message && <p className="text-red-500 text-sm text-center">{message}</p>}
-
-                <button
-                  type="submit" disabled={isLoading}
-                  className="w-full bg-turquoise hover:bg-navy text-white font-bold py-3 rounded-full text-base transition-colors duration-200 disabled:opacity-60"
-                >
-                  {isLoading ? "Enviando..." : "¡Descargar!"}
-                </button>
-              </form>
-            </div>
-
-          </div>
-        </div>
-      </section>
   
       {/* Tool Showcase */}
       <section className="relative py-20 bg-gradient-to-br from-turquoise/10 to-navy/5">
