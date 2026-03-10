@@ -95,6 +95,9 @@ export default function HomePage() {
       setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
 
     } catch (error) {
+      console.log("EmailJS error completo:", error)
+      console.log("EmailJS status:", error?.status)
+      console.log("EmailJS text:", error?.text)
       setMessage("Error al enviar. Por favor intenta de nuevo.")
     } finally {
       setIsLoading(false)
@@ -139,7 +142,7 @@ export default function HomePage() {
               </div>
 
               {/* Celular - sin ScrollAnimation para probar */}
-              <div className="absolute top-0 left-0 z-20 w-[50%]">
+              <div className="absolute top-0 left-0 z-20 w-[60%]">
                 <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
               </div>
 
