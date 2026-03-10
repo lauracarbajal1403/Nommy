@@ -5,7 +5,7 @@ import { ArrowRight, Check } from 'lucide-react'
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
-
+import emailjs from "@emailjs/browser"
 const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina"];
 
 function AnimatedPhrase() {
@@ -67,22 +67,35 @@ export default function HomePage() {
     setMessage("")
 
     try {
-      const response = await fetch("/api/ebook", {
+      // 1. Resend → ventas@nommy.mx con los datos del lead
+      await fetch("/api/ebook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+        }),
       })
 
-      const data = await response.json()
+      // 2. EmailJS → email del usuario con el ebook
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          name: formData.name,
+          email: formData.email, // en tu template EmailJS pon {{email}} como "To Email"
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
 
-      if (response.ok) {
-        window.open('/gracias', '_blank')
-        setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
-      } else {
-        setMessage(data.error || "Hubo un error. Por favor intenta de nuevo.")
-      }
+      window.open('/gracias', '_blank')
+      setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
+
     } catch (error) {
-      setMessage("Error al enviar la solicitud. Por favor intenta de nuevo.")
+      setMessage("Error al enviar. Por favor intenta de nuevo.")
     } finally {
       setIsLoading(false)
     }
@@ -164,7 +177,7 @@ export default function HomePage() {
 
       <NommyCalculator />
 
-      {/* ---- EBOOK SECTION ---- 
+     
       <section className="relative py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -244,7 +257,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      */}
+  
       {/* Tool Showcase */}
       <section className="relative py-20 bg-gradient-to-br from-turquoise/10 to-navy/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
