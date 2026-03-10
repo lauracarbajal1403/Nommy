@@ -79,13 +79,13 @@ export async function POST(request: Request) {
     // Enviar ambos correos en paralelo
     const [internalResult, userResult] = await Promise.all([
       resend.emails.send({
-        from: "NOMMY <onboarding@resend.dev>",
+        from: "<onboarding@resend.dev>",
         to: internalRecipient,
         subject: `Nueva descarga de ebook - ${name} (${company || email})`,
         html: internalHtml,
       }),
       resend.emails.send({
-        from: "NOMMY <onboarding@resend.dev>",
+        from: "<onboarding@resend.dev>",
         to: email,
         subject: "Tu ebook: Guía de multas de nómina 2026 📊",
         html: userHtml,

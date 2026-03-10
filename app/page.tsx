@@ -126,7 +126,7 @@ export default function HomePage() {
               </div>
 
               {/* Celular - sin ScrollAnimation para probar */}
-              <div className="absolute top-0 left-0 z-20 w-[40%]">
+              <div className="absolute top-0 left-0 z-20 w-[50%]">
                 <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
               </div>
 
