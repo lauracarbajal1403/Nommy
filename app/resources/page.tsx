@@ -17,14 +17,48 @@ export default function ResourcesPage() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState("")
+  const [emailError, setEmailError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    if (e.target.name === "email") setEmailError("")
   }
+
+  const validateEmailDomain = async (email: string): Promise<boolean> => {
+    const domain = email.split("@")[1]
+    if (!domain) return false
+
+    try {
+      const res = await fetch(`https://dns.google/resolve?name=${domain}&type=MX`)
+      const data = await res.json()
+      return Array.isArray(data.Answer) && data.Answer.length > 0
+    } catch {
+      return false
+    }
+  }
+
+  const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+    const email = e.target.value
+    if (!email || !email.includes("@")) return
+
+    const valid = await validateEmailDomain(email)
+    if (!valid) {
+      setEmailError("El dominio de este email no parece válido. Verifica que sea un correo empresarial real.")
+    }
+  }
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setMessage("")
+
+    // Validar dominio antes de enviar
+    const domainValid = await validateEmailDomain(formData.email)
+    if (!domainValid) {
+      setEmailError("El dominio de este email no parece válido. Verifica que sea un correo empresarial real.")
+      setIsLoading(false)
+      return
+    }
 
     try {
       await fetch("/api/ebook", {
@@ -59,6 +93,7 @@ export default function ResourcesPage() {
       setIsLoading(false)
     }
   }
+
   const resources = [
     {
       title: "Retención de talento y decisiones que realmente impactan a tu empresa",
@@ -102,13 +137,11 @@ export default function ResourcesPage() {
     },
   ];
 
-  // Componente interno para mantener la consistencia
   const ArticleCard = ({ resource, isFeatured }) => (
     <Link href={resource.link}>
       <article className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all group cursor-pointer mb-8">
         <div className="grid md:grid-cols-2">
-          {/* Imagen */}
-          <div className="relative h-84  overflow-hidden">
+          <div className="relative h-84 overflow-hidden">
             <img
               src={resource.image}
               alt={resource.title}
@@ -121,7 +154,6 @@ export default function ResourcesPage() {
             )}
           </div>
 
-          {/* Contenido */}
           <div className="p-8 flex flex-col justify-center">
             <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
               <span className="flex items-center gap-1">
@@ -150,11 +182,8 @@ export default function ResourcesPage() {
         </div>
       </article>
     </Link>
-    
-  
   );
 
-    
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
@@ -172,13 +201,11 @@ export default function ResourcesPage() {
           </p>
         </div>
       </section>
-      
-     
+
       <section className="relative py-20 bg-white" id="ebook">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
 
-           
             <div>
               <p className="text-turquoise font-semibold text-sm uppercase tracking-widest mb-3">Ebook Gratuito</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-navy leading-tight mb-8">
@@ -203,13 +230,11 @@ export default function ResourcesPage() {
               </div>
             </div>
 
-          
             <div className="bg-gray-50 rounded-2xl p-8 shadow-md border border-gray-100">
               <h3 className="text-xl font-bold text-navy text-center mb-6">
                 Obtén tu ebook gratis completando el formulario a continuación.
               </h3>
 
-              
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <input
@@ -223,11 +248,23 @@ export default function ResourcesPage() {
                     className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
                   />
                 </div>
-                <input
-                  type="email" name="email" value={formData.email} onChange={handleChange}
-                  placeholder="Email Empresarial*" required
-                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
-                />
+
+                {/* Email con validación DNS/MX */}
+                <div>
+                  <input
+                    type="email" name="email" value={formData.email}
+                    onChange={handleChange}
+                    onBlur={handleEmailBlur}
+                    placeholder="Email Empresarial*" required
+                    className={`w-full bg-blue-50 border rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise ${
+                      emailError ? "border-red-400 focus:ring-red-300" : "border-blue-100"
+                    }`}
+                  />
+                  {emailError && (
+                    <p className="text-red-500 text-xs mt-1 px-4">{emailError}</p>
+                  )}
+                </div>
+
                 <input
                   type="tel" name="phone" value={formData.phone} onChange={handleChange}
                   placeholder="Teléfono (+52 10 dígitos)*" required
@@ -242,10 +279,10 @@ export default function ResourcesPage() {
                 {message && <p className="text-red-500 text-sm text-center">{message}</p>}
 
                 <button
-                  type="submit" disabled={isLoading}
+                  type="submit" disabled={isLoading || !!emailError}
                   className="w-full bg-turquoise hover:bg-navy text-white font-bold py-3 rounded-full text-base transition-colors duration-200 disabled:opacity-60"
                 >
-                  {isLoading ? "Enviando..." : "¡Descargar!"}
+                  {isLoading ? "Verificando..." : "¡Descargar!"}
                 </button>
               </form>
             </div>
