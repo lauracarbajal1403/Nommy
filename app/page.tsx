@@ -91,7 +91,7 @@ export default function HomePage() {
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
 
-      window.open('/gracias', '_blank')
+      window.open('/graciass', '_blank')
       setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
 
     } catch (error) {
@@ -136,14 +136,18 @@ export default function HomePage() {
             </div>
             <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
 
-              {/* Tablet */}
+              {/* Tablet - atrás */}
               <div className="absolute bottom-0 right-0 z-10 w-[85%]">
-                <img src="/Tablet.png" alt="Dashboard de NOMMY en tablet" className="w-full rounded-xl shadow-2xl" />
+                <ScrollAnimation animation="slide-in-right">
+                  <img src="/Tablet.png" alt="Dashboard de NOMMY en tablet" className="w-full rounded-xl shadow-2xl" />
+                </ScrollAnimation>
               </div>
 
-              {/* Celular - sin ScrollAnimation para probar */}
+              {/* Celular - encima */}
               <div className="absolute top-0 left-0 z-20 w-[60%]">
-                <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
+                <ScrollAnimation animation="slide-in-left">
+                  <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
+                </ScrollAnimation>
               </div>
 
             </div>
