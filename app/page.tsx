@@ -164,12 +164,12 @@ export default function HomePage() {
 
       <NommyCalculator />
 
-      {/* ---- EBOOK SECTION ---- */}
+      {/* ---- EBOOK SECTION ---- 
       <section className="relative py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
 
-            {/* LEFT */}
+           
             <div>
               <p className="text-turquoise font-semibold text-sm uppercase tracking-widest mb-3">Ebook Gratuito</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-navy leading-tight mb-8">
@@ -194,13 +194,13 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* RIGHT - Form */}
+          
             <div className="bg-gray-50 rounded-2xl p-8 shadow-md border border-gray-100">
               <h3 className="text-xl font-bold text-navy text-center mb-6">
                 Obtén tu ebook gratis completando el formulario a continuación.
               </h3>
 
-              {/* ✅ onSubmit conectado aquí */}
+              
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <input
@@ -244,7 +244,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
+      */}
       {/* Tool Showcase */}
       <section className="relative py-20 bg-gradient-to-br from-turquoise/10 to-navy/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
