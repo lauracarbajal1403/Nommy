@@ -12,6 +12,17 @@ import TrustedBrands from "@/components/Trustedbrands";
 
 const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina"];
 
+function useIsMobile(breakpoint = 1024) {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < breakpoint)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [breakpoint])
+  return isMobile
+}
+
 function AnimatedPhrase() {
   const [displayText, setDisplayText] = useState(PHRASES[0]);
   const [isErasing, setIsErasing] = useState(false);
@@ -61,6 +72,7 @@ export default function HomePage() {
     company: "",
     phone: "",
   })
+  const isMobile = useIsMobile()
 
   return (
     <div className="overflow-hidden">
@@ -94,26 +106,41 @@ export default function HomePage() {
                 <div className="flex items-center gap-2"><Check className="text-turquoise w-5 h-5" /><span>Soporte 24/7</span></div>
               </div>
             </div>
-            <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
 
-              {/* Tablet - atrás */}
-              <div className="absolute bottom-0 right-0 z-10 w-[90%]">
+            {/* ── Hero image: mobile vs desktop ── */}
+            {isMobile ? (
+              // Mobile: solo el celular centrado
+              <div style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
                 <ScrollAnimation animation="slide-in-right">
-                  <img src="/Tablet.png" alt="Dashboard de NOMMY en tablet" className="w-full rounded-xl shadow-2xl" />
+                  <img
+                    src="/Conjunto.png"
+                    alt="Dashboard de NOMMY en celular"
+                    style={{ width: "100%", maxWidth: 280, borderRadius: 20, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}
+                  />
                 </ScrollAnimation>
               </div>
-
-              {/* Celular - encima, centrado sobre la tablet */}
-              <div className="absolute bottom-[10%] left-[20%] z-20 w-[50%]">
-                <ScrollAnimation animation="slide-in-left">
-                  <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
-                </ScrollAnimation>
+            ) : (
+              // Desktop: tablet atrás + cel encima
+              <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
+                {/* Tablet - atrás */}
+                <div className="absolute bottom-0 right-0 z-10 w-[90%]">
+                  <ScrollAnimation animation="slide-in-right">
+                    <img src="/Tablet.png" alt="Dashboard de NOMMY en tablet" className="w-full rounded-xl shadow-2xl" />
+                  </ScrollAnimation>
+                </div>
+                {/* Celular - encima */}
+                <div className="absolute bottom-[10%] left-[20%] z-20 w-[50%]">
+                  <ScrollAnimation animation="slide-in-left">
+                    <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
+                  </ScrollAnimation>
+                </div>
               </div>
+            )}
 
-            </div>
           </div>
         </div>
       </section>
+
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -139,10 +166,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       <TrustedBrands/>
       <NommyCalculator />
 
-  
       {/* Tool Showcase */}
       <section className="relative py-20 bg-gradient-to-br from-turquoise/10 to-navy/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,7 +228,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       <RibbonBanner />
+
       {/* Steps */}
       <section className="bg-navy py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

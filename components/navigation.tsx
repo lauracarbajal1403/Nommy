@@ -188,6 +188,42 @@ const mobileSections: MobileSection[] = [
   { label: "Bloggy", items: [{ icon: "📝", title: "Blog", desc: "Artículos y recursos sobre nómina y RRHH.", href: "/resources" }] },
 ]
 
+// ── Demo Button ───────────────────────────────────────────────────────────────
+function DemoButton({ href, mobile = false }: { href: string; mobile?: boolean }) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "inline-block",
+        padding: hovered
+          ? (mobile ? "9px 20px" : "12px 30px")
+          : (mobile ? "8px 16px" : "10px 24px"),
+        borderRadius: "999px",
+        backgroundColor: hovered ? "#0d9488" : "#152132",
+        color: "#ffffff",
+        fontSize: mobile ? "13px" : (hovered ? "15px" : "14px"),
+        fontWeight: 700,
+        textDecoration: "none",
+        whiteSpace: "nowrap",
+        letterSpacing: "0.02em",
+        boxShadow: hovered
+          ? "0 6px 20px rgba(13,148,136,0.45)"
+          : "0 4px 14px rgba(0,0,0,0.15)",
+        transform: hovered ? "scale(1.05)" : "scale(1)",
+        transition: "all 0.25s cubic-bezier(0.34, 1.4, 0.64, 1)",
+      }}
+    >
+      ¡DEMO GRATIS!
+    </a>
+  )
+}
+
 // ── Main Component ────────────────────────────────────────────────────────────
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -287,29 +323,14 @@ export default function Navigation() {
               <Image src="/bloggyy.png" alt="Bloggy" width={64} height={24} style={{ width: 64, height: "auto", marginRight: 8 }} />
             </Link>
 
-            <Link href="/demo" target="_blank" rel="noopener noreferrer"
-              style={{
-                padding: "10px 24px", borderRadius: "999px", fontWeight: 600,
-                backgroundColor: "#152132", color: "#ffffff", textDecoration: "none",
-                boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
-              }}>
-              ¡DEMO GRATIS!
-            </Link>
+            <DemoButton href="/demo" />
           </div>
         )}
 
         {/* ── Mobile: Demo + Hamburger ── */}
         {isMobile && (
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <a href="/demo" target="_blank" rel="noopener noreferrer"
-              style={{
-                padding: "8px 16px", borderRadius: "999px",
-                backgroundColor: "#152132", color: "#ffffff",
-                fontSize: "13px", fontWeight: 700, textDecoration: "none",
-                whiteSpace: "nowrap",
-              }}>
-              ¡DEMO GRATIS!
-            </a>
+            <DemoButton href="/demo" mobile />
             <button onClick={() => setIsOpen(!isOpen)}
               style={{ background: "none", border: "none", cursor: "pointer", color: "#0f172a", padding: 4, display: "flex", alignItems: "center" }}>
               {isOpen ? <X size={24} /> : <Menu size={24} />}
