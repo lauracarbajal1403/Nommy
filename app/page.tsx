@@ -1,13 +1,15 @@
 "use client"
 import Link from "next/link"
-import { useEffect, useState, FormEvent } from "react";
-import { ArrowRight, Check } from 'lucide-react'
+import { useEffect, useState, useRef, FormEvent } from "react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react'
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
 import emailjs from "@emailjs/browser"
 import FloatingDiscount from "@/components/FloatingDiscount"
 import RibbonBanner from "@/components/cinta"
+import TrustedBrands from "@/components/Trustedbrands";
+
 const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina"];
 
 function AnimatedPhrase() {
@@ -48,6 +50,7 @@ function AnimatedPhrase() {
   );
 }
 
+
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState("")
@@ -58,7 +61,6 @@ export default function HomePage() {
     company: "",
     phone: "",
   })
-
 
   return (
     <div className="overflow-hidden">
@@ -112,8 +114,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Features */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -139,7 +139,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
+      <TrustedBrands/>
       <NommyCalculator />
 
   

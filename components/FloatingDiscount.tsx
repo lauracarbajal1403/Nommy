@@ -3,9 +3,21 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import confetti from "canvas-confetti"
 
+function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < breakpoint)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [breakpoint])
+  return isMobile
+}
+
 export default function FloatingDiscount() {
   const [visible, setVisible] = useState(false)
   const [dismissed, setDismissed] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const show = setTimeout(() => {
@@ -17,7 +29,6 @@ export default function FloatingDiscount() {
   }, [])
 
   function fireConfetti() {
-    // Ráfaga desde la izquierda
     confetti({
       particleCount: 60,
       angle: 60,
@@ -25,7 +36,6 @@ export default function FloatingDiscount() {
       origin: { x: 0, y: 0.6 },
       colors: ["#2dd4bf", "#0f766e", "#ffffff", "#facc15", "#f472b6"],
     })
-    // Ráfaga desde la derecha
     confetti({
       particleCount: 60,
       angle: 120,
@@ -33,7 +43,6 @@ export default function FloatingDiscount() {
       origin: { x: 1, y: 0.6 },
       colors: ["#2dd4bf", "#0f766e", "#ffffff", "#facc15", "#f472b6"],
     })
-    // Tercer disparo central con un pequeño delay
     setTimeout(() => {
       confetti({
         particleCount: 40,
@@ -48,6 +57,103 @@ export default function FloatingDiscount() {
 
   if (dismissed) return null
 
+  // ── Mobile: bottom sheet ──────────────────────────────────────────────────
+  if (isMobile) {
+    return (
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999,
+          transform: visible ? "translateY(0)" : "translateY(100%)",
+          transition: "transform 0.45s cubic-bezier(0.34, 1.3, 0.64, 1)",
+          opacity: visible ? 1 : 0,
+          pointerEvents: visible ? "auto" : "none",
+        }}
+      >
+        <div style={{
+          background: "linear-gradient(135deg, #0f766e, #2dd4bf)",
+          borderRadius: "24px 24px 0 0",
+          padding: "28px 24px 36px",
+          boxShadow: "0 -8px 40px rgba(45, 212, 191, 0.4)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          position: "relative",
+        }}>
+          {/* Drag handle */}
+          <div style={{
+            width: 40, height: 4, borderRadius: 2,
+            backgroundColor: "rgba(255,255,255,0.4)",
+            marginBottom: 20,
+          }} />
+
+          {/* Botón cerrar */}
+          <button
+            onClick={() => { setVisible(false); setTimeout(() => setDismissed(true), 500) }}
+            style={{
+              position: "absolute",
+              top: 16, right: 16,
+              border: "none", borderRadius: "50%",
+              width: 28, height: 28,
+              cursor: "pointer",
+              backgroundColor: "rgba(255,255,255,0.2)",
+              color: "white",
+              fontSize: "14px",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >✕</button>
+
+          <p style={{
+            color: "rgba(255,255,255,0.85)", fontSize: "14px",
+            margin: "0 0 4px", fontWeight: 500, textAlign: "center",
+          }}>
+            Oferta limitada
+          </p>
+
+          <p style={{
+            color: "white", fontSize: "42px", fontWeight: 700,
+            margin: "0 0 4px", lineHeight: 1.1, textAlign: "center",
+          }}>
+            Descuento<br />hasta 60% 🎉
+          </p>
+
+          <Link
+            href="/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              marginTop: 20,
+              backgroundColor: "#0f172a",
+              color: "white",
+              fontWeight: 700,
+              fontSize: "16px",
+              padding: "14px 32px",
+              borderRadius: "999px",
+              textDecoration: "none",
+              width: "100%",
+              textAlign: "center",
+              display: "block",
+              boxSizing: "border-box",
+            }}
+          >
+            ▶ ¡Agenda tu demo hoy!
+          </Link>
+
+          <p style={{
+            color: "rgba(255,255,255,0.65)", fontSize: "11px",
+            margin: "12px 0 0", textAlign: "center",
+          }}>
+            Aplican términos y condiciones*
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  // ── Desktop: modal centrado (original) ────────────────────────────────────
   return (
     <div
       style={{
@@ -68,14 +174,13 @@ export default function FloatingDiscount() {
         position: "absolute",
         bottom: "-14px",
         right: "36px",
-        width: 0,
-        height: 0,
+        width: 0, height: 0,
         borderLeft: "14px solid transparent",
         borderRight: "14px solid transparent",
         borderTop: "16px solid #0f766e",
       }} />
 
-      {/* Burbuja nube — 600 × 400 */}
+      {/* Burbuja */}
       <div style={{
         background: "linear-gradient(135deg, #0f766e, #2dd4bf)",
         borderRadius: "24px",
@@ -90,24 +195,16 @@ export default function FloatingDiscount() {
         position: "relative",
         boxSizing: "border-box",
       }}>
-        {/* Botón cerrar */}
         <button
           onClick={() => { setVisible(false); setTimeout(() => setDismissed(true), 500) }}
-          className="bg-navy hover:bg-turquoise transition"
           style={{
-            position: "absolute",
-            top: "10px",
-            right: "12px",
-            border: "none",
-            borderRadius: "50%",
-            width: "22px",
-            height: "22px",
+            position: "absolute", top: "10px", right: "12px",
+            border: "none", borderRadius: "50%",
+            width: "22px", height: "22px",
             cursor: "pointer",
-            color: "white",
-            fontSize: "12px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            backgroundColor: "rgba(255,255,255,0.2)",
+            color: "white", fontSize: "12px",
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}
         >✕</button>
 
@@ -122,8 +219,12 @@ export default function FloatingDiscount() {
           href="/demo"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-navy hover:bg-turquoise text-white font-bold px-6 py-3 rounded-full text-center transition"
-          style={{ fontSize: "18px", marginTop: "16px", textDecoration: "none" }}
+          style={{
+            backgroundColor: "#0f172a", color: "white",
+            fontWeight: 700, fontSize: "18px",
+            padding: "12px 24px", borderRadius: "999px",
+            textDecoration: "none", marginTop: "16px",
+          }}
         >
           ▶ ¡Agenda tu demo hoy!
         </Link>
