@@ -162,7 +162,7 @@ export default function PricingPage() {
               
               <div className="mt-8">
                 <a
-                  href="#comparison-table"
+                  href="#comparar"
                   className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-turquoise to-navy hover:shadow-xl hover:from-turquoise/90 hover:to-navy/90 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95"
                 >
                   Comparar Planes Detalladamente
