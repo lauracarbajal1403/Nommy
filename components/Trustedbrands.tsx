@@ -188,7 +188,7 @@ export default function TrustedBrands() {
           color: "#ffffff", margin: "0 0 20px",
           letterSpacing: "-0.02em",
         }}>
-          Únete a los negocios que ya confían en Nommy
+          Únete a las empresas que ya confían en Nommy
         </h2>
 
         <p style={{ fontSize: 17, color: "rgba(255,255,255,0.55)", maxWidth: 540, margin: "0 auto", lineHeight: 1.6 }}>
