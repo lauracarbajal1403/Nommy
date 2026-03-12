@@ -6,7 +6,7 @@ import emailjs from "@emailjs/browser"
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 
-
+import RibbonBanner from "@/components/cinta"
 export default function ResourcesPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -290,7 +290,7 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
-
+      <RibbonBanner/>
       {/* Contenedor de Artículos */}
       <main className="max-w-6xl mx-auto px-4 py-16">
         <div className="space-y-12">

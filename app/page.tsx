@@ -6,8 +6,8 @@ import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
 import emailjs from "@emailjs/browser"
-
-
+import FloatingDiscount from "@/components/FloatingDiscount"
+import RibbonBanner from "@/components/cinta"
 const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina"];
 
 function AnimatedPhrase() {
@@ -62,10 +62,12 @@ export default function HomePage() {
 
   return (
     <div className="overflow-hidden">
+      
       <NominikChatbot />
 
       {/* Hero */}
       <section className="relative bg-gradient-to-r from-navy to-turquoise overflow-hidden">
+        <FloatingDiscount />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left text-white">
@@ -100,7 +102,7 @@ export default function HomePage() {
               </div>
 
               {/* Celular - encima, centrado sobre la tablet */}
-              <div className="absolute bottom-[15%] left-[20%] z-20 w-[35%]">
+              <div className="absolute bottom-[15%] left-[20%] z-20 w-[40%]">
                 <ScrollAnimation animation="slide-in-left">
                   <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
                 </ScrollAnimation>
@@ -199,7 +201,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
+      <RibbonBanner />
       {/* Steps */}
       <section className="bg-navy py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

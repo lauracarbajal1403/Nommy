@@ -49,13 +49,12 @@ export default function RibbonBanner() {
         }}
       />
 
-      {/* Scrolling track */}
       <div
         ref={trackRef}
         style={{
           display: "flex",
           width: "max-content",
-          animation: "ribbonScroll 120s linear infinite", // más lento
+          animation: "ribbonScroll 120s linear infinite", 
         }}
         onMouseEnter={() => {
           if (trackRef.current)
