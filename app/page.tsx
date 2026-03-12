@@ -6,6 +6,8 @@ import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
 import emailjs from "@emailjs/browser"
+
+
 const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina"];
 
 function AnimatedPhrase() {
@@ -281,7 +283,7 @@ export default function HomePage() {
           </ScrollAnimation>
         </div>
       </section>
-
+    
     </div>
   )
 }
