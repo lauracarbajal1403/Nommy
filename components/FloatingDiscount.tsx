@@ -129,7 +129,7 @@ export default function FloatingDiscount() {
         </Link>
 
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "12px", margin: "10px 0 0", textAlign: "center" }}>
-          Aplican términos y condiciones
+          Aplican términos y condiciones*
         </p>
       </div>
     </div>
