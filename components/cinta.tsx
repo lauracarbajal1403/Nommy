@@ -8,7 +8,7 @@ export default function RibbonBanner() {
     "Este mes de marzo tenemos algo especial para ti: al contratar, obtienes un descuento extra en tu plan. Disponible por tiempo limitado. Aplican términos y condiciones*"
 
   const segments = Array.from({ length: 8 }, (_, i) => i)
-  const copies = [0, 1] // duplicado para loop infinito
+  const copies = [0, 1]
 
   return (
     <div
@@ -52,8 +52,8 @@ export default function RibbonBanner() {
                   whiteSpace: "nowrap",
                   userSelect: "none",
                   textTransform: "uppercase",
-                  background: i % 2 === 0 ? "#00bcd4" : "#1a5276",
-                  color: i % 2 === 0 ? "#e8f8fa" : "#7ed6e0",
+                  background: "#00bcd4",
+                  color: "#e8f8fa",
                   borderRight: "2px solid rgba(0,188,212,0.15)",
                 }}
               >

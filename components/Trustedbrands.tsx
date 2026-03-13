@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 
 // ── Logos ──────────────────────────────────────────────────────────────────────
 const LOGOS = [
@@ -16,40 +16,6 @@ const LOGOS = [
   { src: "/BrisSandoval.png",      alt: "Bris Sandoval" },
   { src: "/Abogados.png",          alt: "Abogados"      },
 ]
-
-// Split into two rows
-const ROW_A = LOGOS.slice(0, 6)
-const ROW_B = LOGOS.slice(6, 12)
-
-// ── Animated Counter ──────────────────────────────────────────────────────────
-function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const started = useRef(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true
-          const duration = 1800
-          const step = target / (duration / 16)
-          let current = 0
-          const timer = setInterval(() => {
-            current = Math.min(current + step, target)
-            setCount(Math.floor(current))
-            if (current >= target) clearInterval(timer)
-          }, 16)
-        }
-      },
-      { threshold: 0.3 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [target])
-
-  return <span ref={ref}>{count}{suffix}</span>
-}
 
 // ── Logo Card ─────────────────────────────────────────────────────────────────
 function LogoCard({ src, alt }: { src: string; alt: string }) {
@@ -73,12 +39,12 @@ function LogoCard({ src, alt }: { src: string; alt: string }) {
         cursor: "default",
         transition: "background 0.35s, border-color 0.35s, transform 0.35s, box-shadow 0.35s",
         background: hovered
-          ? "rgba(45,212,191,0.12)"
-          : "rgba(255,255,255,0.05)",
-        border: `1px solid ${hovered ? "rgba(45,212,191,0.5)" : "rgba(255,255,255,0.08)"}`,
+          ? "rgba(255,255,255,0.2)"
+          : "rgba(255,255,255,0.1)",
+        border: `1px solid ${hovered ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.2)"}`,
         transform: hovered ? "translateY(-4px) scale(1.04)" : "translateY(0) scale(1)",
         boxShadow: hovered
-          ? "0 8px 32px rgba(45,212,191,0.18), 0 0 0 1px rgba(45,212,191,0.15)"
+          ? "0 8px 32px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.25)"
           : "none",
       }}
     >
@@ -90,75 +56,12 @@ function LogoCard({ src, alt }: { src: string; alt: string }) {
           maxHeight: 46,
           objectFit: "contain",
           filter: hovered
-            ? "brightness(0) invert(1) drop-shadow(0 0 6px rgba(45,212,191,0.6))"
+            ? "brightness(0) invert(1) drop-shadow(0 0 6px rgba(255,255,255,0.5))"
             : "brightness(0) invert(1)",
-          opacity: hovered ? 1 : 0.5,
+          opacity: hovered ? 1 : 0.65,
           transition: "opacity 0.35s, filter 0.35s",
         }}
       />
-    </div>
-  )
-}
-
-// ── Marquee Row ───────────────────────────────────────────────────────────────
-function MarqueeRow({
-  logos,
-  duration = "38s",
-  reverse = false,
-}: {
-  logos: typeof LOGOS
-  duration?: string
-  reverse?: boolean
-}) {
-  // Triple-duplicate for seamless loop
-  const items = [...logos, ...logos, ...logos]
-  const animName = reverse ? "marqueeRev" : "marqueeFwd"
-
-  return (
-    <div
-      style={{
-        overflow: "hidden",
-        maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
-        marginBottom: 12,
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          width: "max-content",
-          animation: `${animName} ${duration} linear infinite`,
-        }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLDivElement).style.animationPlayState = "paused"
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLDivElement).style.animationPlayState = "running"
-        }}
-      >
-        {items.map((logo, i) => (
-          <LogoCard key={`${logo.alt}-${i}`} src={logo.src} alt={logo.alt} />
-        ))}
-      </div>
-
-      <style>{`
-        @keyframes marqueeRev {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
-        }
-        @keyframes marqueeRevReverse {
-          0%   { transform: translateX(-33.333%); }
-          100% { transform: translateX(0); }
-        }
-        @keyframes marqueeRev { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }
-        @keyframes marqueeRevRev { 0% { transform: translateX(-33.333%); } 100% { transform: translateX(0); } }
-        @keyframes marqueeRev { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }
-        @keyframes marqueeRevrev { 0%{transform:translateX(-33.333%)} 100%{transform:translateX(0)} }
-        @keyframes marqueeRev  { 0%{transform:translateX(0)}         100%{transform:translateX(-33.333%)} }
-        @keyframes marqueeRevR { 0%{transform:translateX(-33.333%)} 100%{transform:translateX(0)}        }
-        @keyframes marqueeRev { 0%{transform:translateX(0)} 100%{transform:translateX(-33.333%)} }
-        @keyframes marqueeRevX{ 0%{transform:translateX(-33.333%)} 100%{transform:translateX(0)} }
-      `}</style>
     </div>
   )
 }
@@ -168,21 +71,20 @@ export default function TrustedBrands() {
   return (
     <section
       style={{
-        backgroundColor: "#060f1e",
+        backgroundColor: "#0d9488",
         padding: "96px 0 80px",
         overflow: "hidden",
         position: "relative",
       }}
     >
-      {/* Subtle mesh glow background */}
+      {/* Subtle overlay */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 80% 40% at 50% 0%, rgba(45,212,191,0.07) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.08) 0%, transparent 70%)",
       }} />
 
       {/* ── Heading ── */}
       <div style={{ maxWidth: 900, margin: "0 auto 56px", padding: "0 24px", textAlign: "center", position: "relative" }}>
-
         <h2 style={{
           fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, lineHeight: 1.15,
           color: "#ffffff", margin: "0 0 20px",
@@ -191,49 +93,44 @@ export default function TrustedBrands() {
           Únete a las empresas que ya confían en Nommy
         </h2>
 
-        <p style={{ fontSize: 17, color: "rgba(255,255,255,0.55)", maxWidth: 540, margin: "0 auto", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 17, color: "rgba(255,255,255,0.75)", maxWidth: 540, margin: "0 auto", lineHeight: 1.6 }}>
           Descubre porqué{" "}
-          <strong style={{ color: "rgba(255,255,255,0.85)", fontWeight: 600 }}>todos eligen Nommy</strong>{" "}
+          <strong style={{ color: "#ffffff", fontWeight: 600 }}>todos eligen Nommy</strong>{" "}
           para gestionar su nómina con confianza.
         </p>
-
-        
       </div>
 
       {/* ── Divider line ── */}
       <div style={{
         width: "100%", height: 1, marginBottom: 36,
-        background: "linear-gradient(to right, transparent, rgba(45,212,191,0.2) 30%, rgba(45,212,191,0.2) 70%, transparent)",
+        background: "linear-gradient(to right, transparent, rgba(255,255,255,0.25) 30%, rgba(255,255,255,0.25) 70%, transparent)",
       }} />
 
-      {/* ── Two-row marquee ── */}
+      {/* ── Keyframes ── */}
       <style>{`
-        @keyframes marqueeRev { 0%{transform:translateX(0)} 100%{transform:translateX(-33.333%)} }
-        @keyframes marqueeFwd { 0%{transform:translateX(-33.333%)} 100%{transform:translateX(0)} }
+        @keyframes marqueeScroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
       `}</style>
 
-      {/* Row 1 — left */}
-      <div style={{ overflow: "hidden", maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)", marginBottom: 12 }}>
+      {/* ── Single row marquee ── */}
+      <div style={{
+        overflow: "hidden",
+        maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+      }}>
         <div
-          style={{ display: "flex", width: "max-content", animation: "marqueeRev 38s linear infinite" }}
+          style={{
+            display: "flex",
+            width: "max-content",
+            animation: "marqueeScroll 40s linear infinite",
+          }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.animationPlayState = "paused" }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.animationPlayState = "running" }}
         >
-          {[...ROW_A, ...ROW_A, ...ROW_A].map((logo, i) => (
-            <LogoCard key={`a-${logo.alt}-${i}`} src={logo.src} alt={logo.alt} />
-          ))}
-        </div>
-      </div>
-
-      {/* Row 2 — right */}
-      <div style={{ overflow: "hidden", maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)" }}>
-        <div
-          style={{ display: "flex", width: "max-content", animation: "marqueeFwd 44s linear infinite" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.animationPlayState = "paused" }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.animationPlayState = "running" }}
-        >
-          {[...ROW_B, ...ROW_B, ...ROW_B].map((logo, i) => (
-            <LogoCard key={`b-${logo.alt}-${i}`} src={logo.src} alt={logo.alt} />
+          {[...LOGOS, ...LOGOS, ...LOGOS].map((logo, i) => (
+            <LogoCard key={`${logo.alt}-${i}`} src={logo.src} alt={logo.alt} />
           ))}
         </div>
       </div>
