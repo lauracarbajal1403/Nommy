@@ -22,6 +22,24 @@ export const metadata: Metadata = {
   },
 }
 
+const linkedInScript1 = `
+  _linkedin_partner_id = "8802034";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+`
+
+const linkedInScript2 = `
+  (function(l) {
+    if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+    window.lintrk.q=[]}
+    var s = document.getElementsByTagName("script")[0];
+    var b = document.createElement("script");
+    b.type = "text/javascript"; b.async = true;
+    b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+    s.parentNode.insertBefore(b, s);
+  })(window.lintrk);
+`
+
 export default function RootLayout({
   children,
 }: {
@@ -31,6 +49,17 @@ export default function RootLayout({
     <html lang="es">
       <GoogleTagManager gtmId="G-YYRDPQQVKE" />
       <body className={`${inter.className} font-sans antialiased`}>
+        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript1 }} />
+        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            alt=""
+            src="https://px.ads.linkedin.com/collect/?pid=8802034&fmt=gif"
+          />
+        </noscript>
         <Suspense fallback={<Loading />}>
           <Navigation />
           <main className="min-h-screen">{children}</main>
