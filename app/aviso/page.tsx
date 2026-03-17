@@ -549,9 +549,7 @@ const DataTable = () => {
                 <tr key={item.num} className="hover:bg-[#fafaf8] transition-colors">
                   <td className="p-3 border border-[#e5e5e5] text-[#525252]">{item.num}</td>
                   <td className="p-3 border border-[#e5e5e5] text-[#525252]">{item.name}</td>
-                  <td className="p-3 border border-[#e5e5e5] text-center">
-                    <span className={`inline-block w-6 h-6 rounded ${item.sensitive ? 'bg-emerald-600' : 'bg-gray-300'}`}></span>
-                  </td>
+                 
                 </tr>
               ))}
             </tbody>
@@ -578,9 +576,8 @@ const DataTable = () => {
                 <tr key={item.num} className="hover:bg-[#fafaf8] transition-colors">
                   <td className="p-3 border border-[#e5e5e5] text-[#525252]">{item.num}</td>
                   <td className="p-3 border border-[#e5e5e5] text-[#525252]">{item.name}</td>
-                  <td className="p-3 border border-[#e5e5e5] text-center">
-                    <span className={`inline-block w-6 h-6 rounded ${item.sensitive ? 'bg-emerald-600' : 'bg-gray-300'}`}></span>
-                  </td>
+                  
+                  
                 </tr>
               ))}
             </tbody>
