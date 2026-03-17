@@ -63,7 +63,7 @@ export default function TrustedBrands() {
           letterSpacing: '0.12em',
           marginBottom: '24px',
         }}>
-          CONFÍAN EN NOMMY PARA SUS DESPACHOS
+          CONFÍAN EN NOMMY 
         </p>
         <div style={{
           display: 'flex',
