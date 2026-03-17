@@ -541,7 +541,7 @@ const DataTable = () => {
               <tr className="bg-emerald-600 text-white">
                 <th className="p-3 text-left border border-emerald-700">#</th>
                 <th className="p-3 text-left border border-emerald-700">Denominación</th>
-                <th className="p-3 text-center border border-emerald-700">¿Es Dato Sensible?</th>
+               
               </tr>
             </thead>
             <tbody>
@@ -570,7 +570,7 @@ const DataTable = () => {
               <tr className="bg-emerald-600 text-white">
                 <th className="p-3 text-left border border-emerald-700">#</th>
                 <th className="p-3 text-left border border-emerald-700">Denominación</th>
-                <th className="p-3 text-center border border-emerald-700">¿Es Dato Sensible?</th>
+               
               </tr>
             </thead>
             <tbody>
