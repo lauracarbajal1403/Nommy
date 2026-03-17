@@ -205,7 +205,7 @@ function DemoButton({ href, mobile = false }: { href: string; mobile?: boolean }
           ? (mobile ? "9px 20px" : "12px 30px")
           : (mobile ? "8px 16px" : "10px 24px"),
         borderRadius: "999px",
-        backgroundColor: hovered ? "#0d9488" : "#152132",
+        backgroundColor: hovered ? "#152132" : "#4abdb9",
         color: "#ffffff",
         fontSize: mobile ? "13px" : (hovered ? "15px" : "14px"),
         fontWeight: 700,
@@ -332,7 +332,7 @@ export default function Navigation() {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <DemoButton href="/demo" mobile />
             <button onClick={() => setIsOpen(!isOpen)}
-              style={{ background: "none", border: "none", cursor: "pointer", color: "#0f172a", padding: 4, display: "flex", alignItems: "center" }}>
+              style={{ background: "none", border: "none", cursor: "pointer", color: "#4abdb9", padding: 4, display: "flex", alignItems: "center" }}>
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
