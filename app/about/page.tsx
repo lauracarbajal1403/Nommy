@@ -38,12 +38,14 @@ export default function AboutPage() {
       description: "Experto en diseñar soluciones tecnológicas.",
       photo: "/team-member-1.png",
     },
+    {/*
     {
       name: "Manuel Vargas",
       role: "CTO",
       description: "Más de 10 años innovando en Nómina y RRHH.",
       photo: "/team-member-manny.jpeg",
     },
+    */}
     {
       name: "Alejandro Finol",
       role: "Head of Customer Success",
