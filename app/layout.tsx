@@ -53,12 +53,12 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
         {/* Google Tag Manager - debe ir al inicio del body */}
-        <GoogleTagManager gtmId="GTM-TFSH9C4P" />
+        <GoogleTagManager gtmId="AW-17894332131" />
 
         {/* GTM noscript fallback */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TFSH9C4P"
+            src="https://www.googletagmanager.com/gtag/js?id=AW-17894332131"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
