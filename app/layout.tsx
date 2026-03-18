@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Suspense } from "react"
-import { GoogleTagManager } from "@next/third-parties/google"
+import { GoogleAnalytics } from "@next/third-parties/google"
 
 import "./globals.css"
 import Navigation from "@/components/navigation"
@@ -40,11 +40,7 @@ const linkedInScript2 = `
   })(window.lintrk);
 `
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <head>
@@ -52,26 +48,12 @@ export default function RootLayout({
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
-        {/* Google Tag Manager - debe ir al inicio del body */}
-        <GoogleTagManager gtmId="AW-17894332131" />
+        {/* ✅ Correcto para Google Ads / gtag.js */}
+        <GoogleAnalytics gaId="AW-17894332131" />
 
-        {/* GTM noscript fallback */}
+        {/* LinkedIn noscript */}
         <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/gtag/js?id=AW-17894332131"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-
-        {/* LinkedIn noscript fallback */}
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            alt=""
+          <img height="1" width="1" style={{ display: "none" }} alt=""
             src="https://px.ads.linkedin.com/collect/?pid=8802034&fmt=gif"
           />
         </noscript>
