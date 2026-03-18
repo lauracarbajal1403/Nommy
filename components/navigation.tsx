@@ -25,7 +25,7 @@ const nominaCol2 = [
 ]
 
 const masSoluciones = [
-  { icon: "🤖", title: "Reclutamiento asistido por IA", desc: "Diseña perfiles de puestos con IA.", badge: "Destacado", href: "/inteligencia" },
+  { image: "/NommyAI.png", title: "Reclutamiento asistido por IA", desc: "Diseña perfiles de puestos con IA.", badge: "Destacado", href: "/inteligencia" },
   { icon: "📊", title: "NOM-035", desc: "Cumple con encuestas oficiales.", badge: "Destacado", href: "/norma" },
   { icon: "📋", title: "Control de horarios", desc: "Reporte de prenómina en minutos.", badge: null, href: "/control_hora" },
   { icon: "🧾", title: "Reportes dinámicos", desc: "Visualización y análisis de resultados.", badge: null, href: "/reportes_dina" },
@@ -44,7 +44,8 @@ const preciosItems = [
   { icon: "❓", title: "Preguntas frecuentes", desc: "Resuelve tus dudas sobre facturación, contratos, soporte y más.", href: "/pricing#faq" },
 ]
 
-type Item = { icon: string; title: string; desc: string; badge: string | null; href?: string }
+// ── Types ─────────────────────────────────────────────────────────────────────
+type Item = { icon?: string; image?: string; title: string; desc: string; badge: string | null; href?: string }
 type SimpleItem = { icon: string; title: string; desc: string; href?: string }
 type MobileSection = { label: string; items: SimpleItem[] }
 
@@ -93,7 +94,17 @@ function MenuColumn({ title, items, dimTitle = false }: { title: string; items: 
           onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#f0fdfa" }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent" }}
         >
-          <span style={{ fontSize: 18, lineHeight: 1.4, flexShrink: 0 }}>{item.icon}</span>
+          {item.image ? (
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={24}
+              height={24}
+              style={{ width: 24, height: 24, objectFit: "contain", flexShrink: 0, borderRadius: 4 }}
+            />
+          ) : (
+            <span style={{ fontSize: 18, lineHeight: 1.4, flexShrink: 0 }}>{item.icon}</span>
+          )}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <span style={{ fontSize: "13px", fontWeight: 600, color: "#0f172a" }}>{item.title}</span>
@@ -179,7 +190,15 @@ function MobileAccordion({ section, onClose }: { section: MobileSection; onClose
   )
 }
 
-const productoMobileItems: SimpleItem[] = [...nominaCol1, ...nominaCol2, ...masSoluciones]
+const productoMobileItems: SimpleItem[] = [
+  ...nominaCol1,
+  ...nominaCol2,
+  { icon: "🤖", title: "Reclutamiento asistido por IA", desc: "Diseña perfiles de puestos con IA.", href: "/inteligencia" },
+  { icon: "📊", title: "NOM-035", desc: "Cumple con encuestas oficiales.", href: "/norma" },
+  { icon: "📋", title: "Control de horarios", desc: "Reporte de prenómina en minutos.", href: "/control_hora" },
+  { icon: "🧾", title: "Reportes dinámicos", desc: "Visualización y análisis de resultados.", href: "/reportes_dina" },
+  { icon: "✅", title: "Canales corporativos", desc: "Publica anuncios, beneficios y comunicados desde Nommy.", href: "/norma" },
+]
 
 const mobileSections: MobileSection[] = [
   { label: "Nosotros", items: nosotrosItems },
