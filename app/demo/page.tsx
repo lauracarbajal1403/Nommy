@@ -2,7 +2,7 @@
 
 import type React from "react"
 import type { FormEvent } from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { CheckCircle } from "lucide-react"
 import ScrollAnimation from "@/components/scroll-animation"
 import IndustryCarousel from "@/components/IndustryCarousel"
@@ -26,13 +26,12 @@ export default function DemoPage() {
     if (formSection) {
       formSection.scrollIntoView({ behavior: "smooth", block: "center" })
     }
-  }
+    }
 
-  const handleSubmit = async (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
   e.preventDefault()
   setIsLoading(true)
   setMessage("")
-  window.open('/gracias', '_blank')
 
   try {
     const response = await fetch("/api/send-demo-request", {
@@ -46,9 +45,13 @@ export default function DemoPage() {
     const data = await response.json()
 
     if (response.ok) {
-      // Abrir página de agradecimiento en nueva pestaña
-      
-      // Limpiar formulario
+      // ✅ El evento de conversión va aquí, solo cuando el submit fue exitoso
+      gtag('event', 'conversion', {
+        send_to: 'AW-17894332131/rIyQCJa4ioscEOOt19RC' // reemplaza con tu ID real
+      })
+
+      window.open('/gracias', '_blank')
+
       setFormData({
         name: "",
         email: "",
@@ -60,12 +63,12 @@ export default function DemoPage() {
     } else {
       setMessage(data.error || "Hubo un error al agendar el demo. Por favor intenta de nuevo.")
     }
-    } catch (error) {
-      setMessage("Error al enviar la solicitud. Por favor intenta de nuevo.")
-    } finally {
-      setIsLoading(false)
-    }
+  } catch (error) {
+    setMessage("Error al enviar la solicitud. Por favor intenta de nuevo.")
+  } finally {
+    setIsLoading(false)
   }
+}
 
   return (
     <div className="py-0">
