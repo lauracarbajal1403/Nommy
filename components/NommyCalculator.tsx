@@ -5,21 +5,17 @@ import { Check } from "lucide-react"
 
 // ─── Calculation Logic ────────────────────────────────────────────────────────
 
-// Ahorro mensual: $520 MXN por colaborador
 const AHORRO_MENSUAL_POR_COLABORADOR = 520
 
-// Bajas tardías: $4,000 por colaborador (anual)
-function calcBajasTardias(colaboradores) {
+function calcBajasTardias(colaboradores: number) {
   return colaboradores * 4000
 }
 
-// Riesgo multas: $46,750 fijo anual
 function calcRiesgoMultas() {
   return 46750
 }
 
-// Ahorro productividad: $3,035 por cada 70 colaboradores + $43.35 por cada colaborador adicional
-function calcAhorroProductividad(colaboradores) {
+function calcAhorroProductividad(colaboradores: number) {
   const gruposCompletos = Math.floor(colaboradores / 70)
   const base = gruposCompletos * 3035
   const colaboradoresExtra = colaboradores % 70
@@ -27,23 +23,31 @@ function calcAhorroProductividad(colaboradores) {
   return base + extras
 }
 
-// Ahorro tiempo en % (para mostrar en KPI secundario)
-function calcAhorroTiempo(colaboradores) {
+function calcAhorroTiempo(colaboradores: number) {
   const grupos = colaboradores / 70
   return Math.min(grupos * 20, 80)
 }
 
-// Ahorro anual = bajas tardías + productividad
-function calcAhorroAnual(colaboradores) {
+function calcAhorroAnual(colaboradores: number) {
   return calcBajasTardias(colaboradores) + calcAhorroProductividad(colaboradores)
 }
 
 // ─── Animated Number ──────────────────────────────────────────────────────────
 
-function AnimatedNumber({ value, prefix = "", suffix = "", decimals = 0 }) {
+function AnimatedNumber({
+  value,
+  prefix = "",
+  suffix = "",
+  decimals = 0,
+}: {
+  value: number
+  prefix?: string
+  suffix?: string
+  decimals?: number
+}) {
   const [display, setDisplay] = useState(0)
-  const rafRef = useRef(null)
-  const startRef = useRef(null)
+  const rafRef = useRef<number | null>(null)
+  const startRef = useRef<number | null>(null)
   const startValRef = useRef(0)
 
   useEffect(() => {
@@ -53,7 +57,7 @@ function AnimatedNumber({ value, prefix = "", suffix = "", decimals = 0 }) {
     const to = value
     const duration = 600
 
-    const step = (timestamp) => {
+    const step = (timestamp: number) => {
       if (!startRef.current) startRef.current = timestamp
       const progress = Math.min((timestamp - startRef.current) / duration, 1)
       const ease = 1 - Math.pow(1 - progress, 3)
@@ -63,7 +67,7 @@ function AnimatedNumber({ value, prefix = "", suffix = "", decimals = 0 }) {
       if (progress < 1) rafRef.current = requestAnimationFrame(step)
     }
     rafRef.current = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(rafRef.current)
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
   }, [value])
 
   const formatted =
@@ -85,37 +89,82 @@ function AnimatedNumber({ value, prefix = "", suffix = "", decimals = 0 }) {
 
 // ─── Slider ───────────────────────────────────────────────────────────────────
 
-function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffix = "", icon }) {
+function Slider({
+  label,
+  value,
+  min,
+  max,
+  step = 1,
+  onChange,
+  prefix = "",
+  suffix = "",
+  icon,
+}: {
+  label: string
+  value: number
+  min: number
+  max: number
+  step?: number
+  onChange: (v: number) => void
+  prefix?: string
+  suffix?: string
+  icon: string
+}) {
   const pct = ((value - min) / (max - min)) * 100
+  const trackRef = useRef<HTMLDivElement>(null)
   const [inputVal, setInputVal] = useState(String(value))
   const [isFocused, setIsFocused] = useState(false)
 
   useEffect(() => {
-    if (!isFocused) {
-      setInputVal(String(value))
-    }
+    if (!isFocused) setInputVal(String(value))
   }, [value, isFocused])
 
-  const handleInputChange = (e) => {
-    const raw = e.target.value.replace(/\D/g, "")
-    setInputVal(raw)
+  const clientXToValue = (clientX: number) => {
+    const rect = trackRef.current!.getBoundingClientRect()
+    const ratio = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1)
+    const raw = min + ratio * (max - min)
+    return Math.round(raw / step) * step
   }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    onChange(clientXToValue(e.clientX))
+    const onMove = (ev: MouseEvent) => onChange(clientXToValue(ev.clientX))
+    const onUp = () => {
+      window.removeEventListener("mousemove", onMove)
+      window.removeEventListener("mouseup", onUp)
+    }
+    window.addEventListener("mousemove", onMove)
+    window.addEventListener("mouseup", onUp)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault()
+    onChange(clientXToValue(e.touches[0].clientX))
+    const onMove = (ev: TouchEvent) => {
+      ev.preventDefault()
+      onChange(clientXToValue(ev.touches[0].clientX))
+    }
+    const onEnd = () => {
+      window.removeEventListener("touchmove", onMove)
+      window.removeEventListener("touchend", onEnd)
+    }
+    window.addEventListener("touchmove", onMove, { passive: false })
+    window.addEventListener("touchend", onEnd)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setInputVal(e.target.value.replace(/\D/g, ""))
 
   const handleInputBlur = () => {
     setIsFocused(false)
     const parsed = parseInt(inputVal, 10)
     if (!isNaN(parsed)) {
-      const clamped = Math.min(Math.max(parsed, min), max)
-      const stepped = Math.round(clamped / step) * step
+      const stepped = Math.round(Math.min(Math.max(parsed, min), max) / step) * step
       onChange(stepped)
       setInputVal(String(stepped))
     } else {
       setInputVal(String(value))
     }
-  }
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") e.target.blur()
   }
 
   return (
@@ -139,13 +188,10 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
             type="text"
             inputMode="numeric"
             value={isFocused ? inputVal : value.toLocaleString("es-MX")}
-            onFocus={() => {
-              setIsFocused(true)
-              setInputVal(String(value))
-            }}
+            onFocus={() => { setIsFocused(true); setInputVal(String(value)) }}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
-            onKeyDown={handleKeyDown}
+            onKeyDown={(e) => e.key === "Enter" && e.currentTarget.blur()}
             className="bg-transparent outline-none text-right font-semibold text-gray-800"
             style={{
               width: `${Math.max(String(value).length, 3) + 1}ch`,
@@ -158,23 +204,22 @@ function Slider({ label, value, min, max, step = 1, onChange, prefix = "", suffi
         </div>
       </div>
 
-      <div className="relative h-1.5 bg-gray-200 rounded-full">
+      {/* Track con handlers de touch/mouse directos */}
+      <div
+        ref={trackRef}
+        className="relative h-6 flex items-center cursor-pointer select-none"
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        style={{ touchAction: "none" }}
+      >
+        <div className="absolute inset-x-0 h-1.5 bg-gray-200 rounded-full">
+          <div
+            className="absolute h-1.5 rounded-full transition-all duration-150"
+            style={{ width: `${pct}%`, background: "linear-gradient(90deg, #0d3b6e, #00bcd4)" }}
+          />
+        </div>
         <div
-          className="absolute h-1.5 rounded-full transition-all duration-150"
-          style={{ width: `${pct}%`, background: "linear-gradient(90deg, #0d3b6e, #00bcd4)" }}
-        />
-        <input
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
-          className="absolute inset-0 w-full opacity-0 cursor-pointer"
-          style={{ zIndex: 10, height: "100%" }}
-        />
-        <div
-          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 shadow-md pointer-events-none transition-all duration-150"
+          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 shadow-md transition-all duration-150"
           style={{ left: `calc(${pct}% - 8px)`, borderColor: "#00bcd4" }}
         />
       </div>
@@ -251,16 +296,13 @@ export default function NommyCalculator() {
               ))}
             </div>
           </div>
-          {/* ── END LEFT ── */}
 
           {/* ── RIGHT: Calculator Card ── */}
           <div className="relative">
-            {/* Glow behind card */}
             <div
               className="absolute -inset-6 rounded-3xl blur-3xl pointer-events-none"
               style={{
-                background:
-                  "linear-gradient(135deg, rgba(0,188,212,0.15), rgba(13,59,110,0.2))",
+                background: "linear-gradient(135deg, rgba(0,188,212,0.15), rgba(13,59,110,0.2))",
                 zIndex: 0,
               }}
             />
@@ -280,7 +322,6 @@ export default function NommyCalculator() {
 
               <div className="border-t border-gray-100 my-6" />
 
-              {/* Main results */}
               <div className="grid grid-cols-2 gap-6 mb-5">
                 <div>
                   <div className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">
@@ -303,7 +344,6 @@ export default function NommyCalculator() {
                 </div>
               </div>
 
-              {/* Secondary KPIs */}
               <div className="grid grid-cols-2 gap-2 mb-5">
                 {[
                   { label: "Ahorro productividad*", value: ahorroProd, prefix: "$" },
@@ -338,15 +378,9 @@ export default function NommyCalculator() {
               </Link>
             </div>
           </div>
-          {/* ── END RIGHT ── */}
 
         </div>
       </div>
-
-      <style>{`
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; }
-        input[type=range]::-moz-range-thumb { border: none; background: transparent; }
-      `}</style>
     </section>
   )
 }

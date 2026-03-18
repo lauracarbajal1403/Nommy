@@ -198,12 +198,12 @@ export default function AboutPage() {
           </ScrollAnimation>
 
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-5xl flex items-center justify-center">
               {team.map((member, index) => (
                 <ScrollAnimation key={index}>
                   <div className="card text-center">
                     {member.photo ? (
-                      <div className="w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full">
+                      <div className="w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full ">
                         <img
                           src={member.photo || "/placeholder.svg"}
                           alt={member.name}
