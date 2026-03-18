@@ -96,6 +96,16 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Evita multas de hasta $622,440 MXN  por no transparentar sueldos en vacantes",
+      description: "Descubre los beneficios que retienen el talento.",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/imagen2.png",
+      link: "/transparencia-salarial",
+      readTime: "4 min de lectura",
+      date: "18 Mar 2026",
+    },
+    {
       title: "Retención de talento y decisiones que realmente impactan a tu empresa",
       description: "Descubre los beneficios que retienen el talento.",
       category: "Blog",
