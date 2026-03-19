@@ -97,7 +97,7 @@ export default function ResourcesPage() {
   const resources = [
     {
       title: "Evita multas de hasta $622,440 MXN  por no transparentar sueldos en vacantes",
-      description: "Descubre los beneficios que retienen el talento.",
+      description: "Descubre cómo evitar multas.",
       category: "Blog",
       icon: BookOpen,
       image: "/imagen2.png",

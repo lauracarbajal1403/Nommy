@@ -45,9 +45,9 @@ export default function DemoPage() {
     const data = await response.json()
 
     if (response.ok) {
-      // ✅ El evento de conversión va aquí, solo cuando el submit fue exitoso
+      
       gtag('event', 'conversion', {
-        send_to: 'AW-17894332131/rIyQCJa4ioscEOOt19RC' // reemplaza con tu ID real
+        send_to: 'AW-17894332131/rIyQCJa4ioscEOOt19RC' 
       })
 
       window.open('/gracias', '_blank')
