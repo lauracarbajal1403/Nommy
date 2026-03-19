@@ -41,8 +41,9 @@ function LogoCard({ src, alt, isMobile }: { src: string; alt: string; isMobile: 
 // ── Trusted Brands ────────────────────────────────────────────────────────────
 export default function TrustedBrands() {
   const [isMobile, setIsMobile] = useState(false)
-
+  const [mounted, setMounted] = useState(false)
   useEffect(() => {
+    setMounted(true)
     const check = () => setIsMobile(window.innerWidth < 768)
     check()
     window.addEventListener('resize', check)
@@ -50,33 +51,57 @@ export default function TrustedBrands() {
   }, [])
 
   return (
-    <section style={{
-      padding: isMobile ? '32px 20px' : '48px 24px',
-      backgroundColor: '#1a2e4a',
-   
-    }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}>
-        <p style={{
-          fontSize: '11px',
-          fontWeight: 700,
-          color: '#4db8a8',
-          letterSpacing: '0.12em',
-          marginBottom: '24px',
-        }}>
-          CONOCE LAS EMPRESAS QUE CONFÍAN EN NOMMY 
+    <section style={{ padding: isMobile ? '32px 0' : '60px 0', backgroundColor: '#1b2436', overflow: 'hidden' }}>
+        <p style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', letterSpacing: '0.12em', marginBottom: '28px', textAlign: 'center' }}>
+          EMPRESAS QUE YA TRANSFORMARON SU NÓMINA
         </p>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: isMobile ? '24px' : '40px',
-          flexWrap: 'wrap',
-        }}>
-          {LOGOS.map((logo) => (
-            <LogoCard key={logo.alt} src={logo.src} alt={logo.alt} isMobile={isMobile} />
-          ))}
+        <style>{`
+          @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .logo-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+          }
+          .logo-track:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+        <div style={{ overflow: 'hidden', width: '100%' }}>
+          <div className="logo-track">
+            {[...LOGOS, ...LOGOS].map((logo, i) => (
+              <div key={i} style={{
+                width: isMobile ? '120px' : '160px',
+                height: isMobile ? '56px' : '72px',
+                flexShrink: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginRight: isMobile ? '40px' : '64px',
+              }}>
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  style={{
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    width: 'auto',
+                    height: 'auto',
+                    objectFit: 'contain',
+                    opacity: 0.35,
+                    filter: 'grayscale(1)',
+                    transition: 'opacity 0.2s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = '0.8')}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = '0.35')}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
   )
 }
