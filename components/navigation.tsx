@@ -7,7 +7,6 @@ import Image from "next/image"
 
 // ── Mega-menu data ────────────────────────────────────────────────────────────
 const nominaCol1 = [
-  { icon: "💬", title: "¿Por qué elegir Nommy?", desc: "Conoce porqué Nommy es la mejor opción para tu empresa.", badge: null, href: "/producto" },
   { icon: "📄", title: "Sistema de nómina", desc: "Cálculos de nómina automatizados.", badge: "Actualizado", href: "/calcula_nomina" },
   { icon: "💰", title: "Cálculo PTU", desc: "Calcula el PTU en tiempo y forma.", badge: "Actualizado", href: "/calcula_nomina" },
   { icon: "🖨️", title: "Timbrado Ilimitado", desc: "Automatiza el timbrado de tus recibos.", badge: null, href: "/calcula_nomina" },
@@ -33,6 +32,7 @@ const masSoluciones = [
 ]
 
 const nosotrosItems = [
+  { icon: "💬", title: "¿Por qué elegir Nommy?", desc: "Conoce porqué Nommy es la mejor opción para tu empresa.", badge: null, href: "/producto" },
   { icon: "🎯", title: "Nuestra misión", desc: "Conoce el propósito que nos impulsa a transformar la gestión de nómina en México.", href: "/about#mision" },
   { icon: "💎", title: "Nuestros valores", desc: "Los principios que guían cada decisión y definen nuestra cultura de trabajo.", href: "/about#valores" },
   { icon: "👥", title: "Conoce nuestro equipo", desc: "Las personas detrás de Nommy que trabajan cada día para simplificar tu nómina.", href: "/about#equipo" },
