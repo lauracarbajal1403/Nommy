@@ -32,7 +32,7 @@ const masSoluciones = [
 ]
 
 const nosotrosItems = [
-  { icon: "💬", title: "¿Por qué elegir Nommy?", desc: "Conoce porqué Nommy es la mejor opción para tu empresa.", badge: null, href: "/producto" },
+  { icon: "💬", title: "¿Por qué elegir Nommy?", desc: "Conoce porqué Nommy es la mejor opción para tu empresa.", badge: null, href: "/about" },
   { icon: "🎯", title: "Nuestra misión", desc: "Conoce el propósito que nos impulsa a transformar la gestión de nómina en México.", href: "/about#mision" },
   { icon: "💎", title: "Nuestros valores", desc: "Los principios que guían cada decisión y definen nuestra cultura de trabajo.", href: "/about#valores" },
   { icon: "👥", title: "Conoce nuestro equipo", desc: "Las personas detrás de Nommy que trabajan cada día para simplificar tu nómina.", href: "/about#equipo" },
@@ -44,7 +44,6 @@ const preciosItems = [
   { icon: "❓", title: "Preguntas frecuentes", desc: "Resuelve tus dudas sobre facturación, contratos, soporte y más.", href: "/pricing#faq" },
 ]
 
-// ── Types ─────────────────────────────────────────────────────────────────────
 type Item = { icon?: string; image?: string; title: string; desc: string; badge: string | null; href?: string }
 type SimpleItem = { icon: string; title: string; desc: string; href?: string }
 type MobileSection = { label: string; items: SimpleItem[] }
