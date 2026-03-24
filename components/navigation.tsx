@@ -7,7 +7,7 @@ import Image from "next/image"
 
 // ── Mega-menu data ────────────────────────────────────────────────────────────
 const nominaCol1 = [
-  { icon: "💬", title: "Herramienta todo el uno", desc: "Conoce las funcionalidades de Nommy.", badge: null, href: "/producto" },
+  { icon: "💬", title: "Herramienta todo en uno", desc: "Conoce las funcionalidades de Nommy.", badge: null, href: "/producto" },
   { icon: "📄", title: "Sistema de nómina", desc: "Cálculos de nómina automatizados.", badge: "Actualizado", href: "/calcula_nomina" },
   { icon: "💰", title: "Cálculo PTU", desc: "Calcula el PTU en tiempo y forma.", badge: "Actualizado", href: "/calcula_nomina" },
   { icon: "🖨️", title: "Timbrado Ilimitado", desc: "Automatiza el timbrado de tus recibos.", badge: null, href: "/calcula_nomina" },
