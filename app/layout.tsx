@@ -48,7 +48,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
-        {/* ✅ Correcto para Google Ads / gtag.js */}
         <GoogleAnalytics gaId="AW-17894332131" />
         <GoogleTagManager gtmId="GTM-TFSH9C4P" />
         {/* LinkedIn noscript */}

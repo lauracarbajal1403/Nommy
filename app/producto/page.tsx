@@ -4,7 +4,6 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import Link from "next/link"
 import  NominikChatbot  from "@/app/nominik"
 import IndustryCarousel from "@/components/IndustryCarousel"
-import RibbonBanner from "@/components/cinta"
 export default function ProductoPage() {
  
   const features = [
@@ -136,7 +135,7 @@ export default function ProductoPage() {
           </div>
         </div>
       </section>
-      <RibbonBanner />
+    
       <section className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation>

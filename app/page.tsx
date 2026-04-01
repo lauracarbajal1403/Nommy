@@ -7,7 +7,7 @@ import NominikChatbot from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
 import emailjs from "@emailjs/browser"
 import FloatingDiscount from "@/components/FloatingDiscount"
-import RibbonBanner from "@/components/cinta"
+
 import TrustedBrands from "@/components/Trustedbrands";
 
 const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina"];
@@ -229,7 +229,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <RibbonBanner />
+ 
 
       {/* Steps */}
       <section className="bg-navy py-20 text-white">

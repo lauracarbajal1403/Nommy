@@ -1,6 +1,5 @@
 "use client"
 import { Calendar, Clock, ArrowLeft, TrendingUp, CheckCircle, DollarSign, Users, FileText, Zap, Shield } from "lucide-react"
-import RibbonBanner from "@/components/cinta"
 const navy = "#0f2d4a"
 const turquoise = "#2dd4bf"
 

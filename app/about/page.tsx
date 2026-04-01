@@ -2,7 +2,7 @@ import { Users, Target, Award, Heart, ArrowRight } from "lucide-react"
 import ScrollAnimation from "@/components/scroll-animation"
 import WhatsAppButton from "@/components/whatsapp-button"
 import Link from "next/link"
-import RibbonBanner from "@/components/cinta"
+
 export default function AboutPage() {
   const values = [
     {
@@ -183,7 +183,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <RibbonBanner />
+
       {/* Team Section */}
       <section className="py-20" id ="equipo">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

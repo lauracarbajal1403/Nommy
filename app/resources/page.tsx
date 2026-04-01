@@ -6,7 +6,6 @@ import emailjs from "@emailjs/browser"
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 
-import RibbonBanner from "@/components/cinta"
 export default function ResourcesPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -95,6 +94,16 @@ export default function ResourcesPage() {
   }
 
   const resources = [
+    {
+      title: "Radiografía de una empresa desordenada",
+      description: "Descubre los efectos de la falta de organización en tu empresa.",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/desordenada.png",
+      link: "/desordenada",
+      readTime: "4 min de lectura",
+      date: "31 Mar 2026",
+    },
     {
       title: "Evita multas de hasta $622,440 MXN  por no transparentar sueldos en vacantes",
       description: "Descubre cómo evitar multas.",
@@ -300,7 +309,7 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
-      <RibbonBanner/>
+     
       {/* Contenedor de Artículos */}
       <main className="max-w-6xl mx-auto px-4 py-16">
         <div className="space-y-12">

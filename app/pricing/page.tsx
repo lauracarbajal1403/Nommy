@@ -4,7 +4,7 @@ import ScrollAnimation from "@/components/scroll-animation"
 import WhatsAppButton from "@/components/whatsapp-button"
 import NominikChatbot from "@/app/nominik"
 import React from "react"
-import RibbonBanner from "@/components/cinta"
+
 export default function PricingPage() {
   const plans = [
     {
@@ -237,7 +237,7 @@ export default function PricingPage() {
         
         
       </section>
-      <RibbonBanner />
+-
       
       {/* MOBILE */}
     <section
