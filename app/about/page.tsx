@@ -198,7 +198,7 @@ export default function AboutPage() {
           </ScrollAnimation>
 
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-5xl flex items-center justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 max-w-5xl flex items-center justify-center">
               {team.map((member, index) => (
                 <ScrollAnimation key={index}>
                   <div className="card text-center">
