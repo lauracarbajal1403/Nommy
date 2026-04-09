@@ -109,7 +109,7 @@ export default function PricingPage() {
       ]
     },
     {
-      category: "Gestión de talento",
+      category: "Gestión coorporativa",
       features: [
         { name: "Canal corporativo", basic: false, essential: true, enterprise: true },
         { name: "Reclutamiento con IA", basic: false, essential: true, enterprise: true },
