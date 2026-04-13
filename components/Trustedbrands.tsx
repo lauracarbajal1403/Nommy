@@ -1,91 +1,70 @@
 "use client"
-import { useState, useEffect } from "react"
 
-// ── Logos ──────────────────────────────────────────────────────────────────────
 const LOGOS = [
-  { src: "/Simplytech.png",        alt: "Simplytech"    },
-  { src: "/Ricatto.png",           alt: "Ricatto"       },
-  { src: "/MXHEALTH.png",          alt: "MX Health"     },
-  { src: "/Logo-intela.png",       alt: "Intela"        },
-  { src: "/Novogas.png",           alt: "Novogas"       },
-  { src: "/Logo_Alertyx_white.png",alt: "Alertyx"       },
-  { src: "/Logo.png",              alt: "Logo"          },
-  { src: "/Bizhub.png",            alt: "Bizhub"        },
-  { src: "/Linkepro.png",          alt: "Linkepro"      },
-  { src: "/Factor.png",            alt: "Factor"        },
-  { src: "/BrisSandoval.png",      alt: "Bris Sandoval" },
-  { src: "/Abogados.png",          alt: "Abogados"      },
+  { src: "/Simplytech.png",         alt: "Simplytech"    },
+  { src: "/Ricatto.png",            alt: "Ricatto"       },
+  { src: "/MXHEALTH.png",           alt: "MX Health"     },
+  { src: "/Logo-intela.png",        alt: "Intela"        },
+  { src: "/Novogas.png",            alt: "Novogas"       },
+  { src: "/Logo_Alertyx_white.png", alt: "Alertyx"       },
+  { src: "/Logo.png",               alt: "Logo"          },
+  { src: "/Bizhub.png",             alt: "Bizhub"        },
+  { src: "/Linkepro.png",           alt: "Linkepro"      },
+  { src: "/Factor.png",             alt: "Factor"        },
+  { src: "/BrisSandoval.png",       alt: "Bris Sandoval" },
+  { src: "/Abogados.png",           alt: "Abogados"      },
+  { src: "/Clarioblanco.png",           alt: "Clarioblanco"      },
 ]
 
-// ── Logo Card ─────────────────────────────────────────────────────────────────
-function LogoCard({ src, alt, isMobile }: { src: string; alt: string; isMobile: boolean }) {
-  return (
-    <img
-      key={alt}
-      src={src}
-      alt={alt}
-      style={{
-        height: isMobile ? '28px' : '36px',
-        width: 'auto',
-        objectFit: 'contain',
-        opacity: 0.55,
-        filter: 'grayscale(1)',
-        transition: 'opacity 0.2s',
-      }}
-      onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-      onMouseLeave={e => (e.currentTarget.style.opacity = '0.55')}
-    />
-  )
-}
-// ── Trusted Brands ────────────────────────────────────────────────────────────
 export default function TrustedBrands() {
-  const [isMobile, setIsMobile] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => {
-    setMounted(true)
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
-
   return (
-    <section style={{ padding: isMobile ? '32px 0' : '60px 0', backgroundColor: '#1b2436', overflow: 'hidden' }}>
-      {/* Header row con título y badge */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '16px',
-        marginBottom: '32px',
-        flexWrap: 'wrap',
-        padding: '0 16px',
-      }}>
-        <p style={{ margin: 0, fontSize: '11px', fontWeight: 700, color: '#94a3b8', letterSpacing: '0.12em' }}>
-          EMPRESAS QUE YA TRANSFORMARON SU NÓMINA
-        </p>
-
-        {/* ── Badge "+9 clientes nuevos en abril" ── */}
-        <span style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '6px',
-          background: 'rgba(34,197,94,0.15)',
-          border: '1px solid rgba(34,197,94,0.35)',
-          borderRadius: '999px',
-          padding: '4px 14px 4px 10px',
-          fontSize: '12px',
-          fontWeight: 600,
-          color: '#4ade80',
-          letterSpacing: '0.04em',
-        }}>
-
-      </div>
-
+    <>
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        .trusted-section {
+          padding: 60px 0;
+          background-color: #1b2436;
+          overflow: hidden;
+        }
+        .trusted-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-bottom: 32px;
+          flex-wrap: wrap;
+          padding: 0 16px;
+        }
+        .trusted-label {
+          margin: 0;
+          font-size: 11px;
+          font-weight: 700;
+          color: #94a3b8;
+          letter-spacing: 0.12em;
+        }
+        .trusted-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(34,197,94,0.15);
+          border: 1px solid rgba(34,197,94,0.35);
+          border-radius: 999px;
+          padding: 4px 14px 4px 10px;
+          font-size: 12px;
+          font-weight: 600;
+          color: #4ade80;
+          letter-spacing: 0.04em;
+        }
+        .trusted-badge-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #4ade80;
+          flex-shrink: 0;
+          display: inline-block;
         }
         .logo-track {
           display: flex;
@@ -96,40 +75,53 @@ export default function TrustedBrands() {
         .logo-track:hover {
           animation-play-state: paused;
         }
+        .logo-slot {
+          width: 180px;
+          height: 88px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 72px;
+        }
+        .logo-slot img {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          opacity: 0.35;
+          filter: grayscale(1);
+          transition: opacity 0.2s;
+        }
+        .logo-slot img:hover {
+          opacity: 0.8;
+        }
+        @media (max-width: 767px) {
+          .trusted-section { padding: 32px 0; }
+          .logo-slot { width: 140px; height: 64px; margin-right: 48px; }
+        }
       `}</style>
 
-      <div style={{ overflow: 'hidden', width: '100%' }}>
-        <div className="logo-track">
-          {[...LOGOS, ...LOGOS].map((logo, i) => (
-            <div key={i} style={{
-              width: isMobile ? '140px' : '180px',   // ← más grandes
-              height: isMobile ? '64px' : '88px',    // ← más grandes
-              flexShrink: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginRight: isMobile ? '48px' : '72px',
-            }}>
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  width: 'auto',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  opacity: 0.35,
-                  filter: 'grayscale(1)',
-                  transition: 'opacity 0.2s',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = '0.8')}
-                onMouseLeave={e => (e.currentTarget.style.opacity = '0.35')}
-              />
-            </div>
-          ))}
+      <section className="trusted-section">
+        <div className="trusted-header">
+          <p className="trusted-label">EMPRESAS QUE YA TRANSFORMARON SU NÓMINA</p>
+          <span className="trusted-badge">
+            <span className="trusted-badge-dot" />
+            +9 clientes nuevos en abril
+          </span>
         </div>
-      </div>
-    </section>
+
+        <div style={{ overflow: 'hidden', width: '100%' }}>
+          <div className="logo-track">
+            {[...LOGOS, ...LOGOS].map((logo, i) => (
+              <div key={i} className="logo-slot">
+                <img src={logo.src} alt={logo.alt} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

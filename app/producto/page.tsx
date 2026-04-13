@@ -88,7 +88,7 @@ export default function ProductoPage() {
             <ScrollAnimation animation="slide-in-right">
               <div className="relative flex justify-center lg:justify-end">
                 <img
-                  src="/Porque.png"
+                  src="/Nomina1.png"
                   className="w-full max-w-2xl rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
                 />
               </div>

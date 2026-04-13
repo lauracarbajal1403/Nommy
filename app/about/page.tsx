@@ -83,9 +83,9 @@ export default function AboutPage() {
             <ScrollAnimation>
               <div className="relative flex justify-center lg:justify-end">
                 <img
-                  src="/celular2.png"
+                  src="/Mesa.png"
                   alt="App móvil de NOMMY mostrando celebraciones y eventos de empleados"
-                  className="w-full max-w-sm mx-auto"
+                  className="w-full  mx-auto"
                 />
               </div>
             </ScrollAnimation>
