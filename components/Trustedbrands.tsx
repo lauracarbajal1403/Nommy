@@ -79,9 +79,7 @@ export default function TrustedBrands() {
           color: '#4ade80',
           letterSpacing: '0.04em',
         }}>
-          <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4ade80', flexShrink: 0, display: 'inline-block' }} />
-          +9 clientes nuevos en abril
-        </span>
+
       </div>
 
       <style>{`

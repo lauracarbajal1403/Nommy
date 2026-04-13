@@ -94,6 +94,18 @@ export default function ResourcesPage() {
   }
 
   const resources = [
+  /*
+    {
+      title: "Las nuevas reglas del juego, reformas laborales 2027 a 2030 y su impacto en la nómina en México",
+      description: "Durante años, la nómina fue vista como un proceso operativo que simplemente debía ejecutarse correctamente, pero hoy ese panorama ha cambiado por completo.",
+      category: "Blog",
+      icon: BookOpen,
+      image: "/0.png",
+      link: "/reformas",
+      readTime: "4 min de lectura",
+      date: "15 Abr 2026",
+    },
+    */
     {
       title: "Radiografía de una empresa desordenada",
       description: "Descubre los efectos de la falta de organización en tu empresa.",
