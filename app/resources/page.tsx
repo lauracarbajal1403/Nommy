@@ -89,7 +89,7 @@ export default function ResourcesPage() {
   const resources = [
     {
       title: "Reformas aprobadas en México que impactan a las empresas en 2026",
-      description: "Durante años, la nómina fue vista como un proceso operativo que simplemente debía ejecutarse correctamente, pero hoy ese panorama ha cambiado por completo.",
+      description: "Conoce las reformas laborales, fiscales y de nómina que toda empresa debe conocer para evitar multas y sanciones este año.",
       category: "Reformas",
       icon: BookOpen,
       image: "/30ab.png",
