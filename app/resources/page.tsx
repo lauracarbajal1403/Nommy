@@ -1,6 +1,6 @@
 "use client"
-import { useState, FormEvent } from "react"
-import { BookOpen, Calendar, Clock, ArrowRight } from "lucide-react"
+import { useState, FormEvent, useMemo } from "react"
+import { BookOpen, Calendar, Clock, ArrowRight, Search, X } from "lucide-react"
 import Link from "next/link"
 import emailjs from "@emailjs/browser"
 import ScrollAnimation from "@/components/scroll-animation"
@@ -18,6 +18,10 @@ export default function ResourcesPage() {
   const [message, setMessage] = useState("")
   const [emailError, setEmailError] = useState("")
 
+  // Search & filter state
+  const [searchQuery, setSearchQuery] = useState("")
+  const [activeFilter, setActiveFilter] = useState("Todos")
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     if (e.target.name === "email") setEmailError("")
@@ -26,7 +30,6 @@ export default function ResourcesPage() {
   const validateEmailDomain = async (email: string): Promise<boolean> => {
     const domain = email.split("@")[1]
     if (!domain) return false
-
     try {
       const res = await fetch(`https://dns.google/resolve?name=${domain}&type=MX`)
       const data = await res.json()
@@ -39,7 +42,6 @@ export default function ResourcesPage() {
   const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
     const email = e.target.value
     if (!email || !email.includes("@")) return
-
     const valid = await validateEmailDomain(email)
     if (!valid) {
       setEmailError("El dominio de este email no parece válido. Verifica que sea un correo empresarial real.")
@@ -50,15 +52,12 @@ export default function ResourcesPage() {
     e.preventDefault()
     setIsLoading(true)
     setMessage("")
-
-    // Validar dominio antes de enviar
     const domainValid = await validateEmailDomain(formData.email)
     if (!domainValid) {
       setEmailError("El dominio de este email no parece válido. Verifica que sea un correo empresarial real.")
       setIsLoading(false)
       return
     }
-
     try {
       await fetch("/api/ebook", {
         method: "POST",
@@ -71,20 +70,14 @@ export default function ResourcesPage() {
           company: formData.company,
         }),
       })
-
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          name: formData.name,
-          email: formData.email,
-        },
+        { name: formData.name, email: formData.email },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
-
       window.open('/graciass', '_blank')
       setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
-
     } catch (error) {
       console.log("EmailJS error completo:", error)
       setMessage("Error al enviar. Por favor intenta de nuevo.")
@@ -94,21 +87,32 @@ export default function ResourcesPage() {
   }
 
   const resources = [
-    
+    {
+      title: "Reformas aprobadas en México que impactan a las empresas en 2026",
+      description: "Durante años, la nómina fue vista como un proceso operativo que simplemente debía ejecutarse correctamente, pero hoy ese panorama ha cambiado por completo.",
+      category: "Reformas",
+      icon: BookOpen,
+      image: "/30ab.png",
+      link: "/reforma",
+      readTime: "7 min de lectura",
+      date: "30 Abr 2026",
+      isFeatured: true,
+    },
     {
       title: "Las nuevas reglas del juego, reformas laborales 2027 a 2030 y su impacto en la nómina en México",
       description: "Durante años, la nómina fue vista como un proceso operativo que simplemente debía ejecutarse correctamente, pero hoy ese panorama ha cambiado por completo.",
-      category: "Blog",
+      category: "Reformas",
       icon: BookOpen,
       image: "/0.png",
       link: "/reformas",
       readTime: "4 min de lectura",
       date: "15 Abr 2026",
+      isFeatured: true,
     },
     {
       title: "Radiografía de una empresa desordenada",
       description: "Descubre los efectos de la falta de organización en tu empresa.",
-      category: "Blog",
+      category: "Gestión",
       icon: BookOpen,
       image: "/desordenada.png",
       link: "/desordenada",
@@ -116,9 +120,9 @@ export default function ResourcesPage() {
       date: "31 Mar 2026",
     },
     {
-      title: "Evita multas de hasta $622,440 MXN  por no transparentar sueldos en vacantes",
-      description: "Descubre cómo evitar multas.",
-      category: "Blog",
+      title: "Evita multas de hasta $622,440 MXN por no transparentar sueldos en vacantes",
+      description: "Descubre cómo evitar multas y cumplir con la normativa de transparencia salarial.",
+      category: "Compliance",
       icon: BookOpen,
       image: "/imagen2.png",
       link: "/transparencia-salarial",
@@ -128,7 +132,7 @@ export default function ResourcesPage() {
     {
       title: "Retención de talento y decisiones que realmente impactan a tu empresa",
       description: "Descubre los beneficios que retienen el talento.",
-      category: "Blog",
+      category: "Talento",
       icon: BookOpen,
       image: "/portada1.png",
       link: "/talento",
@@ -138,7 +142,7 @@ export default function ResourcesPage() {
     {
       title: "Encuestas de clima laboral",
       description: "La herramienta estratégica que tu departamento de RRHH no puede ignorar.",
-      category: "Blog",
+      category: "RRHH",
       icon: BookOpen,
       image: "/portada.jpg",
       link: "/nomina",
@@ -148,7 +152,7 @@ export default function ResourcesPage() {
     {
       title: "Nómina en Jalisco 2026",
       description: "Si eres empresario Jalisciense esta guía práctica es para ti. Te compartimos cómo la nómina de 2026 exige estos 3 cambios inmediatos.",
-      category: "Blog",
+      category: "Nómina",
       icon: BookOpen,
       image: "/bloggy.jpg",
       link: "/nomina-jalisco-2026",
@@ -157,17 +161,32 @@ export default function ResourcesPage() {
     },
     {
       title: "Aspectos clave para fortalecer tu gestión de nómina en 2026",
-      description: "Conoce los aspectos clave que fortalecerán tu gestión de nómina en 2026. Desde la automatización hasta el cumplimiento normativo, descubre cómo optimizar tus procesos y garantizar la satisfacción de tus empleados.",
-      category: "Blog",
+      description: "Conoce los aspectos clave que fortalecerán tu gestión de nómina en 2026. Desde la automatización hasta el cumplimiento normativo.",
+      category: "Nómina",
       icon: BookOpen,
       image: "/portada.png",
       link: "/prod",
       readTime: "8 min de lectura",
       date: "06 Ene 2026",
     },
-  ];
+  ]
 
-  const ArticleCard = ({ resource, isFeatured }) => (
+  const categories = ["Todos", ...Array.from(new Set(resources.map(r => r.category)))]
+
+  const featuredResource = resources[0]
+  const regularResources = useMemo(() => {
+    return resources.slice(1).filter(r => {
+      const matchesSearch =
+        searchQuery === "" ||
+        r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.description.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesFilter = activeFilter === "Todos" || r.category === activeFilter
+      return matchesSearch && matchesFilter
+    })
+  }, [searchQuery, activeFilter])
+
+  // Featured card (existing horizontal design)
+  const FeaturedCard = ({ resource }: { resource: typeof resources[0] }) => (
     <Link href={resource.link}>
       <article className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all group cursor-pointer mb-8">
         <div className="grid md:grid-cols-2">
@@ -177,13 +196,10 @@ export default function ResourcesPage() {
               alt={resource.title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            {isFeatured && (
-              <span className="absolute top-6 left-6 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                ⭐ Nuevo Blog
-              </span>
-            )}
+            <span className="absolute top-6 left-6 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+              ⭐ Nuevo Blog
+            </span>
           </div>
-
           <div className="p-8 flex flex-col justify-center">
             <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
               <span className="flex items-center gap-1">
@@ -195,15 +211,12 @@ export default function ResourcesPage() {
                 {resource.readTime}
               </span>
             </div>
-
             <h3 className="text-2xl font-bold text-navy mb-4 group-hover:text-turquoise transition-colors">
               {resource.title}
             </h3>
-
             <p className="text-gray-600 mb-6 leading-relaxed">
               {resource.description}
             </p>
-
             <div className="flex items-center text-turquoise font-bold gap-2 group-hover:gap-3 transition-all">
               <span>Leer artículo completo</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -212,7 +225,43 @@ export default function ResourcesPage() {
         </div>
       </article>
     </Link>
-  );
+  )
+
+  // Coursera-style small card
+  const SmallCard = ({ resource }: { resource: typeof resources[0] }) => (
+    <Link href={resource.link}>
+      <article className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all group cursor-pointer flex flex-col h-full border border-gray-100">
+        <div className="relative h-48 overflow-hidden bg-gray-100">
+          <img
+            src={resource.image}
+            alt={resource.title}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          />
+          <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-navy text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+            {resource.category}
+          </span>
+        </div>
+        <div className="p-5 flex flex-col flex-1">
+          <h3 className="text-base font-bold text-navy mb-2 group-hover:text-turquoise transition-colors line-clamp-2 leading-snug">
+            {resource.title}
+          </h3>
+          <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
+            {resource.description}
+          </p>
+          <div className="flex items-center justify-between text-xs text-gray-400 pt-3 border-t border-gray-100">
+            <span className="flex items-center gap-1">
+              <Calendar className="w-3 h-3" />
+              {resource.date}
+            </span>
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {resource.readTime}
+            </span>
+          </div>
+        </div>
+      </article>
+    </Link>
+  )
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -232,10 +281,10 @@ export default function ResourcesPage() {
         </div>
       </section>
 
+      {/* Ebook Section */}
       <section className="relative py-20 bg-white" id="ebook">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-
             <div>
               <p className="text-turquoise font-semibold text-sm uppercase tracking-widest mb-3">Ebook Gratuito</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-navy leading-tight mb-8">
@@ -259,12 +308,10 @@ export default function ResourcesPage() {
                 ))}
               </div>
             </div>
-
             <div className="bg-gray-50 rounded-2xl p-8 shadow-md border border-gray-100">
               <h3 className="text-xl font-bold text-navy text-center mb-6">
                 Obtén tu ebook gratis completando el formulario a continuación.
               </h3>
-
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <input
@@ -278,23 +325,17 @@ export default function ResourcesPage() {
                     className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
                   />
                 </div>
-
-                {/* Email con validación DNS/MX */}
                 <div>
                   <input
                     type="email" name="email" value={formData.email}
-                    onChange={handleChange}
-                    onBlur={handleEmailBlur}
+                    onChange={handleChange} onBlur={handleEmailBlur}
                     placeholder="Email Empresarial*" required
                     className={`w-full bg-blue-50 border rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise ${
                       emailError ? "border-red-400 focus:ring-red-300" : "border-blue-100"
                     }`}
                   />
-                  {emailError && (
-                    <p className="text-red-500 text-xs mt-1 px-4">{emailError}</p>
-                  )}
+                  {emailError && <p className="text-red-500 text-xs mt-1 px-4">{emailError}</p>}
                 </div>
-
                 <input
                   type="tel" name="phone" value={formData.phone} onChange={handleChange}
                   placeholder="Teléfono (+52 10 dígitos)*" required
@@ -305,9 +346,7 @@ export default function ResourcesPage() {
                   placeholder="Empresa*" required
                   className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
                 />
-
                 {message && <p className="text-red-500 text-sm text-center">{message}</p>}
-
                 <button
                   type="submit" disabled={isLoading || !!emailError}
                   className="w-full bg-turquoise hover:bg-navy text-white font-bold py-3 rounded-full text-base transition-colors duration-200 disabled:opacity-60"
@@ -316,26 +355,65 @@ export default function ResourcesPage() {
                 </button>
               </form>
             </div>
-
           </div>
         </div>
       </section>
-     
-      {/* Contenedor de Artículos */}
+
+      {/* Articles Section */}
       <main className="max-w-6xl mx-auto px-4 py-16">
-        <div className="space-y-12">
-          {resources.map((item, index) => (
-            <ScrollAnimation key={index}>
-              <ArticleCard
-                resource={item}
-                isFeatured={index === 0}
-              />
-            </ScrollAnimation>
-          ))}
+
+        {/* Search + Filters */}
+        <div className="mb-10 space-y-4">
+
+         
+
+          {/* Category filter pills */}
+          <div className="flex flex-wrap gap-2">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeFilter === cat
+                    ? "bg-turquoise text-white shadow-sm"
+                    : "bg-white text-navy border border-gray-200 hover:border-turquoise hover:text-turquoise"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Featured article — always shown (original horizontal design) */}
+        {(activeFilter === "Todos" || featuredResource.category === activeFilter) &&
+          (searchQuery === "" ||
+            featuredResource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            featuredResource.description.toLowerCase().includes(searchQuery.toLowerCase())) && (
+          <ScrollAnimation>
+            <FeaturedCard resource={featuredResource} />
+          </ScrollAnimation>
+        )}
+
+        {/* Regular articles — Coursera-style grid */}
+        {regularResources.length > 0 ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regularResources.map((item, index) => (
+              <ScrollAnimation key={index}>
+                <SmallCard resource={item} />
+              </ScrollAnimation>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 text-gray-400">
+            <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
+            <p className="text-lg font-medium">No se encontraron artículos</p>
+            <p className="text-sm mt-1">Intenta con otro término o categoría</p>
+          </div>
+        )}
       </main>
 
       <NominikChatbot />
     </div>
-  );
+  )
 }
