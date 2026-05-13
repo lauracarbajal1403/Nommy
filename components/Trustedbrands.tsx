@@ -108,7 +108,7 @@ export default function TrustedBrands() {
           <p className="trusted-label">EMPRESAS QUE YA TRANSFORMARON SU NÓMINA</p>
           <span className="trusted-badge">
             <span className="trusted-badge-dot" />
-            +9 clientes nuevos en abril
+            +9 clientes nuevos 
           </span>
         </div>
 
