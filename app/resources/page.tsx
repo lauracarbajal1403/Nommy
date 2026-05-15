@@ -88,6 +88,17 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "¿Cómo prepararse para la jornada laboral de 40 horas sin afectar la operación de tu empresa?",
+      description: "Porque no se trata solo de trabajar menos horas, sino de administrar mejor el tiempo, los recursos y la nómina.",
+      category: "Reformas",
+      icon: BookOpen,
+      image: "/reforma1.PNG",
+      link: "/jornada",
+      readTime: "5 min de lectura",
+      date: "15 May 2026",
+      isFeatured: true,
+    },
+    {
       title: "Reformas aprobadas en México que impactan a las empresas en 2026",
       description: "Conoce las reformas laborales, fiscales y de nómina que toda empresa debe conocer para evitar multas y sanciones este año.",
       category: "Reformas",
