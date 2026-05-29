@@ -88,6 +88,17 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Prima de riesgo: ¿cuándo puede haber sanción?",
+      description: "Descubre qué es la prima de riesgo, cómo se calcula y en qué situaciones puede generar multas para tu empresa.",
+      category: "Compliance",
+      icon: BookOpen,
+      image: "/prima.jpeg",
+      link: "/prima",
+      readTime: "5 min de lectura",
+      date: "31 May 2026",
+      isFeatured: true,
+    },
+    {
       title: "¿Cómo prepararse para la jornada laboral de 40 horas sin afectar la operación de tu empresa?",
       description: "Porque no se trata solo de trabajar menos horas, sino de administrar mejor el tiempo, los recursos y la nómina.",
       category: "Reformas",
