@@ -81,7 +81,7 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative bg-gradient-to-r from-navy to-turquoise overflow-hidden">
-        <FloatingDiscount />
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left text-white">
