@@ -88,6 +88,17 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "¿Qué sectores serán los más impactados por la jornada laboral de 40 horas en México?",
+      description: "Descubre cuáles industrias enfrentarán mayores desafíos y cómo prepararse para la transición a la jornada laboral de 40 horas en México.",
+      category: "Reformas",
+      icon: BookOpen,
+      image: "/reforma3.PNG",
+      link: "/sectores",
+      readTime: "5 min de lectura",
+      date: "15 Jun 2026",
+      isFeatured: true,
+    },
+    {
       title: "Prima de riesgo: ¿cuándo puede haber sanción?",
       description: "Descubre qué es la prima de riesgo, cómo se calcula y en qué situaciones puede generar multas para tu empresa.",
       category: "Compliance",
