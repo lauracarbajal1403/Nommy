@@ -28,7 +28,7 @@ export default function Footer() {
               </a>
               <div className="flex items-center space-x-3 group">
                 <MapPin className="w-5 h-5 text-turquoise group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-navy">Avenida Aztlán 170 Zapopan, Jalisco</span>
+                <span className="text-navy">C. Nelson 224, Vallarta Nte., 44690 Guadalajara, Jal.</span>
               </div>
               <div className="flex items-center space-x-3 group">
                 <Mail className="w-5 h-5 text-turquoise group-hover:scale-110 transition-transform duration-300" />
