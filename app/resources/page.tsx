@@ -2,19 +2,18 @@
 import { useState, FormEvent, useMemo } from "react"
 import { BookOpen, Calendar, Clock, ArrowRight, Search, X } from "lucide-react"
 import Link from "next/link"
-import emailjs from "@emailjs/browser"
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 
-// Mapeo de cada ebook a su archivo PDF y plantilla de EmailJS (ajusta IDs si usas plantillas distintas)
+// Mapeo de cada ebook a su archivo PDF.
+// El envío de correo ahora lo hace el backend (/api/ebook vía Resend), por eso ya no
+// necesitamos templateId de EmailJS aquí.
 const EBOOKS = {
   "40horas": {
-    pdf: "/ebooks/ebook-40-horas.pdf",
-    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_40H || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+    pdf: "/ebooks/ebook2.pdf",
   },
   multas: {
-    pdf: "/ebooks/ebook2.pdf",
-    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_MULTAS || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+    pdf: "/ebooks/multas-nomina-2026.pdf",
   },
 } as const
 
@@ -76,7 +75,7 @@ export default function ResourcesPage() {
     }
     const ebook = EBOOKS[ebookKey]
     try {
-      await fetch("/api/ebook", {
+      const res = await fetch("/api/ebook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -85,15 +84,13 @@ export default function ResourcesPage() {
           email: formData.email,
           phone: formData.phone,
           company: formData.company,
-          ebook: ebookKey, // útil para que tu backend sepa qué ebook se solicitó
+          ebook: ebookKey, // le indica al backend qué ebook se solicitó, para el correo interno
         }),
       })
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        ebook.templateId,
-        { name: formData.name, email: formData.email },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      )
+
+      if (!res.ok) {
+        throw new Error("Error al registrar el lead")
+      }
 
       // Abre la página de gracias y, además, dispara la descarga directa del PDF correspondiente.
       window.open("/graciass", "_blank")
@@ -101,7 +98,7 @@ export default function ResourcesPage() {
 
       setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
     } catch (error) {
-      console.log("EmailJS error completo:", error)
+      console.log("Error al enviar:", error)
       setMessage("Error al enviar. Por favor intenta de nuevo.")
     } finally {
       setIsLoading(false)
