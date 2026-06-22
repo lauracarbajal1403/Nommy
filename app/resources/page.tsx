@@ -6,6 +6,20 @@ import emailjs from "@emailjs/browser"
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 
+// Mapeo de cada ebook a su archivo PDF y plantilla de EmailJS (ajusta IDs si usas plantillas distintas)
+const EBOOKS = {
+  "40horas": {
+    pdf: "/ebooks/ebook-40-horas.pdf",
+    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_40H || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+  },
+  multas: {
+    pdf: "/ebooks/ebook2.pdf",
+    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_MULTAS || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+  },
+} as const
+
+type EbookKey = keyof typeof EBOOKS
+
 export default function ResourcesPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -48,7 +62,9 @@ export default function ResourcesPage() {
     }
   }
 
-  const handleSubmit = async (e: FormEvent) => {
+  // handleSubmit ahora recibe el identificador del ebook que se está solicitando.
+  // Así cada <form> puede indicar cuál PDF debe descargarse al terminar.
+  const handleSubmit = (ebookKey: EbookKey) => async (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setMessage("")
@@ -58,6 +74,7 @@ export default function ResourcesPage() {
       setIsLoading(false)
       return
     }
+    const ebook = EBOOKS[ebookKey]
     try {
       await fetch("/api/ebook", {
         method: "POST",
@@ -68,15 +85,20 @@ export default function ResourcesPage() {
           email: formData.email,
           phone: formData.phone,
           company: formData.company,
+          ebook: ebookKey, // útil para que tu backend sepa qué ebook se solicitó
         }),
       })
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        ebook.templateId,
         { name: formData.name, email: formData.email },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
-      window.open('/graciass', '_blank')
+
+      // Abre la página de gracias y, además, dispara la descarga directa del PDF correspondiente.
+      window.open("/graciass", "_blank")
+      triggerPdfDownload(ebook.pdf)
+
       setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
     } catch (error) {
       console.log("EmailJS error completo:", error)
@@ -84,6 +106,16 @@ export default function ResourcesPage() {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  // Crea un <a> temporal con atributo download para forzar la descarga del PDF en el navegador.
+  const triggerPdfDownload = (pdfUrl: string) => {
+    const link = document.createElement("a")
+    link.href = pdfUrl
+    link.download = pdfUrl.split("/").pop() || "ebook.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const resources = [
@@ -314,8 +346,86 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Ebook Section */}
+      {/* Ebook Section 1: 40 horas laborales */}
       <section className="relative py-20 bg-white" id="ebook">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="text-turquoise font-semibold text-sm uppercase tracking-widest mb-3">Ebook Gratuito</p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy leading-tight mb-8">
+                La guía de las 40 horas laborales en México{" "}
+                <span className="text-turquoise">cómo migrar tu empresa de un esquema tradicional a un modelo de 40 horas sin perder control operativo</span>
+              </h2>
+              <h3 className="text-xl font-bold text-navy mb-6">¿Qué encontrarás en este descargable?</h3>
+              <div className="space-y-5">
+                {[
+                  { emoji: "📈", title: "Entiende qué significa realmente la jornada de 40 horas", desc: "descubre cómo impacta este cambio en la operación diaria de tu empresa, qué implica en términos de horarios, turnos y productividad, y por qué no es solo \"trabajar menos horas\", sino reorganizar la forma de trabajar." },
+                  { emoji: "🚨", title: "Los principales retos al migrar desde un esquema tradicional", desc: "identifica los problemas más comunes al reducir jornadas laborales: horas extras descontroladas, mala distribución de turnos, falta de visibilidad del tiempo trabajado y errores en el registro de asistencia." },
+                  { emoji: "📋", title: "Buenas prácticas para una transición ordenada", desc: "aprende cómo evaluar tu operación actual, rediseñar horarios, mejorar el control de asistencia y preparar a tu equipo para un modelo de trabajo más eficiente y alineado a la nueva normativa." },
+                  { emoji: "⚙️", title: "Cómo lograr la transición sin fricción con Nommy", desc: "automatiza el control de asistencia, la gestión de turnos y el seguimiento de horas trabajadas para asegurar el cumplimiento de las 40 horas sin aumentar la carga administrativa de Recursos Humanos." },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-9 h-9 rounded-full bg-turquoise/10 flex items-center justify-center text-lg">{item.emoji}</div>
+                    <p className="text-navy/80 text-base leading-relaxed">
+                      <strong className="text-navy">{item.title}:</strong> {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-gray-50 rounded-2xl p-8 shadow-md border border-gray-100">
+              <h3 className="text-xl font-bold text-navy text-center mb-6">
+                Obtén tu ebook gratis completando el formulario a continuación.
+              </h3>
+              <form onSubmit={handleSubmit("40horas")} className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <input
+                    type="text" name="name" value={formData.name} onChange={handleChange}
+                    placeholder="Nombre*" required
+                    className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                  />
+                  <input
+                    type="text" name="lastName" value={formData.lastName} onChange={handleChange}
+                    placeholder="Apellido*" required
+                    className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email" name="email" value={formData.email}
+                    onChange={handleChange} onBlur={handleEmailBlur}
+                    placeholder="Email Empresarial*" required
+                    className={`w-full bg-blue-50 border rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise ${
+                      emailError ? "border-red-400 focus:ring-red-300" : "border-blue-100"
+                    }`}
+                  />
+                  {emailError && <p className="text-red-500 text-xs mt-1 px-4">{emailError}</p>}
+                </div>
+                <input
+                  type="tel" name="phone" value={formData.phone} onChange={handleChange}
+                  placeholder="Teléfono (+52 10 dígitos)*" required
+                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                />
+                <input
+                  type="text" name="company" value={formData.company} onChange={handleChange}
+                  placeholder="Empresa*" required
+                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                />
+                {message && <p className="text-red-500 text-sm text-center">{message}</p>}
+                <button
+                  type="submit" disabled={isLoading || !!emailError}
+                  className="w-full bg-turquoise hover:bg-navy text-white font-bold py-3 rounded-full text-base transition-colors duration-200 disabled:opacity-60"
+                >
+                  {isLoading ? "Verificando..." : "¡Descargar!"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ebook Section 2: multas de nómina (id corregido a "ebook2" para evitar duplicados) */}
+      <section className="relative py-20 bg-white" id="ebook2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
@@ -345,7 +455,7 @@ export default function ResourcesPage() {
               <h3 className="text-xl font-bold text-navy text-center mb-6">
                 Obtén tu ebook gratis completando el formulario a continuación.
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit("multas")} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <input
                     type="text" name="name" value={formData.name} onChange={handleChange}
