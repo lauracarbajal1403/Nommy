@@ -86,10 +86,10 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left text-white">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                La plataforma integral <br />para{" "}<AnimatedPhrase />
+               Una suite de RRHH 360° que simplifica la gestión de talento
               </h2>
               <p className="text-lg text-white/90 mb-8 max-w-xl">
-                Centraliza nómina, control de asistencia, y beneficios en una sola plataforma.
+                Digitaliza tu gestión de talento sin procesos largos ni complicaciones en menos de 30 días
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link href="/demo" target="_blank" rel="noopener noreferrer"
