@@ -85,16 +85,19 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left text-white">
+              {/* Logo encima del título */}
+              <img src="/logoblanco.png" alt="Nommy" className="h-20 mb-6" />
+
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-               Una suite de RRHH 360° que simplifica la gestión de talento
+                Una suite de RRHH 360° que simplifica la gestión de talento
               </h2>
               <p className="text-lg text-white/90 mb-8 max-w-xl">
-                Digitaliza tu gestión de talento sin procesos largos ni complicaciones en menos de 30 días
+                Digitaliza tu gestión de talento sin procesos largos ni complicaciones en <strong>menos de 30 días</strong>
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link href="/demo" target="_blank" rel="noopener noreferrer"
                   className="bg-turquoise hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition">
-                  ¡DEMO GRATIS!
+                  ¡Agenda tu DEMO!
                 </Link>
                 <Link href="/demo" target="_blank" rel="noopener noreferrer"
                   className="bg-navy hover:bg-turquoise text-white font-bold px-6 py-3 rounded-full text-center transition">
@@ -102,14 +105,13 @@ export default function HomePage() {
                 </Link>
               </div>
               <div className="flex flex-col sm:flex-row gap-6 text-sm font-medium">
-                <div className="flex items-center gap-2"><Check className="text-turquoise w-5 h-5" /><span>$0 Costo implementación</span></div>
+                <div className="flex items-center gap-2"><Check className="text-turquoise w-5 h-5" /><span>0 Costo implementación</span></div>
                 <div className="flex items-center gap-2"><Check className="text-turquoise w-5 h-5" /><span>Soporte 24/7</span></div>
               </div>
             </div>
 
             {/* ── Hero image: mobile vs desktop ── */}
             {isMobile ? (
-              // Mobile: solo el celular centrado
               <div style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
                 <ScrollAnimation animation="slide-in-right">
                   <img
@@ -120,7 +122,6 @@ export default function HomePage() {
                 </ScrollAnimation>
               </div>
             ) : (
-              // Desktop: tablet atrás + cel encima
               <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
                 {/* Tablet - atrás */}
                 <div className="absolute bottom-0 right-0 z-10 w-[90%]">
@@ -129,7 +130,7 @@ export default function HomePage() {
                   </ScrollAnimation>
                 </div>
                 {/* Celular - encima */}
-                <div className="absolute bottom-[10%] left-[20%] z-20 w-[50%]">
+                <div className="absolute bottom-[5%] right-[-2%] z-20 w-[22%]">
                   <ScrollAnimation animation="slide-in-left">
                     <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
                   </ScrollAnimation>
