@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     }
 
     await resend.emails.send({
-      from: SALES_EMAIL_FROM,
+      from: "NOMMY <onboarding@resend.dev>",
       to: SALES_EMAIL_TO,
       subject: buildSubject(payload),
       html: buildHtml(payload),

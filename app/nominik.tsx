@@ -102,6 +102,8 @@ export default function NominikChatbot() {
   const [selectedTeamSize, setSelectedTeamSize] = useState('');
   const [selectedBlock, setSelectedBlock] = useState('');
   const [hasBookedDemo, setHasBookedDemo] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const [isInMenuFlow, setIsInMenuFlow] = useState(false);
 
   // ── Estado de recuperación por abandono (inactividad de 3 min) ─────────
   const [abandonmentShown, setAbandonmentShown] = useState(false);
@@ -333,6 +335,15 @@ export default function NominikChatbot() {
       phone: data.whatsapp || undefined,
     });
 
+    // Envío silencioso del ebook "ConoceNommy" al correo capturado en el formulario
+    // de abandono. No se le menciona al usuario en el mensaje del bot (ver abajo);
+    // es un envío de fondo, igual que la notificación a ventas.
+    fetch('/api/send-ebook-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: data.name, email: data.email }),
+    }).catch((err) => console.error('No se pudo enviar el ebook:', err));
+
     await botSay(
       `¡Muchas gracias, ${data.name}! 🎉 Te enviaremos nuestro Newsletter de bienestar laboral e ideas de comedores modernos. Si quieres, seguimos platicando aquí mismo.`
     );
@@ -344,7 +355,34 @@ export default function NominikChatbot() {
     setCurrentNode(nodeId);
     const name = nameOverride ?? userName;
 
+    if (nodeId === 'menu_principal') {
+      setIsInMenuFlow(true);
+      await showMainMenu();
+      return;
+    }
+
+    if (nodeId === 'show_faqs') {
+      setCurrentNode('show_faqs');
+      await botSay(
+        '¡Claro! Selecciona la pregunta que más te interese 👇',
+        { faqOptions: ALL_FAQ_OPTIONS }
+      );
+      return;
+    }
+
+    if (nodeId === 'show_planes') {
+      setCurrentNode('show_planes');
+      const planesHTML = `<strong>📦 Nuestros Planes</strong><br/><br/><strong>🔹 Plan Básico</strong> — 1 a 15 colaboradores<br/>✅ Nómina automatizada y timbrado CFDI<br/>✅ Registro y control de incidencias<br/>✅ Reloj checador digital (app móvil)<br/>✅ Finiquitos y liquidaciones<br/>✅ Soporte por expertos en nómina<br/><br/><strong>🔸 Plan Profesional</strong> — 16 a 100 colaboradores<br/>✅ Todo lo del Plan Básico<br/>✅ Conexión directa IDSE/IMSS<br/>✅ Módulo de reclutamiento con IA<br/>✅ Reportes y analítica avanzada<br/>✅ Cálculos inversos de nómina<br/><br/><strong>🔶 Plan Empresarial</strong> — Más de 100 colaboradores<br/>✅ Todo lo del Plan Profesional<br/>✅ Implementación personalizada<br/>✅ Integraciones a medida<br/>✅ Gerente de cuenta dedicado<br/>✅ Capacitación para tu equipo`;
+      await botSay(planesHTML);
+      await botSay('Para conocer precios adaptados a tu equipo, te recomiendo agendar una demo o hablar con un asesor. 😊');
+      if (!hasBookedDemo) {
+        await showMainMenu();
+      }
+      return;
+    }
+
     if (nodeId === 'p1_dolor') {
+      setIsInMenuFlow(false);
       await botSay(
         `¡Mucho gusto, ${name || 'amigo(a)'}! Cuéntame, ¿cuál es el mayor reto que enfrenta tu equipo de Recursos Humanos actualmente? 💼`,
         {
@@ -372,9 +410,7 @@ export default function NominikChatbot() {
       }
 
       await botSay(feedback);
-      await botSay('Aquí tienes algunas preguntas frecuentes que te pueden interesar (opcional) 👇', {
-        faqOptions: ALL_FAQ_OPTIONS,
-      });
+
       await botSay('Para sugerirte la mejor solución, ¿cuántos colaboradores gestionas actualmente en tu empresa? 👥', {
         options: [
           { id: 'opt_col_1', text: '1 a 15 colaboradores', next_node: 'p3_cta' },
@@ -412,6 +448,7 @@ export default function NominikChatbot() {
     }
 
     if (nodeId === 'whatsapp_redirect') {
+      setHasBookedDemo(true);
       openWhatsApp();
       await botSay(
         'Te abrí WhatsApp con un mensaje listo para enviar — solo confírmalo y un asesor te atenderá por ahí. 💬 Si prefieres, también puedo seguir ayudándote aquí mismo.'
@@ -499,6 +536,7 @@ export default function NominikChatbot() {
   };
 
   const finishFlow = async () => {
+    setHasBookedDemo(true);
     await botSay(
       `¡Listo, ${userName || 'amigo(a)'}! Quedó registrado en nuestro CRM. Nos comunicaremos a la brevedad 🚀<br/>Si tienes alguna otra pregunta sobre nómina, RRHH o los módulos de Nommy, sigo aquí para ayudarte.`
     );
@@ -513,6 +551,20 @@ export default function NominikChatbot() {
       { inputType: 'abandonment_form' }
     );
     setCurrentNode('abandonment_recovery_form');
+  };
+
+  const showMainMenu = async () => {
+    setCurrentNode('menu_principal');
+    await botSay(
+      `¿Cómo puedo ayudarte hoy? 😊`,
+      {
+        options: [
+          { id: 'menu_faqs', text: '❓ Preguntas frecuentes', next_node: 'show_faqs' },
+          { id: 'menu_planes', text: '📋 Conocer los planes', next_node: 'show_planes' },
+          { id: 'menu_cotizacion', text: '💰 Cotización', next_node: 'p1_dolor' },
+        ],
+      }
+    );
   };
 
   const openWhatsApp = () => {
@@ -533,10 +585,14 @@ export default function NominikChatbot() {
     goToNode(option.next_node, option.text);
   };
 
-  // ── Click en una pregunta frecuente (FAQ opcional, no afecta el flujo) ──
+  // ── Click en una pregunta frecuente ──────────────────────────────────────
   const handleFaqClick = (faq: QuestionAnswer) => {
     addUserMessage(faq.question);
-    botSay(faq.answer);
+    botSay(faq.answer).then(() => {
+      if (isInMenuFlow && !hasBookedDemo) {
+        showMainMenu();
+      }
+    });
   };
 
   // ── Envío de texto libre (inputs de nombre / teléfono / IA) ─────────────
@@ -551,7 +607,7 @@ export default function NominikChatbot() {
     if (currentNode === 'start') {
       setUserName(userMessage);
       hasEngagedRef.current = true;
-      await goToNode('p1_dolor', undefined, userMessage);
+      await goToNode('menu_principal', undefined, userMessage);
       return;
     }
 
@@ -652,9 +708,13 @@ Información adicional:
     }
   };
 
+  const isMenuNode = () =>
+    ['menu_principal', 'show_faqs', 'show_planes'].includes(currentNode);
+
   const inputPlaceholder = () => {
     if (currentNode === 'start') return 'Escribe tu nombre aquí...';
     if (currentNode === 'dentro_horario_telefono' || currentNode === 'fuera_horario_telefono') return 'Escribe tu número celular...';
+    if (isMenuNode()) return 'Selecciona una opción arriba ☝️';
     return 'Escribe tu mensaje...';
   };
 
@@ -666,11 +726,11 @@ Información adicional:
           <button onClick={() => setIsOpen(true)} className="relative group">
             {showCloseBubble && (
               <div className="absolute bottom-full right-0 mb-4 animate-[slideUp_0.3s_ease-out] w-64">
-                <div className="bg-white rounded-2xl shadow-2xl px-5 py-4 border border-gray-100">
-                  <p className="text-gray-800 text-sm leading-relaxed">
-                    ¡Hey! No nos abandones <span className="text-[#4db8a8] font-semibold">🥺</span> ¿Seguimos platicando?
+                <div className="bg-[#4db8a8] rounded-2xl shadow-2xl px-5 py-4">
+                  <p className="text-white text-sm leading-relaxed">
+                    ¡Hey! No nos abandones <span className="font-semibold">🥺</span> ¿Seguimos platicando?
                   </p>
-                  <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-r border-b border-gray-100 transform rotate-45"></div>
+                  <div className="absolute -bottom-2 right-6 w-4 h-4 bg-[#4db8a8] border-r border-b border-[#3da393] transform rotate-45"></div>
                 </div>
               </div>
             )}
@@ -909,7 +969,7 @@ Información adicional:
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                disabled={isLoading || currentNode === 'abandonment_recovery_form'}
+                disabled={isLoading || currentNode === 'abandonment_recovery_form' || isMenuNode()}
                 type="text"
                 placeholder={
                   currentNode === 'abandonment_recovery_form'
@@ -920,7 +980,7 @@ Información adicional:
               />
               <button
                 type="submit"
-                disabled={isLoading || !input.trim() || currentNode === 'abandonment_recovery_form'}
+                disabled={isLoading || !input.trim() || currentNode === 'abandonment_recovery_form' || isMenuNode()}
                 className="h-11 w-11 rounded-full bg-gradient-to-br from-[#4db8a8] to-[#3da393] text-white flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-200"
               >
                 <Send className="h-5 w-5" />
