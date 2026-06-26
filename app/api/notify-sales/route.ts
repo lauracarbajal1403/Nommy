@@ -23,7 +23,7 @@ import type { NotifySalesPayload, NotifySalesResponse } from '@/types';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const SALES_EMAIL_TO = process.env.SALES_EMAIL_TO || 'laura.carbajal@nommy.mx';
-const SALES_EMAIL_FROM = process.env.SALES_EMAIL_FROM || 'Nominik <no-reply@resend.dev>';
+const SALES_EMAIL_FROM = process.env.SALES_EMAIL_FROM || 'no-reply@resend.dev';
 
 function buildSubject(payload: NotifySalesPayload): string {
   if (payload.type === 'call_request') {
