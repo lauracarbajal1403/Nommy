@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     const pdfBuffer = readFileSync(pdfPath);
 
     await resend.emails.send({
-      from: "NOMMY <onboarding@resend.dev>",
+      from: "NOMMY <ventas@nommy.mx>",
       to: email,
       subject: '📘 Tu ebook ConoceNommy — ¡Aquí está!',
       html: `
