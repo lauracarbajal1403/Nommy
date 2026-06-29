@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Sparkles, Calendar, Phone } from 'lucide-react';
-import { ChatMessage, ChatOption, CalendarSlot, NotifySalesPayload, QuestionAnswer } from './types';
+import { X, Send, Sparkles, Phone } from 'lucide-react';
+import { ChatMessage, ChatOption, NotifySalesPayload, QuestionAnswer } from './types';
 import { ALL_FAQ_OPTIONS } from './data';
 // Si colocas este componente dentro de una subcarpeta (ej. /components/Nominik.tsx),
 // ajusta los imports a '../types' y '../data' según donde guardes esos archivos.
@@ -114,12 +114,6 @@ export default function NominikChatbot() {
   // ── Burbuja de reengagement al cerrar el chat sin agendar demo ─────────
   const [showCloseBubble, setShowCloseBubble] = useState(false);
   const hasEngagedRef = useRef(false); // true en cuanto el usuario escribió algo
-
-  // ── Estado de Google Calendar ────────────────────────────────────────────
-  const [calendarSlots, setCalendarSlots] = useState<CalendarSlot[]>([]);
-  const [loadingSlots, setLoadingSlots] = useState(false);
-  const [bookedSlotId, setBookedSlotId] = useState<string | null>(null);
-  const [bookingError, setBookingError] = useState('');
 
   // Horario comercial: L-V 9:00am - 7:00pm (hora de México)
   const isWorkingHours = () => {
@@ -255,55 +249,6 @@ export default function NominikChatbot() {
         resolve();
       }, delay);
     });
-  };
-
-  // ── Carga de horarios disponibles desde /api/calendar ───────────────────
-  const fetchCalendarSlots = async () => {
-    setLoadingSlots(true);
-    setBookingError('');
-    try {
-      const res = await fetch('/api/calendar');
-      const data = await res.json();
-      setCalendarSlots(data.slots || []);
-    } catch (err) {
-      setBookingError('No pudimos cargar los horarios disponibles. Intenta de nuevo.');
-    } finally {
-      setLoadingSlots(false);
-    }
-  };
-
-  const handleBookSlot = async (slot: CalendarSlot) => {
-    setBookingError('');
-    try {
-      const res = await fetch('/api/calendar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          slotId: slot.id,
-          startISO: slot.startISO,
-          endISO: slot.endISO,
-          name: userName,
-          phone: userPhone,
-          pain: selectedPain,
-          teamSize: selectedTeamSize,
-        }),
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        setBookedSlotId(slot.id);
-        setHasBookedDemo(true);
-        await botSay(
-          `¡Agenda confirmada, ${userName || 'amigo(a)'}! 🚀 Te vemos el ${slot.label}. Te llegará un correo con el enlace de Google Meet para nuestra demo técnica.`
-        );
-        setCurrentNode('finish');
-        finishFlow();
-      } else {
-        setBookingError(data.error || 'No se pudo agendar ese horario, prueba otro.');
-      }
-    } catch (err) {
-      setBookingError('Hubo un error al agendar. Intenta otro horario.');
-    }
   };
 
   // ── Notificación por correo a ventas@nommy.mx vía /api/notify-sales (Resend) ──
@@ -521,11 +466,12 @@ export default function NominikChatbot() {
     }
 
     if (nodeId === 'demo_calendar') {
+      window.open('https://calendar.app.google/YRzR8iEUAhJpJh8a9', '_blank', 'noopener,noreferrer');
+      setHasBookedDemo(true);
       await botSay(
-        '¡Estupendo! Te va a encantar ver a Nommy en acción. Aquí tienes los próximos horarios disponibles en nuestro calendario 👇'
+        '¡Estupendo! Te abrí nuestro calendario para que elijas el horario que mejor te acomode. 🗓️ Una vez que lo confirmes, recibirás la invitación con el enlace de Google Meet. ¡Nos vemos pronto!'
       );
-      addBotMessage('', { showCalendar: true });
-      fetchCalendarSlots();
+      setCurrentNode('free_chat');
       return;
     }
 
@@ -889,46 +835,6 @@ Información adicional:
                           <span>{faq.question}</span>
                         </button>
                       ))}
-                    </div>
-                  )}
-
-                  {/* Widget de Google Calendar */}
-                  {message.showCalendar && (
-                    <div className="mt-1 bg-[#f7fbfa] border border-gray-200 rounded-xl p-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Calendar className="text-[#4db8a8]" size={18} />
-                        <span className="text-xs font-bold text-gray-800">Horarios disponibles</span>
-                      </div>
-
-                      {loadingSlots && (
-                        <p className="text-xs text-gray-500">Buscando horarios disponibles…</p>
-                      )}
-
-                      {!loadingSlots && calendarSlots.length === 0 && !bookingError && (
-                        <p className="text-xs text-gray-500">No encontramos horarios disponibles por ahora.</p>
-                      )}
-
-                      {bookingError && <p className="text-xs text-red-500 mb-2">{bookingError}</p>}
-
-                      {!loadingSlots && calendarSlots.length > 0 && !bookedSlotId && (
-                        <div className="grid grid-cols-1 gap-1.5">
-                          {calendarSlots.map((slot) => (
-                            <button
-                              key={slot.id}
-                              onClick={() => handleBookSlot(slot)}
-                              className="text-xs bg-white hover:bg-[#e1f5f1] border border-[#4db8a8]/30 text-gray-700 font-medium px-3 py-2 rounded-lg transition-all text-left"
-                            >
-                              📅 {slot.label}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-
-                      {bookedSlotId && (
-                        <div className="bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-2 rounded-lg border border-emerald-200">
-                          ✓ Demo agendada correctamente
-                        </div>
-                      )}
                     </div>
                   )}
 
