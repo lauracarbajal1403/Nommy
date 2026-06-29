@@ -130,7 +130,7 @@ export default function HomePage() {
                   </ScrollAnimation>
                 </div>
                 {/* Celular - encima */}
-                <div className="absolute bottom-[5%] right-[-2%] z-20 w-[28%]">
+                <div className="absolute bottom-[5%] right-[-2%] z-20 w-[26%]">
                   <ScrollAnimation animation="slide-in-left">
                     <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
                   </ScrollAnimation>
