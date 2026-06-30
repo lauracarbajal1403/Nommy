@@ -57,9 +57,6 @@ export default function ReformasLaboralesPage() {
             Volver a Recursos
           </Link>
 
-          <span className="inline-block px-4 py-1.5 bg-turquoise/20 border border-turquoise/30 rounded-full text-sm font-semibold mb-6">
-            Blog · Reformas Laborales
-          </span>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
             Las nuevas reglas del juego:{" "}

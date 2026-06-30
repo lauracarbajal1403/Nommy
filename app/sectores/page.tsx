@@ -55,9 +55,6 @@ export default function SectoresImpactadosPage() {
             Volver a Recursos
           </Link>
 
-          <span className="inline-block px-4 py-1.5 bg-turquoise/20 border border-turquoise/30 rounded-full text-sm font-semibold mb-6">
-            Blog · Análisis Laboral
-          </span>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
             ¿Qué sectores serán los más impactados por la{" "}
@@ -71,7 +68,7 @@ export default function SectoresImpactadosPage() {
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="w-4 h-4" />
-              6 min de lectura
+              5 min de lectura
             </span>
           </div>
         </div>
