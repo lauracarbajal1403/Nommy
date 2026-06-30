@@ -63,10 +63,7 @@ export default function IANoReemplazaraRRHHPage() {
             Volver a Recursos
           </Link>
 
-          <span className="inline-block px-4 py-1.5 bg-turquoise/20 border border-turquoise/30 rounded-full text-sm font-semibold mb-6">
-            Blog · Tecnología y RRHH
-          </span>
-
+          
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
             ¿La <span className="text-turquoise">Inteligencia Artificial</span> reemplazará a Recursos Humanos?
           </h1>
