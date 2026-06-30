@@ -117,6 +117,17 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "¿La IA reemplazará a Recursos Humanos? La respuesta es no, pero sí ayudará a tu forma de trabajar",
+      description: "Cada vez que aparece una nueva tecnología surge la misma pregunta: ¿La Inteligencia Artificial reemplazará a Recursos Humanos?",
+      category: "RRHH",
+      icon: BookOpen,
+      image: "/junio.jpeg",
+      link: "/recursos",
+      readTime: "4 min de lectura",
+      date: "30 Jun 2026",
+      isFeatured: true,
+    },
+    {
       title: "¿Qué sectores serán los más impactados por la jornada laboral de 40 horas en México?",
       description: "Descubre cuáles industrias enfrentarán mayores desafíos y cómo prepararse para la transición a la jornada laboral de 40 horas en México.",
       category: "Reformas",
