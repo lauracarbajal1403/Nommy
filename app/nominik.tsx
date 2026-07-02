@@ -7,7 +7,7 @@ import { ALL_FAQ_OPTIONS } from './data';
 // Si colocas este componente dentro de una subcarpeta (ej. /components/Nominik.tsx),
 // ajusta los imports a '../types' y '../data' según donde guardes esos archivos.
 
-const WHATSAPP_NUMBER = '523315179175'; // (33) 15179175 en formato internacional sin "+"
+const WHATSAPP_NUMBER = '523323499140'; // (33) 15179175 en formato internacional sin "+"
 
 function AbandonmentForm({
   onSubmit,
@@ -466,7 +466,7 @@ export default function NominikChatbot() {
     }
 
     if (nodeId === 'demo_calendar') {
-      window.open('https://calendar.app.google/YRzR8iEUAhJpJh8a9', '_blank', 'noopener,noreferrer');
+      window.open('https://calendar.app.google/EDqxDmzrXeuKaDeo9', '_blank', 'noopener,noreferrer');
       setHasBookedDemo(true);
       await botSay(
         '¡Estupendo! Te abrí nuestro calendario para que elijas el horario que mejor te acomode. 🗓️ Una vez que lo confirmes, recibirás la invitación con el enlace de Google Meet. ¡Nos vemos pronto!'
