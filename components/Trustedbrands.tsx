@@ -76,19 +76,17 @@ export default function TrustedBrands() {
           animation-play-state: paused;
         }
         .logo-slot {
-          width: 180px;
+          width: 140px;
           height: 88px;
           flex-shrink: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-right: 72px;
+          margin-right: 40px;
         }
         .logo-slot img {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
-          height: auto;
+          width: 100%;
+          height: 100%;
           object-fit: contain;
           opacity: 0.35;
           filter: grayscale(1);
@@ -99,7 +97,7 @@ export default function TrustedBrands() {
         }
         @media (max-width: 767px) {
           .trusted-section { padding: 32px 0; }
-          .logo-slot { width: 140px; height: 64px; margin-right: 48px; }
+          .logo-slot { width: 110px; height: 64px; margin-right: 28px; }
         }
       `}</style>
 
