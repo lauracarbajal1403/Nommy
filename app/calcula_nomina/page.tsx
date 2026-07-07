@@ -90,7 +90,7 @@ export default function calcula_nominaPage() {
               </div>
               <div className="flex-1 flex justify-center lg:justify-end">
                 <img
-                  src="/MT4.jpg.jpeg"
+                  src="/MT3.jpg.jpeg"
                   alt="Workspace with calculator and laptop for payroll calculations"
                   className="w-full max-w-lg rounded-lg shadow-lg"
                 />
@@ -107,7 +107,7 @@ export default function calcula_nominaPage() {
             <div className="flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-1 flex justify-start lg:justify-start">
                 <img
-                  src="/MT3.jpg.jpeg"
+                  src="/MT4.jpg.jpeg"
                   alt="Nommy security screen interface"
                   className="w-full max-w-lg rounded-lg shadow-lg"
                 />
