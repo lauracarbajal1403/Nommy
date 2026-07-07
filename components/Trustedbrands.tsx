@@ -34,28 +34,34 @@ export default function TrustedBrands() {
         }
         .trusted-header {
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 16px;
+          gap: 18px;
           margin-bottom: 32px;
-          flex-wrap: wrap;
           padding: 0 16px;
+          text-align: center;
         }
         .trusted-label {
           margin: 0;
-          font-size: 11px;
-          font-weight: 700;
-          color: #94a3b8;
-          letter-spacing: 0.12em;
+          font-size: 34px;
+          font-weight: 800;
+          letter-spacing: -0.01em;
+          line-height: 1.2;
+          background: linear-gradient(90deg, #2dd4bf 0%, #d4dae6 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
         }
         .trusted-badge {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          background: rgba(34,197,94,0.15);
-          border: 1px solid rgba(34,197,94,0.35);
+          background: #0f1a2e;
+          border: 1px solid rgba(45,212,191,0.35);
           border-radius: 999px;
-          padding: 4px 14px 4px 10px;
+          padding: 6px 16px 6px 12px;
           font-size: 12px;
           font-weight: 600;
           color: #4ade80;
@@ -100,6 +106,7 @@ export default function TrustedBrands() {
         }
         @media (max-width: 767px) {
           .trusted-section { padding: 32px 0; }
+          .trusted-label { font-size: 24px; }
           .logo-slot { width: 110px; height: 64px; margin-right: 28px; }
         }
       `}</style>
@@ -109,7 +116,7 @@ export default function TrustedBrands() {
           <p className="trusted-label">EMPRESAS QUE YA TRANSFORMARON SU NÓMINA</p>
           <span className="trusted-badge">
             <span className="trusted-badge-dot" />
-            +9 clientes nuevos 
+            +9 clientes nuevos
           </span>
         </div>
 
