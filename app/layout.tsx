@@ -44,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <head>
+        <meta name="msvalidate.01" content="A11E650E247392D4DDC71DBC202F3E23" />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript1 }} />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
       </head>
