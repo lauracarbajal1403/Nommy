@@ -40,6 +40,41 @@ const linkedInScript2 = `
   })(window.lintrk);
 `
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Nommy México",
+  image: "https://www.nommy.mx/nommy-logo-new.png",
+  "@id": "https://www.nommy.mx",
+  url: "https://www.nommy.mx",
+  telephone: "3315179175",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Nelson 224",
+    addressLocality: "Guadalajara",
+    postalCode: "44690",
+    addressCountry: "MX",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 20.67891,
+    longitude: -103.3894906,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "19:00",
+  },
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61578598203669",
+    "https://www.instagram.com/nommymexico/",
+    "https://www.youtube.com/@NommyM%C3%A9xico",
+    "https://www.linkedin.com/company/108440909/",
+    "https://www.nommy.mx",
+  ],
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
@@ -49,11 +84,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <GoogleAnalytics gaId="AW-17894332131" />
         <GoogleTagManager gtmId="GTM-TFSH9C4P" />
         {/* LinkedIn noscript */}
         <noscript>
-          <img height="1" width="1" style={{ display: "none" }} alt=""
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            alt=""
             src="https://px.ads.linkedin.com/collect/?pid=8802034&fmt=gif"
           />
         </noscript>
