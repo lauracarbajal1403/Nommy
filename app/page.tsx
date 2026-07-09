@@ -124,17 +124,9 @@ export default function HomePage() {
             ) : (
               <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
                 {/* Tablet - atrás */}
-                <div className="absolute bottom-0 right-0 z-10 w-[90%]">
-                  <ScrollAnimation animation="slide-in-right">
-                    <img src="/Tablet.png" alt="Dashboard de NOMMY en tablet" className="w-full rounded-xl shadow-2xl" />
-                  </ScrollAnimation>
-                </div>
-                {/* Celular - encima */}
-                <div className="absolute bottom-[5%] right-[-2%] z-20 w-[26%]">
-                  <ScrollAnimation animation="slide-in-left">
-                    <img src="/Cel.png" alt="Dashboard de NOMMY en celular" className="w-full rounded-xl shadow-xl" />
-                  </ScrollAnimation>
-                </div>
+                
+                    <img src="/Conjunto.png" alt="Dashboard de NOMMY en tablet" className="w-full rounded-xl shadow-2xl" />
+               
               </div>
             )}
 
