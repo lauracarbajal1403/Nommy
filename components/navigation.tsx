@@ -151,11 +151,14 @@ function SimpleDropdown({ items }: { items: SimpleItem[] }) {
 // ── Mobile Accordion ──────────────────────────────────────────────────────────
 function MobileAccordion({ section, onClose }: { section: MobileSection; onClose: () => void }) {
   const [open, setOpen] = useState(false)
+  const sectionId = `mobile-section-${section.label.replace(/\s+/g, "-").toLowerCase()}`
 
   return (
     <div style={{ borderBottom: "1px solid #f1f5f9" }}>
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={sectionId}
         style={{
           width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: "14px 0", background: "none", border: "none", cursor: "pointer",
@@ -170,7 +173,7 @@ function MobileAccordion({ section, onClose }: { section: MobileSection; onClose
       </button>
 
       {open && (
-        <div style={{ paddingBottom: 8 }}>
+        <div id={sectionId} style={{ paddingBottom: 8 }}>
           {section.items.map((item) => (
             <a key={item.title} href={item.href ?? "#"} onClick={onClose}
               style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "10px 8px", borderRadius: 10, textDecoration: "none", transition: "background 0.15s" }}
@@ -295,7 +298,10 @@ export default function Navigation() {
           <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
             {/* Nosotros */}
             <div style={{ position: "relative" }} onMouseEnter={handleNosotrosEnter} onMouseLeave={handleNosotrosLeave}>
-              <button style={{ ...navLinkStyle("/nosotros"), display: "flex", alignItems: "center", gap: 4 }}>
+              <button
+                aria-haspopup="true"
+                aria-expanded={showNosotrosMenu}
+                style={{ ...navLinkStyle("/nosotros"), display: "flex", alignItems: "center", gap: 4 }}>
                 Nosotros
                 <ChevronDown size={14} style={{ transition: "transform 0.2s", transform: showNosotrosMenu ? "rotate(180deg)" : "rotate(0deg)" }} />
               </button>
@@ -310,7 +316,10 @@ export default function Navigation() {
 
             {/* Producto */}
             <div style={{ position: "relative" }} onMouseEnter={handleProductEnter} onMouseLeave={handleProductLeave}>
-              <button style={{ ...navLinkStyle("/producto"), display: "flex", alignItems: "center", gap: 4 }}>
+              <button
+                aria-haspopup="true"
+                aria-expanded={showProductMenu}
+                style={{ ...navLinkStyle("/producto"), display: "flex", alignItems: "center", gap: 4 }}>
                 Producto
                 <ChevronDown size={14} style={{ transition: "transform 0.2s", transform: showProductMenu ? "rotate(180deg)" : "rotate(0deg)" }} />
               </button>
@@ -324,7 +333,10 @@ export default function Navigation() {
 
             {/* Precios */}
             <div style={{ position: "relative" }} onMouseEnter={handlePreciosEnter} onMouseLeave={handlePreciosLeave}>
-              <button style={{ ...navLinkStyle("/precios"), display: "flex", alignItems: "center", gap: 4 }}>
+              <button
+                aria-haspopup="true"
+                aria-expanded={showPreciosMenu}
+                style={{ ...navLinkStyle("/precios"), display: "flex", alignItems: "center", gap: 4 }}>
                 Precios
                 <ChevronDown size={14} style={{ transition: "transform 0.2s", transform: showPreciosMenu ? "rotate(180deg)" : "rotate(0deg)" }} />
               </button>
@@ -350,7 +362,11 @@ export default function Navigation() {
         {isMobile && (
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <DemoButton href="/demo" mobile />
-            <button onClick={() => setIsOpen(!isOpen)}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-drawer"
               style={{ background: "none", border: "none", cursor: "pointer", color: "#4abdb9", padding: 4, display: "flex", alignItems: "center" }}>
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -360,11 +376,13 @@ export default function Navigation() {
 
       {/* ── Mobile Drawer ── */}
       {isMobile && isOpen && (
-        <div style={{
-          backgroundColor: "#fff", borderTop: "1px solid #f1f5f9",
-          padding: "8px 24px 24px", display: "flex", flexDirection: "column",
-          maxHeight: "80vh", overflowY: "auto",
-        }}>
+        <div
+          id="mobile-drawer"
+          style={{
+            backgroundColor: "#fff", borderTop: "1px solid #f1f5f9",
+            padding: "8px 24px 24px", display: "flex", flexDirection: "column",
+            maxHeight: "80vh", overflowY: "auto",
+          }}>
           {mobileSections.map((section) => (
             <MobileAccordion key={section.label} section={section} onClose={() => setIsOpen(false)} />
           ))}
