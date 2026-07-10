@@ -113,13 +113,13 @@ export default function HomePage() {
             {/* ── Hero image: mobile vs desktop ── */}
             {isMobile ? (
               <div style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
-                <ScrollAnimation animation="slide-in-right">
+                
                   <img
                     src="/Conjunto.png"
                     alt="Dashboard de NOMMY en celular"
                     style={{ width: "100%", maxWidth: 280, borderRadius: 20, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}
                   />
-                </ScrollAnimation>
+               
               </div>
             ) : (
               <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
