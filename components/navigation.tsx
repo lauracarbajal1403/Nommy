@@ -9,7 +9,7 @@ import Image from "next/image"
 const nominaCol1 = [
   { icon: "💬", title: "Herramienta todo en uno", desc: "Conoce las funcionalidades de Nommy.", badge: null, href: "/producto" },
   { icon: "📄", title: "Sistema de nómina", desc: "Cálculos de nómina automatizados.", badge: "Actualizado", href: "/calcula_nomina" },
-  { icon: "💰", title: "Cálculo PTU", desc: "Calcula el PTU en tiempo y forma.", badge: "Actualizado", href: "/calcula_nomina" },
+  { icon: "💰", title: "Cálculo automatizado", desc: "Calcula automáticamente en tiempo y forma.", badge: "Actualizado", href: "/calcula_nomina" },
   { icon: "🖨️", title: "Timbrado Ilimitado", desc: "Automatiza el timbrado de tus recibos.", badge: null, href: "/calcula_nomina" },
   { icon: "🔗", title: "Conexión IDSE", desc: "Envía movimientos afiliatorios al IMSS.", badge: null, href: "/IDSE" },
   { icon: "📤", title: "Descarga Layouts de recibos", desc: "Obtén en segundos los layouts oficiales de recibos listos para su validación y respaldo.", badge: null, href: "/IDSE" },
