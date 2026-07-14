@@ -116,6 +116,7 @@ export default function ResourcesPage() {
   }
 
   const resources = [
+    {/*
     {
       title: "¿Tu empresa está creciendo o solo sumando personas? La importancia de una estructura organizacional sólida",
       description: "Contratar más colaboradores no siempre significa que una empresa está creciendo de forma saludable",
@@ -126,7 +127,7 @@ export default function ResourcesPage() {
       readTime: "5 min de lectura",
       date: "15 Jul 2026",
       isFeatured: true,
-    },
+    },*/}
     {
       title: "¿La IA reemplazará a Recursos Humanos? La respuesta es no, pero sí ayudará a tu forma de trabajar",
       description: "Cada vez que aparece una nueva tecnología surge la misma pregunta: ¿La Inteligencia Artificial reemplazará a Recursos Humanos?",
