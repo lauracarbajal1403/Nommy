@@ -12,14 +12,24 @@ import Loading from "@/components/loading"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "NOMMY - El aliado de tu equipo de RRHH",
+  metadataBase: new URL("https://www.nommy.mx"),
+  title: {
+    default: "Nommy - El aliado de tu equipo de RRHH",
+    template: "%s | Nommy",
+  },
   description:
     "Herramienta SaaS para gestión de nómina y recursos humanos. Automatiza tus procesos de nómina con precisión y tranquilidad.",
   keywords:
     "nómina, recursos humanos, RRHH, payroll, SaaS, automatización, gestión de nómina, software de nómina, nómina electrónica, cumplimiento fiscal",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [{ url: "/nommy-logo-new.png", type: "image/png" }],
   },
+  // TODO: agregar aquí `verification: { google: "TU_CODIGO" }` cuando tengas
+  // el código de verificación de Google Search Console (Configuración >
+  // Propiedad > Verificación > etiqueta HTML).
 }
 
 const linkedInScript1 = `
@@ -40,12 +50,19 @@ const linkedInScript2 = `
   })(window.lintrk);
 `
 
-const jsonLd = {
+const NOMMY_SAME_AS = [
+  "https://www.facebook.com/profile.php?id=61578598203669",
+  "https://www.instagram.com/nommymexico/",
+  "https://www.youtube.com/@NommyM%C3%A9xico",
+  "https://www.linkedin.com/company/108440909/",
+]
+
+const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Nommy México",
   image: "https://www.nommy.mx/nommy-logo-new.png",
-  "@id": "https://www.nommy.mx",
+  "@id": "https://www.nommy.mx/#localbusiness",
   url: "https://www.nommy.mx",
   telephone: "3315179175",
   address: {
@@ -66,13 +83,31 @@ const jsonLd = {
     opens: "09:00",
     closes: "19:00",
   },
-  sameAs: [
-    "https://www.facebook.com/profile.php?id=61578598203669",
-    "https://www.instagram.com/nommymexico/",
-    "https://www.youtube.com/@NommyM%C3%A9xico",
-    "https://www.linkedin.com/company/108440909/",
-    "https://www.nommy.mx",
-  ],
+  sameAs: [...NOMMY_SAME_AS, "https://www.nommy.mx"],
+}
+
+// Entidad de marca: ayuda a Google (Knowledge Panel, búsqueda por nombre y
+// AI Overviews / modo IA) a identificar Nommy como una sola organización,
+// separada de las páginas de contenido individuales del sitio.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.nommy.mx/#organization",
+  name: "Nommy",
+  legalName: "Nommy México",
+  alternateName: ["Nommy México", "Nommy MX"],
+  url: "https://www.nommy.mx",
+  logo: "https://www.nommy.mx/nommy-logo-new.png",
+  description:
+    "Herramienta SaaS para gestión de nómina y recursos humanos en México. Automatiza tus procesos de nómina con precisión y tranquilidad.",
+  sameAs: NOMMY_SAME_AS,
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+52-33-1517-9175",
+    contactType: "customer service",
+    areaServed: "MX",
+    availableLanguage: ["Spanish"],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -86,7 +121,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} font-sans antialiased`}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <GoogleAnalytics gaId="AW-17894332131" />
         <GoogleTagManager gtmId="GTM-TFSH9C4P" />

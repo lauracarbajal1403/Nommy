@@ -1,0 +1,506 @@
+"use client"
+import { useState, FormEvent, useMemo } from "react"
+import { BookOpen, Calendar, Clock, ArrowRight, Search, X } from "lucide-react"
+import Link from "next/link"
+import ScrollAnimation from "@/components/scroll-animation"
+import NominikChatbot from "@/app/nominik"
+
+// Mapeo de cada ebook a su archivo PDF.
+// El envío de correo ahora lo hace el backend (/api/ebook vía Resend), por eso ya no
+// necesitamos templateId de EmailJS aquí.
+const EBOOKS = {
+  "40horas": {
+    pdf: "/ebooks/ebook2.pdf",
+  },
+  multas: {
+    pdf: "/ebooks/multas-nomina-2026.pdf",
+  },
+} as const
+
+type EbookKey = keyof typeof EBOOKS
+
+export default function ResourcesPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    company: "",
+    phone: "",
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState("")
+  const [emailError, setEmailError] = useState("")
+
+  // Search & filter state
+  const [searchQuery, setSearchQuery] = useState("")
+  const [activeFilter, setActiveFilter] = useState("Todos")
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+    if (e.target.name === "email") setEmailError("")
+  }
+
+  const validateEmailDomain = async (email: string): Promise<boolean> => {
+    const domain = email.split("@")[1]
+    if (!domain) return false
+    try {
+      const res = await fetch(`https://dns.google/resolve?name=${domain}&type=MX`)
+      const data = await res.json()
+      return Array.isArray(data.Answer) && data.Answer.length > 0
+    } catch {
+      return false
+    }
+  }
+
+  const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+    const email = e.target.value
+    if (!email || !email.includes("@")) return
+    const valid = await validateEmailDomain(email)
+    if (!valid) {
+      setEmailError("El dominio de este email no parece válido. Verifica que sea un correo empresarial real.")
+    }
+  }
+
+  // handleSubmit ahora recibe el identificador del ebook que se está solicitando.
+  // Así cada <form> puede indicar cuál PDF debe descargarse al terminar.
+  const handleSubmit = (ebookKey: EbookKey) => async (e: FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setMessage("")
+    const domainValid = await validateEmailDomain(formData.email)
+    if (!domainValid) {
+      setEmailError("El dominio de este email no parece válido. Verifica que sea un correo empresarial real.")
+      setIsLoading(false)
+      return
+    }
+    const ebook = EBOOKS[ebookKey]
+    try {
+      const res = await fetch("/api/ebook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          ebook: ebookKey, // le indica al backend qué ebook se solicitó, para el correo interno
+        }),
+      })
+
+      if (!res.ok) {
+        throw new Error("Error al registrar el lead")
+      }
+
+      // Abre la página de gracias y, además, dispara la descarga directa del PDF correspondiente.
+      window.open("/graciass", "_blank")
+      triggerPdfDownload(ebook.pdf)
+
+      setFormData({ name: "", lastName: "", email: "", company: "", phone: "" })
+    } catch (error) {
+      console.log("Error al enviar:", error)
+      setMessage("Error al enviar. Por favor intenta de nuevo.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Crea un <a> temporal con atributo download para forzar la descarga del PDF en el navegador.
+  const triggerPdfDownload = (pdfUrl: string) => {
+    const link = document.createElement("a")
+    link.href = pdfUrl
+    link.download = pdfUrl.split("/").pop() || "ebook.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const resources = [
+
+    {
+      title: "¿Tu empresa está creciendo o solo sumando personas? La importancia de una estructura organizacional sólida",
+      description: "Contratar más colaboradores no siempre significa que una empresa está creciendo de forma saludable",
+      category: "Talento",
+      icon: BookOpen,
+      image: "/nuevoblog.jpeg",
+      link: "/estructura",
+      readTime: "5 min de lectura",
+      date: "15 Jul 2026",
+      isFeatured: true,
+    },
+    {
+      title: "¿La IA reemplazará a Recursos Humanos? La respuesta es no, pero sí ayudará a tu forma de trabajar",
+      description: "Cada vez que aparece una nueva tecnología surge la misma pregunta: ¿La Inteligencia Artificial reemplazará a Recursos Humanos?",
+      category: "RRHH",
+      icon: BookOpen,
+      image: "/junio.jpeg",
+      link: "/recursos",
+      readTime: "4 min de lectura",
+      date: "30 Jun 2026",
+      isFeatured: true,
+    },
+    {
+      title: "¿Qué sectores serán los más impactados por la jornada laboral de 40 horas en México?",
+      description: "Descubre cuáles industrias enfrentarán mayores desafíos y cómo prepararse para la transición a la jornada laboral de 40 horas en México.",
+      category: "Reformas",
+      icon: BookOpen,
+      image: "/reforma3.PNG",
+      link: "/sectores",
+      readTime: "5 min de lectura",
+      date: "15 Jun 2026",
+      isFeatured: true,
+    },
+    {
+      title: "Prima de riesgo: ¿cuándo puede haber sanción?",
+      description: "Descubre qué es la prima de riesgo, cómo se calcula y en qué situaciones puede generar multas para tu empresa.",
+      category: "Compliance",
+      icon: BookOpen,
+      image: "/prima.jpeg",
+      link: "/prima",
+      readTime: "5 min de lectura",
+      date: "31 May 2026",
+      isFeatured: true,
+    },
+    {
+      title: "¿Cómo prepararse para la jornada laboral de 40 horas sin afectar la operación de tu empresa?",
+      description: "Porque no se trata solo de trabajar menos horas, sino de administrar mejor el tiempo, los recursos y la nómina.",
+      category: "Reformas",
+      icon: BookOpen,
+      image: "/reforma1.PNG",
+      link: "/jornada",
+      readTime: "5 min de lectura",
+      date: "15 May 2026",
+      isFeatured: true,
+    },
+    {
+      title: "Reformas aprobadas en México que impactan a las empresas en 2026",
+      description: "Conoce las reformas laborales, fiscales y de nómina que toda empresa debe conocer para evitar multas y sanciones este año.",
+      category: "Reformas",
+      icon: BookOpen,
+      image: "/30ab.png",
+      link: "/reforma",
+      readTime: "7 min de lectura",
+      date: "30 Abr 2026",
+      isFeatured: true,
+    },
+    {
+      title: "Las nuevas reglas del juego, reformas laborales 2027 a 2030 y su impacto en la nómina en México",
+      description: "Durante años, la nómina fue vista como un proceso operativo que simplemente debía ejecutarse correctamente, pero hoy ese panorama ha cambiado por completo.",
+      category: "Reformas",
+      icon: BookOpen,
+      image: "/0.png",
+      link: "/reformas",
+      readTime: "4 min de lectura",
+      date: "15 Abr 2026",
+      isFeatured: true,
+    },
+    {
+      title: "Radiografía de una empresa desordenada",
+      description: "Descubre los efectos de la falta de organización en tu empresa.",
+      category: "Gestión",
+      icon: BookOpen,
+      image: "/desordenada.png",
+      link: "/desordenada",
+      readTime: "4 min de lectura",
+      date: "31 Mar 2026",
+    },
+    {
+      title: "Evita multas de hasta $622,440 MXN por no transparentar sueldos en vacantes",
+      description: "Descubre cómo evitar multas y cumplir con la normativa de transparencia salarial.",
+      category: "Compliance",
+      icon: BookOpen,
+      image: "/imagen2.png",
+      link: "/transparencia-salarial",
+      readTime: "4 min de lectura",
+      date: "18 Mar 2026",
+    },
+    {
+      title: "Retención de talento y decisiones que realmente impactan a tu empresa",
+      description: "Descubre los beneficios que retienen el talento.",
+      category: "Talento",
+      icon: BookOpen,
+      image: "/portada1.png",
+      link: "/talento",
+      readTime: "4 min de lectura",
+      date: "23 Feb 2026",
+    },
+    {
+      title: "Encuestas de clima laboral",
+      description: "La herramienta estratégica que tu departamento de RRHH no puede ignorar.",
+      category: "RRHH",
+      icon: BookOpen,
+      image: "/portada.jpg",
+      link: "/nomina",
+      readTime: "3 min de lectura",
+      date: "18 Feb 2026",
+    },
+    {
+      title: "Nómina en Jalisco 2026",
+      description: "Si eres empresario Jalisciense esta guía práctica es para ti. Te compartimos cómo la nómina de 2026 exige estos 3 cambios inmediatos.",
+      category: "Nómina",
+      icon: BookOpen,
+      image: "/bloggy.jpg",
+      link: "/nomina-jalisco-2026",
+      readTime: "5 min de lectura",
+      date: "6 Feb 2026",
+    },
+    {
+      title: "Aspectos clave para fortalecer tu gestión de nómina en 2026",
+      description: "Conoce los aspectos clave que fortalecerán tu gestión de nómina en 2026. Desde la automatización hasta el cumplimiento normativo.",
+      category: "Nómina",
+      icon: BookOpen,
+      image: "/portada.png",
+      link: "/prod",
+      readTime: "8 min de lectura",
+      date: "06 Ene 2026",
+    },
+  ]
+
+  const categories = ["Todos", ...Array.from(new Set(resources.map(r => r.category)))]
+
+  const featuredResource = resources[0]
+  const regularResources = useMemo(() => {
+    return resources.slice(1).filter(r => {
+      const matchesSearch =
+        searchQuery === "" ||
+        r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.description.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesFilter = activeFilter === "Todos" || r.category === activeFilter
+      return matchesSearch && matchesFilter
+    })
+  }, [searchQuery, activeFilter])
+
+  // Featured card (existing horizontal design)
+  const FeaturedCard = ({ resource }: { resource: typeof resources[0] }) => (
+    <Link href={resource.link}>
+      <article className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all group cursor-pointer mb-8">
+        <div className="grid md:grid-cols-2">
+          <div className="relative h-84 overflow-hidden">
+            <img
+              src={resource.image}
+              alt={resource.title}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <span className="absolute top-6 left-6 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+              ⭐ Nuevo Blog
+            </span>
+          </div>
+          <div className="p-8 flex flex-col justify-center">
+            <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
+              <span className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                {resource.date}
+              </span>
+              <span className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                {resource.readTime}
+              </span>
+            </div>
+            <h3 className="text-2xl font-bold text-navy mb-4 group-hover:text-turquoise transition-colors">
+              {resource.title}
+            </h3>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              {resource.description}
+            </p>
+            <div className="flex items-center text-turquoise font-bold gap-2 group-hover:gap-3 transition-all">
+              <span>Leer artículo completo</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </div>
+      </article>
+    </Link>
+  )
+
+  // Coursera-style small card
+  const SmallCard = ({ resource }: { resource: typeof resources[0] }) => (
+    <Link href={resource.link}>
+      <article className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all group cursor-pointer flex flex-col h-full border border-gray-100">
+        <div className="relative h-48 overflow-hidden bg-gray-100">
+          <img
+            src={resource.image}
+            alt={resource.title}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          />
+          <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-navy text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+            {resource.category}
+          </span>
+        </div>
+        <div className="p-5 flex flex-col flex-1">
+          <h3 className="text-base font-bold text-navy mb-2 group-hover:text-turquoise transition-colors line-clamp-2 leading-snug">
+            {resource.title}
+          </h3>
+          <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
+            {resource.description}
+          </p>
+          <div className="flex items-center justify-between text-xs text-gray-400 pt-3 border-t border-gray-100">
+            <span className="flex items-center gap-1">
+              <Calendar className="w-3 h-3" />
+              {resource.date}
+            </span>
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {resource.readTime}
+            </span>
+          </div>
+        </div>
+      </article>
+    </Link>
+  )
+
+  return (
+    <div className="bg-gray-50 min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-16 lg:py-24 flex items-center text-white bg-gradient-to-br from-navy via-navy to-turquoise">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <span className="inline-block px-4 py-2 bg-turquoise/20 backdrop-blur-sm rounded-full text-sm font-medium mb-8 border border-turquoise/30">
+            Centro de Recursos
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-8">
+            Recursos para potenciar tu gestión de <span className="text-turquoise">RRHH</span>
+          </h1>
+          <p className="text-xl opacity-90 max-w-2xl mx-auto">
+            Aprende, mejora y mantente actualizado con contenido especializado para tu empresa.
+          </p>
+        </div>
+      </section>
+
+      {/* Ebook Section 1: 40 horas laborales */}
+      <section className="relative py-20 bg-white" id="ebook">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="text-turquoise font-semibold text-sm uppercase tracking-widest mb-3">Ebook Gratuito</p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-navy leading-tight mb-8">
+                La guía de las 40 horas laborales en México{" "}
+                <span className="text-turquoise">cómo migrar tu empresa de un esquema tradicional a un modelo de 40 horas sin perder control operativo</span>
+              </h2>
+              <h3 className="text-xl font-bold text-navy mb-6">¿Qué encontrarás en este descargable?</h3>
+              <div className="space-y-5">
+                {[
+                  { emoji: "📈", title: "Entiende qué significa realmente la jornada de 40 horas", desc: "descubre cómo impacta este cambio en la operación diaria de tu empresa, qué implica en términos de horarios, turnos y productividad, y por qué no es solo \"trabajar menos horas\", sino reorganizar la forma de trabajar." },
+                  { emoji: "🚨", title: "Los principales retos al migrar desde un esquema tradicional", desc: "identifica los problemas más comunes al reducir jornadas laborales: horas extras descontroladas, mala distribución de turnos, falta de visibilidad del tiempo trabajado y errores en el registro de asistencia." },
+                  { emoji: "📋", title: "Buenas prácticas para una transición ordenada", desc: "aprende cómo evaluar tu operación actual, rediseñar horarios, mejorar el control de asistencia y preparar a tu equipo para un modelo de trabajo más eficiente y alineado a la nueva normativa." },
+                  { emoji: "⚙️", title: "Cómo lograr la transición sin fricción con Nommy", desc: "automatiza el control de asistencia, la gestión de turnos y el seguimiento de horas trabajadas para asegurar el cumplimiento de las 40 horas sin aumentar la carga administrativa de Recursos Humanos." },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-9 h-9 rounded-full bg-turquoise/10 flex items-center justify-center text-lg">{item.emoji}</div>
+                    <p className="text-navy/80 text-base leading-relaxed">
+                      <strong className="text-navy">{item.title}:</strong> {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-gray-50 rounded-2xl p-8 shadow-md border border-gray-100">
+              <h3 className="text-xl font-bold text-navy text-center mb-6">
+                Obtén tu ebook gratis completando el formulario a continuación.
+              </h3>
+              <form onSubmit={handleSubmit("40horas")} className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <input
+                    type="text" name="name" value={formData.name} onChange={handleChange}
+                    placeholder="Nombre*" required
+                    className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                  />
+                  <input
+                    type="text" name="lastName" value={formData.lastName} onChange={handleChange}
+                    placeholder="Apellido*" required
+                    className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email" name="email" value={formData.email}
+                    onChange={handleChange} onBlur={handleEmailBlur}
+                    placeholder="Email Empresarial*" required
+                    className={`w-full bg-blue-50 border rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise ${
+                      emailError ? "border-red-400 focus:ring-red-300" : "border-blue-100"
+                    }`}
+                  />
+                  {emailError && <p className="text-red-500 text-xs mt-1 px-4">{emailError}</p>}
+                </div>
+                <input
+                  type="tel" name="phone" value={formData.phone} onChange={handleChange}
+                  placeholder="Teléfono (+52 10 dígitos)*" required
+                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                />
+                <input
+                  type="text" name="company" value={formData.company} onChange={handleChange}
+                  placeholder="Empresa*" required
+                  className="w-full bg-blue-50 border border-blue-100 rounded-full px-4 py-3 text-sm text-navy placeholder-navy/50 focus:outline-none focus:ring-2 focus:ring-turquoise"
+                />
+                {message && <p className="text-red-500 text-sm text-center">{message}</p>}
+                <button
+                  type="submit" disabled={isLoading || !!emailError}
+                  className="w-full bg-turquoise hover:bg-navy text-white font-bold py-3 rounded-full text-base transition-colors duration-200 disabled:opacity-60"
+                >
+                  {isLoading ? "Verificando..." : "¡Descargar!"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Articles Section */}
+      <main className="max-w-6xl mx-auto px-4 py-16">
+
+        {/* Search + Filters */}
+        <div className="mb-10 space-y-4">
+
+
+
+          {/* Category filter pills */}
+          <div className="flex flex-wrap gap-2">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeFilter === cat
+                    ? "bg-turquoise text-white shadow-sm"
+                    : "bg-white text-navy border border-gray-200 hover:border-turquoise hover:text-turquoise"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Featured article — always shown (original horizontal design) */}
+        {(activeFilter === "Todos" || featuredResource.category === activeFilter) &&
+          (searchQuery === "" ||
+            featuredResource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            featuredResource.description.toLowerCase().includes(searchQuery.toLowerCase())) && (
+          <ScrollAnimation>
+            <FeaturedCard resource={featuredResource} />
+          </ScrollAnimation>
+        )}
+
+        {/* Regular articles — Coursera-style grid */}
+        {regularResources.length > 0 ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regularResources.map((item, index) => (
+              <ScrollAnimation key={index}>
+                <SmallCard resource={item} />
+              </ScrollAnimation>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 text-gray-400">
+            <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
+            <p className="text-lg font-medium">No se encontraron artículos</p>
+            <p className="text-sm mt-1">Intenta con otro término o categoría</p>
+          </div>
+        )}
+      </main>
+
+      <NominikChatbot />
+    </div>
+  )
+}
