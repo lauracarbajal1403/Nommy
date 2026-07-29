@@ -13,10 +13,10 @@ const LOGOS = [
   { src: "/Factor.png",             alt: "Factor"        },
   { src: "/BrisSandoval.png",       alt: "Bris Sandoval" },
   { src: "/Abogados.png",           alt: "Abogados"      },
-  { src: "/Clarioblanco.png",           alt: "Clarioblanco"      },
-  { src: "/moresca.png",       alt: "Moresca" },
-  { src: "/Napoles.png",           alt: "Napoles"      },
-  { src: "/BP.png",           alt: "BP"      },
+  { src: "/Clarioblanco.png",       alt: "Clarioblanco"  },
+  { src: "/moresca.png",            alt: "Moresca"       },
+  { src: "/Napoles.png",            alt: "Napoles"       },
+  { src: "/BP.png",                 alt: "BP"            },
 ]
 
 export default function TrustedBrands() {
@@ -37,7 +37,7 @@ export default function TrustedBrands() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 18px;
+          gap: 14px;
           margin-bottom: 32px;
           padding: 0 16px;
           text-align: center;
@@ -48,32 +48,29 @@ export default function TrustedBrands() {
           font-weight: 800;
           letter-spacing: -0.01em;
           line-height: 1.2;
-          background: linear-gradient(90deg, #2dd4bf 0%, #d4dae6 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: transparent;
+        }
+        .trusted-label-white { color: #ffffff; }
+        .trusted-label-teal  { color: #2dd4bf; }
+        .trusted-subtitle {
+          margin: 0;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.4;
+          color: #9aa6ba;
         }
         .trusted-badge {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          background: #0f1a2e;
-          border: 1px solid rgba(45,212,191,0.35);
+          background: transparent;
+          border: 1px solid rgba(45,212,191,0.55);
           border-radius: 999px;
-          padding: 6px 16px 6px 12px;
+          padding: 6px 16px;
           font-size: 12px;
           font-weight: 600;
-          color: #4ade80;
+          color: #2dd4bf;
           letter-spacing: 0.04em;
-        }
-        .trusted-badge-dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background: #4ade80;
-          flex-shrink: 0;
-          display: inline-block;
+          margin-top: 4px;
         }
         .logo-track {
           display: flex;
@@ -106,18 +103,22 @@ export default function TrustedBrands() {
         }
         @media (max-width: 767px) {
           .trusted-section { padding: 32px 0; }
-          .trusted-label { font-size: 24px; }
+          .trusted-label { font-size: 22px; }
+          .trusted-subtitle { font-size: 13px; }
           .logo-slot { width: 110px; height: 64px; margin-right: 28px; }
         }
       `}</style>
 
       <section className="trusted-section">
         <div className="trusted-header">
-          <p className="trusted-label">EMPRESAS QUE YA TRANSFORMARON SU NÓMINA</p>
-          <span className="trusted-badge">
-            <span className="trusted-badge-dot" />
-            +9 clientes nuevos
-          </span>
+          <p className="trusted-label">
+            <span className="trusted-label-white">+7,500 EMPRESAS </span>
+            <span className="trusted-label-teal">CONFÍAN SU NÓMINA A NOMMY,</span>
+          </p>
+          <p className="trusted-subtitle">
+            En todo México, de startups a empresas consolidadas.
+          </p>
+          <span className="trusted-badge">+9 clientes nuevos</span>
         </div>
 
         <div style={{ overflow: 'hidden', width: '100%' }}>

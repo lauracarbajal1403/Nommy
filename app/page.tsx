@@ -32,7 +32,7 @@ function AnimatedPhrase() {
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
     if (!isErasing && charIndex === PHRASES[phraseIndex].length) {
-      timeout = setTimeout(() => setIsErasing(true), 2500);
+      timeout = setTimeout(() => setIsErasing(true), 9000);
     } else if (isErasing && charIndex > 0) {
       timeout = setTimeout(() => setCharIndex((c) => c - 1), 40);
     } else if (isErasing && charIndex === 0) {
@@ -74,26 +74,60 @@ export default function HomePage() {
   })
   const isMobile = useIsMobile()
 
+  // Frase del hero que se intercala entre dos mensajes
+  const [heroSlide, setHeroSlide] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setHeroSlide((s) => (s + 1) % 2), 4500)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <div className="overflow-hidden">
-      
+
+      <style>{`
+        @keyframes heroFade {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-fade { animation: heroFade 0.6s ease; }
+      `}</style>
+
       <NominikChatbot />
 
       {/* Hero */}
       <section className="relative bg-gradient-to-r from-navy to-turquoise overflow-hidden">
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left text-white">
               {/* Logo encima del título */}
               <img src="/logoblanco.png" alt="Nommy" className="h-20 mb-6" />
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                Una suite de RRHH 360° que simplifica la gestión de talento
-              </h2>
-              <p className="text-lg text-white/90 mb-8 max-w-xl">
-                Digitaliza tu gestión de talento sin procesos largos ni complicaciones en <strong>menos de 30 días</strong>
-              </p>
+              {/* ── Frase que se intercala ── */}
+              <div key={heroSlide} className="hero-fade">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 min-h-[150px] lg:min-h-[190px]">
+                  {heroSlide === 0 ? (
+                    <>
+                      Una{" "}
+                      <span className="text-turquoise text-4xl sm:text-5xl lg:text-6xl">suite de RRHH</span>{" "}
+                      360° que simplifica la gestión de talento
+                    </>
+                  ) : (
+                    <>
+                      Cierra tu nómina quincenal en menos de
+                      <span className="block text-turquoise text-6xl sm:text-7xl lg:text-8xl mt-2">10 mins</span>
+                    </>
+                  )}
+                </h2>
+                <p className="text-lg text-white/90 mb-8 max-w-xl min-h-[3.5em]">
+                  {heroSlide === 0 ? (
+                    <>Digitaliza tu gestión de talento sin procesos largos ni complicaciones en <strong>menos de 30 días</strong></>
+                  ) : (
+                    <>Calculo realizado a partir de 50 colaboradores</>
+                  )}
+                </p>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link href="/demo" target="_blank" rel="noopener noreferrer"
                   className="bg-turquoise hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition">
@@ -113,27 +147,30 @@ export default function HomePage() {
             {/* ── Hero image: mobile vs desktop ── */}
             {isMobile ? (
               <div style={{ display: "flex", justifyContent: "center", paddingTop: 8 }}>
-                
+
                   <img
                     src="/Conjunto.png"
                     alt="Dashboard de NOMMY en celular"
                     style={{ width: "100%", maxWidth: 280, borderRadius: 20, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}
                   />
-               
+
               </div>
             ) : (
               <div className="relative w-full max-w-2xl mx-auto lg:mx-0" style={{ minHeight: "500px" }}>
                 {/* Tablet - atrás */}
-                
+
                     <img src="/Conjunto.png" alt="Dashboard de NOMMY en tablet" className="w-full rounded-xl shadow-2xl" />
-               
+
               </div>
             )}
 
           </div>
         </div>
+
+        {/* Logo inferior izquierdo */}
+        <img src="/logoblanco.png" alt="Nommy" className="absolute bottom-6 left-6 h-8 opacity-90 z-10 hidden lg:block" />
       </section>
-      
+
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -187,6 +224,26 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* +15 años de experiencia */}
+      <section className="relative py-20 bg-navy overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollAnimation animation="slide-in-left">
+            <div className="space-y-4 text-center">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+                <span className="text-turquoise">+15 años de experiencia</span>{" "}
+                <span className="text-white">en la industria de RRHH</span>
+              </h2>
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                Miles de nóminas procesadas con precisión y respaldo.
+              </p>
+            </div>
+          </ScrollAnimation>
+        </div>
+
+        {/* Logo inferior izquierdo */}
+        <img src="/logoblanco.png" alt="Nommy" className="absolute bottom-6 left-6 h-8 opacity-90" />
+      </section>
+
       <section className="relative bg-gradient-to-br from-navy to-turquoise">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
@@ -222,7 +279,9 @@ export default function HomePage() {
         </div>
       </section>
 
- 
+      
+
+
 
       {/* Steps */}
       <section className="bg-navy py-20 text-white">
@@ -307,7 +366,7 @@ export default function HomePage() {
           </ScrollAnimation>
         </div>
       </section>
-    
+
     </div>
   )
 }
