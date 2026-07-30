@@ -101,7 +101,6 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left text-white">
               {/* Logo encima del título */}
-              <img src="/logoblanco.png" alt="Nommy" className="h-20 mb-6" />
 
               {/* ── Frase que se intercala ── */}
               <div key={heroSlide} className="hero-fade">
@@ -241,7 +240,6 @@ export default function HomePage() {
         </div>
 
         {/* Logo inferior izquierdo */}
-        <img src="/logoblanco.png" alt="Nommy" className="absolute bottom-6 left-6 h-8 opacity-90" />
       </section>
 
       <section className="relative bg-gradient-to-br from-navy to-turquoise">
