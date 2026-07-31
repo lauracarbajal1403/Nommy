@@ -1,5 +1,6 @@
 "use client"
 import { X, Calendar, Clock, ArrowLeft, CheckCircle, AlertTriangle, FileText, BarChart3, TrendingUp, Users, Heart, ClipboardCheck } from "lucide-react"
+import ArticleByline from "@/components/ArticleByline"
 import Link from "next/link"
 import ScrollAnimation from "@/components/scroll-animation"
 import { useState } from "react";
@@ -167,6 +168,7 @@ export default function ClimaLaboralPage() {
                   <Clock className="w-4 h-4" />
                   3 min de lectura
                 </span>
+                <ArticleByline />
               </div>
 
               <h1 className="text-4xl lg:text-5xl font-bold text-navy mb-6 leading-tight">

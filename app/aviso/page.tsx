@@ -1,15 +1,24 @@
 import type { Metadata } from "next"
 import AvisoClient from "./AvisoClient"
+import WebPageJsonLd from "@/components/WebPageJsonLd"
+
+const TITLE = "Aviso de Privacidad"
+const DESCRIPTION =
+  "Aviso de privacidad de Nommy: qué datos personales recabamos de empleados y empresas, para qué los usamos y cómo ejercer tus derechos ARCO conforme a la ley mexicana."
 
 export const metadata: Metadata = {
-  title: "Aviso de Privacidad",
-  description:
-    "Aviso de privacidad de Nommy: qué datos personales recabamos de empleados y empresas, para qué los usamos y cómo ejercer tus derechos ARCO conforme a la ley mexicana.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: {
     canonical: "/aviso",
   },
 }
 
 export default function Page() {
-  return <AvisoClient />
+  return (
+    <>
+      <WebPageJsonLd name={TITLE} description={DESCRIPTION} url="/aviso" />
+      <AvisoClient />
+    </>
+  )
 }

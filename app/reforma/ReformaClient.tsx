@@ -1,5 +1,6 @@
 "use client"
 import { ArrowLeft, Calendar, Clock, ExternalLink, AlertTriangle, CheckCircle, ShieldCheck, Users, FileText } from "lucide-react"
+import ArticleByline from "@/components/ArticleByline"
 import Link from "next/link"
 import NominikChatbot from "@/app/nominik"
 import Image from "next/image"
@@ -71,6 +72,7 @@ export default function reformaPage() {
               <Clock className="w-4 h-4" />
               7 min de lectura
             </span>
+            <ArticleByline />
           </div>
         </div>
       </section>

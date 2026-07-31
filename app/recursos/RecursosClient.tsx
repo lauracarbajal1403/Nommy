@@ -1,5 +1,6 @@
 "use client"
 import { ArrowLeft, Calendar, Clock, ExternalLink, Sparkles } from "lucide-react"
+import ArticleByline from "@/components/ArticleByline"
 import Link from "next/link"
 import NominikChatbot from "@/app/nominik"
 
@@ -77,6 +78,7 @@ export default function IANoReemplazaraRRHHPage() {
               <Clock className="w-4 h-4" />
               4 min de lectura
             </span>
+            <ArticleByline />
           </div>
         </div>
       </section>

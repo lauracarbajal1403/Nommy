@@ -1,5 +1,6 @@
 "use client"
 import { Calendar, Clock, ArrowLeft, AlertTriangle, TrendingUp, CheckCircle, FileSearch, Zap, BarChart2, Users, RefreshCw } from "lucide-react"
+import ArticleByline from "@/components/ArticleByline"
 import Link from "next/link"
 import ScrollAnimation from "@/components/scroll-animation"
 
@@ -37,6 +38,7 @@ export default function Radiografia() {
                 <Clock className="w-4 h-4" />
                 4 min de lectura
               </span>
+              <ArticleByline />
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-bold text-navy mb-6 leading-tight">

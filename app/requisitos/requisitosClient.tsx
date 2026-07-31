@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import ScrollAnimation from "@/components/scroll-animation"
+import ArticleByline from "@/components/ArticleByline"
 
 const PLAZOS = [
   { rango: "De 1 a 50", dias: "3" },
@@ -80,6 +81,7 @@ export default function RequisitosClient() {
                 <Clock className="w-4 h-4 text-navy/60" />
                 5 min de lectura
               </span>
+              <ArticleByline />
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-bold text-navy mb-6 leading-tight">

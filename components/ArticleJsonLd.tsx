@@ -9,6 +9,15 @@ const NOMMY_ORG = {
   logo: `${BASE_URL}/nommy-logo-new.png`,
 }
 
+// Sin URL de perfil personal verificado: se omite `sameAs` para no fabricar
+// una señal de identidad que no se puede validar.
+const ARTICLE_AUTHOR = {
+  "@type": "Person" as const,
+  name: "Ricardo Melis",
+  jobTitle: "CEO",
+  worksFor: NOMMY_ORG,
+}
+
 type Faq = { q: string; a: string }
 
 type ArticleJsonLdProps = {
@@ -40,7 +49,7 @@ export default function ArticleJsonLd({
     datePublished,
     dateModified: dateModified ?? datePublished,
     inLanguage: "es-MX",
-    author: NOMMY_ORG,
+    author: ARTICLE_AUTHOR,
     publisher: {
       ...NOMMY_ORG,
       logo: {
