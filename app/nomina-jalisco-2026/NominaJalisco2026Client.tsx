@@ -1,6 +1,5 @@
 "use client"
 import { Calendar, Clock, ArrowLeft, CheckCircle, AlertTriangle, FileText, Building2, TrendingUp, DollarSign, Users } from "lucide-react"
-import ArticleByline from "@/components/ArticleByline"
 import Link from "next/link"
 import ScrollAnimation from "@/components/scroll-animation"
 
@@ -37,7 +36,6 @@ export default function nomina() {
                 <Clock className="w-4 h-4" />
                 8 min de lectura
               </span>
-              <ArticleByline />
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-bold text-navy mb-6 leading-tight">

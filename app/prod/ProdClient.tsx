@@ -1,6 +1,5 @@
 "use client"
 import { Calendar, Clock, ArrowLeft, TrendingUp, CheckCircle, DollarSign, Users, FileText, Zap, Shield } from "lucide-react"
-import ArticleByline from "@/components/ArticleByline"
 const navy = "#0f2d4a"
 const turquoise = "#2dd4bf"
 
@@ -28,7 +27,6 @@ export default function NommyArticle() {
           </span>
           <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Enero 2026</span>
           <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 5 min de lectura</span>
-          <ArticleByline />
         </div>
 
         {/* Title */}

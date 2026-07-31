@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Suspense } from "react"
+import Script from "next/script"
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google"
 
 import "./globals.css"
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Nommy",
   },
   description:
-    "Herramienta SaaS para gestión de nómina y recursos humanos. Automatiza tus procesos de nómina con precisión y tranquilidad.",
+    "Herramienta Saas, Suite RRHH de gestión de nómina y recursos humanos en México. Automatiza tus procesos de nómina con precisión y tranquilidad.",
   keywords:
     "nómina, recursos humanos, RRHH, payroll, SaaS, automatización, gestión de nómina, software de nómina, nómina electrónica, cumplimiento fiscal",
   alternates: {
@@ -133,6 +134,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <GoogleAnalytics gaId="AW-17894332131" />
         <GoogleTagManager gtmId="GTM-TFSH9C4P" />
+        {/* Microsoft Clarity */}
+        <Script id="ms-clarity" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "xvag53lcky");`}
+        </Script>
         {/* LinkedIn noscript */}
         <noscript>
           <img

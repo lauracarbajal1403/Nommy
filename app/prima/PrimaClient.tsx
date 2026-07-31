@@ -1,6 +1,5 @@
 "use client"
 import { ArrowLeft, Calendar, Clock, ExternalLink, AlertTriangle, ShieldCheck } from "lucide-react"
-import ArticleByline from "@/components/ArticleByline"
 import Link from "next/link"
 import NominikChatbot from "@/app/nominik"
 
@@ -75,7 +74,6 @@ export default function PrimaDeRiesgoPage() {
               <Clock className="w-4 h-4" />
               5 min de lectura
             </span>
-            <ArticleByline />
           </div>
         </div>
       </section>
