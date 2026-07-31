@@ -116,6 +116,17 @@ export default function ResourcesPage() {
   }
 
   const resources = [
+    {
+      title: "Requisitos del Recibo de Nómina Electrónico en México: Checklist 2026",
+      description: "Todo lo que el SAT exige para que un recibo de nómina electrónico sea válido en 2026, del CFDI 4.0 a la Revisión E, con checklist descargable.",
+      category: "Compliance",
+      icon: BookOpen,
+      image: "/portadaestructura.png",
+      link: "/requisitos",
+      readTime: "6 min de lectura",
+      date: "31 Jul 2026",
+      isFeatured: true,
+    },
 
     {
       title: "¿Tu empresa está creciendo o solo sumando personas? La importancia de una estructura organizacional sólida",

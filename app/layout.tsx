@@ -24,6 +24,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [{ url: "/nommy-logo-new.png", type: "image/png" }],
   },
