@@ -6,7 +6,7 @@ export default function Page() {
     <>
       <WebPageJsonLd
         name="Nommy - El aliado de tu equipo de RRHH"
-        description="Herramienta SaaS para gestión de nómina y recursos humanos. Automatiza tus procesos de nómina con precisión y tranquilidad."
+        description="Herramienta SaaS para gestión de nómina y recursos humanos en jalisco. Automatiza tus procesos de nómina con precisión y tranquilidad."
         url="/"
       />
       <HomeClient />
