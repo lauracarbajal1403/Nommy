@@ -12,7 +12,7 @@ export default function Control_horaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation>
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-5xl font-bold text-turquoise mb-4">Control de horarios</h2>
+              <h1 className="text-3xl lg:text-5xl font-bold text-turquoise mb-4">Control de horarios</h1>
               <p className="text-l text-gray-600 max-w-3xl mx-auto">Descubre cada beneficio que obtienes con Nommy</p>
             </div>
           </ScrollAnimation>
@@ -114,7 +114,7 @@ export default function Control_horaPage() {
             href="/reportes_dina"
             className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
           >
-          <img src = "/images/Reportes32.png"  className="inline-block w-5 h-5 mr-2"/>
+          <img src = "/images/Reportes32.png" alt="Reportes dinámicos" className="inline-block w-5 h-5 mr-2"/>
           <span>Reportes dinámicos</span>
           </Link>
         </div>

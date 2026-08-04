@@ -120,9 +120,9 @@ const AvisoPrivacidadNommy = () => {
       <header className="text-center py-12 px-6 relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-emerald-600 to-transparent opacity-0 animate-lineGrow" style={{width: '200px'}}></div>
 
-        <h2 className="font-['Crimson_Pro'] text-3xl md:text-4xl font-bold text-[#274263] mb-2 opacity-0 animate-slideUp" style={{animationDelay: '0.3s'}}>
+        <h1 className="font-['Crimson_Pro'] text-3xl md:text-4xl font-bold text-[#274263] mb-2 opacity-0 animate-slideUp" style={{animationDelay: '0.3s'}}>
           Aviso de Privacidad Completo
-        </h2>
+        </h1>
         <p className="text-lg text-[#525252] opacity-0 animate-slideUp" style={{animationDelay: '0.5s'}}>
           Para la Protección de Datos Personales
         </p>

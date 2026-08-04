@@ -38,6 +38,5 @@ export default function robots(): MetadataRoute.Robots {
       })),
     ],
     sitemap: "https://www.nommy.mx/sitemap.xml",
-    host: "https://www.nommy.mx",
   }
 }

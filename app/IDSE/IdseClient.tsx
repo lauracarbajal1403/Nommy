@@ -13,7 +13,7 @@ export default function IDSEPage() {
           <ScrollAnimation>
 
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Conexión IDSE</h2>
+              <h1 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Conexión IDSE</h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">Descubre cada ventaja que te ofrece Nommy</p>
             </div>
           </ScrollAnimation>
@@ -105,21 +105,21 @@ export default function IDSEPage() {
             href="/inteligencia"
             className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
           >
-          <img src = "/images/Reclutamiento.png"  className="inline-block w-5 h-5 mr-2"/>
+          <img src = "/images/Reclutamiento.png" alt="Reclutamiento asistido con IA" className="inline-block w-5 h-5 mr-2"/>
           <span>Reclutamiento asistido con IA</span>
           </Link>
           <Link
               href="/calcula_nomina"
               className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
             >
-            <img src = "/images/Automatizacion.png"  className="inline-block w-5 h-5 mr-2"/>
+            <img src = "/images/Automatizacion.png" alt="Nómina rápida, fácil y segura" className="inline-block w-5 h-5 mr-2"/>
             <span>Nómina rápida, fácil y segura</span>
             </Link>
             <Link
               href="/norma"
               className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
             >
-            <img src = "/images/NOM035.png"  className="inline-block w-5 h-5 mr-2"/>
+            <img src = "/images/NOM035.png" alt="NOM-035" className="inline-block w-5 h-5 mr-2"/>
             <span>NOM-035</span>
             </Link>
         </div>

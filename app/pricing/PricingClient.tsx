@@ -147,8 +147,10 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollAnimation>
             <div className="space-y-6">
-              <span className="text-2xl lg:text-6xl font-bold text-turquoise">Elige el plan que hará</span>
-              <span className="text-2xl lg:text-6xl font-bold text-[#274263]"> crecer a tu empresa</span>
+              <h1 className="inline">
+                <span className="text-2xl lg:text-6xl font-bold text-turquoise">Elige el plan que hará</span>
+                <span className="text-2xl lg:text-6xl font-bold text-[#274263]"> crecer a tu empresa</span>
+              </h1>
 
               <div className="space-y-10">
                 <span className="text-4xl lg:text-4xl font-bold text-turquoise">¿Cuál</span>

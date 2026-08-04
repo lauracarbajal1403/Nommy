@@ -89,6 +89,7 @@ export default function ProductoPage() {
               <div className="relative flex justify-center lg:justify-end">
                 <img
                   src="/Nomina1.png"
+                  alt="Gestión de nómina sin dolores de cabeza con Nommy"
                   className="w-full max-w-2xl rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
                 />
               </div>

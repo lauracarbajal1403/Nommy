@@ -102,6 +102,8 @@ export default function HomeClient() {
             <div className="text-left text-white">
               {/* Logo encima del título */}
 
+              <h1 className="sr-only">Nommy: Suite de RRHH y software de nómina en México</h1>
+
               {/* ── Frase que se intercala ── */}
               <div key={heroSlide} className="hero-fade">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 min-h-[150px] lg:min-h-[190px]">
@@ -186,7 +188,7 @@ export default function HomeClient() {
             ].map((card, i) => (
               <div key={i} className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition">
                 <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                  <img src={card.img} className="w-7 h-7" />
+                  <img src={card.img} alt={`Ícono: ${card.title}`} className="w-7 h-7" />
                 </div>
                 <h3 className="font-semibold text-turquoise text-lg mb-3">{card.title}</h3>
                 <p className="text-sm text-navy leading-relaxed">{card.desc}</p>
@@ -260,7 +262,7 @@ export default function HomeClient() {
                   ].map((benefit, index) => (
                     <ScrollAnimation key={index} delay={index * 200}>
                       <div className="flex items-center space-x-3 group">
-                        <img src="/Icono.png" className="w-6 h-6 flex-shrink-0" />
+                        <img src="/Icono.png" alt={benefit} className="w-6 h-6 flex-shrink-0" />
                         <span className="text-lg text-white">{benefit}</span>
                       </div>
                     </ScrollAnimation>

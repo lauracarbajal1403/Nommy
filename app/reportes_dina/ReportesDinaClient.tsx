@@ -12,7 +12,7 @@ export default function reportes_dinaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation>
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Reportes dinámicos</h2>
+              <h1 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Reportes dinámicos</h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">Descubre cada beneficio que obtienes con Nommy.</p>
             </div>
           </ScrollAnimation>
@@ -114,7 +114,7 @@ export default function reportes_dinaPage() {
             href="/control_hora"
             className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
           >
-          <img src = "/images/Controlhorarios.png"  className="inline-block w-5 h-5 mr-2"/>
+          <img src = "/images/Controlhorarios.png" alt="Control de horarios" className="inline-block w-5 h-5 mr-2"/>
           <span>Control de horarios</span>
           </Link>
         </div>

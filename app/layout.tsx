@@ -32,9 +32,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: "/nommy-logo-new.png", type: "image/png" }],
   },
-  // TODO: agregar aquí `verification: { google: "TU_CODIGO" }` cuando tengas
-  // el código de verificación de Google Search Console (Configuración >
-  // Propiedad > Verificación > etiqueta HTML).
 }
 
 const linkedInScript1 = `
@@ -119,6 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <head>
+        <meta name="google-site-verification" content="pVVbReaylVDR4qAyB1zk3FJyp0mUyO9RhJ7HPnCb4iY" />
         <meta name="msvalidate.01" content="A11E650E247392D4DDC71DBC202F3E23" />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript1 }} />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
@@ -141,6 +139,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "xvag53lcky");`}
+        </Script>
+        <Script id="ms-clarity-2" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "xvp07eocoa");`}
         </Script>
         {/* LinkedIn noscript */}
         <noscript>

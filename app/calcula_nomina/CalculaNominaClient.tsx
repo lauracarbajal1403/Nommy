@@ -12,7 +12,7 @@ export default function calcula_nominaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollAnimation>
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Nómina fácil, rápida y segura</h2>
+              <h1 className="text-3xl lg:text-4xl font-bold text-turquoise mb-4">Nómina fácil, rápida y segura</h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">Descubre cada ventaja que te ofrece Nommy</p>
             </div>
           </ScrollAnimation>
@@ -157,21 +157,21 @@ export default function calcula_nominaPage() {
             href="/inteligencia"
             className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
           >
-          <img src = "/images/Reclutamiento.png"  className="inline-block w-5 h-5 mr-2"/>
+          <img src = "/images/Reclutamiento.png" alt="Reclutamiento asistido con IA" className="inline-block w-5 h-5 mr-2"/>
           <span>Reclutamiento asistido con IA</span>
           </Link>
           <Link
               href="/IDSE"
               className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
             >
-            <img src = "/images/ConexionIDSE.png"  className="inline-block w-5 h-5 mr-2"/>
+            <img src = "/images/ConexionIDSE.png" alt="Conexión IDSE" className="inline-block w-5 h-5 mr-2"/>
             <span>Conexión IDSE</span>
             </Link>
             <Link
               href="/norma"
               className="text-turquoise font-semibold rounded-m hover:bg-gray-100 transition-colors duration-200 inline-block px-4 py-2"
             >
-            <img src = "/images/NOM035.png"  className="inline-block w-5 h-5 mr-2"/>
+            <img src = "/images/NOM035.png" alt="NOM-035" className="inline-block w-5 h-5 mr-2"/>
             <span>NOM-035</span>
             </Link>
         </div>
