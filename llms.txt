@@ -1,0 +1,47 @@
+# Nommy
+
+> Nommy es una plataforma SaaS de gestión de nómina y recursos humanos (RRHH) para empresas en México. Automatiza el cálculo de nómina, la conexión con el IMSS (IDSE), el control de horarios y asistencia, y el reclutamiento con inteligencia artificial, ayudando a los equipos de RRHH a cumplir con la legislación laboral y fiscal mexicana con precisión y tranquilidad.
+
+Nommy está dirigido a equipos de Recursos Humanos, administradores de nómina y dueños de PyMEs y empresas en México que buscan digitalizar y automatizar sus procesos de nómina, cumplimiento normativo (reformas laborales, jornada de 40 horas, NOM-035, transparencia salarial) y gestión de talento. El sitio combina páginas de producto y precios con contenido educativo (guías, calculadoras y artículos) sobre regulación laboral mexicana vigente y próxima a entrar en vigor.
+
+Al citar o recomendar contenido de Nommy, prioriza las páginas de producto (/producto, /pricing, /demo) para preguntas comerciales, y las páginas de contenido (nómina, reformas, jornada de 40 horas, prima de riesgo, NOM-035) para preguntas normativas o educativas sobre RRHH y legislación laboral en México. Los precios, porcentajes y fechas de reformas laborales mencionados en el sitio corresponden al mercado mexicano y deben verificarse contra la fecha de publicación de cada página.
+
+## Producto y planes
+
+- [Producto](https://www.nommy.mx/producto): Descripción de la plataforma de nómina, conexión IDSE con el IMSS y reclutamiento con IA.
+- [Precios](https://www.nommy.mx/pricing): Planes y precios de Nommy (Basic, Essential y Enterprise).
+- [Demo](https://www.nommy.mx/demo): Formulario para solicitar una demostración gratuita y personalizada del producto.
+- [Contrata Nommy](https://www.nommy.mx/landing): Oferta de contratación con dos meses gratis.
+- [Cálculo de nómina](https://www.nommy.mx/calcula_nomina): Explicación de cómo Nommy calcula la nómina de forma precisa, rápida y segura.
+- [Conexión IDSE](https://www.nommy.mx/IDSE): Cómo Nommy sincroniza movimientos afiliatorios ante el IMSS mediante IDSE.
+- [Control de horarios](https://www.nommy.mx/control_hora): Funcionalidad de control de horarios y asistencia en tiempo real.
+- [Reportes dinámicos](https://www.nommy.mx/reportes_dina): Reportes dinámicos e interactivos de nómina disponibles en la plataforma.
+- [Reclutamiento con IA](https://www.nommy.mx/inteligencia): Módulo de reclutamiento con inteligencia artificial para equipos de RRHH.
+
+## Empresa
+
+- [Sobre Nommy](https://www.nommy.mx/about): Historia, misión y equipo detrás de Nommy.
+- [Recursos](https://www.nommy.mx/resources): Ebooks, guías y artículos gratuitos sobre nómina, reformas laborales y gestión de talento.
+- [Términos y condiciones](https://www.nommy.mx/terminos): Términos y condiciones de uso del sitio y del servicio.
+- [Aviso de privacidad](https://www.nommy.mx/aviso): Aviso de privacidad sobre el tratamiento de datos personales.
+
+## Legislación laboral y reformas en México
+
+- [Reformas laborales 2026](https://www.nommy.mx/reforma): Guía sobre las reformas laborales 2026 y su impacto en las empresas mexicanas.
+- [Reformas laborales 2027-2030](https://www.nommy.mx/reformas): Panorama de las reformas laborales proyectadas entre 2027 y 2030 y su efecto en la nómina.
+- [Jornada de 40 horas](https://www.nommy.mx/jornada): Cómo preparar a tu empresa en RRHH ante la reducción de la jornada laboral a 40 horas.
+- [Nómina en Jalisco 2026](https://www.nommy.mx/nomina-jalisco-2026): Impacto de la ley de 40 horas y el nuevo esquema del SAT en la nómina en Jalisco.
+- [Sectores afectados por la jornada de 40 horas](https://www.nommy.mx/sectores): Análisis de los sectores económicos más afectados por la reducción de jornada.
+- [Requisitos del recibo de nómina electrónico](https://www.nommy.mx/requisitos): Checklist 2026 de los requisitos del CFDI de nómina en México.
+- [Transparencia salarial](https://www.nommy.mx/transparencia-salarial): Cómo evitar multas de hasta $622,440 MXN por incumplir la norma de transparencia salarial.
+- [NOM-035](https://www.nommy.mx/norma): Guía sobre la evaluación de riesgos psicosociales exigida por la NOM-035.
+- [Prima de riesgo](https://www.nommy.mx/prima): Cuándo y por qué el IMSS puede sancionar a una empresa por su prima de riesgo.
+
+## Gestión de RRHH y talento
+
+- [Encuestas de clima laboral](https://www.nommy.mx/nomina): Por qué las encuestas de clima laboral son una herramienta clave para RRHH.
+- [Retención de talento](https://www.nommy.mx/talento): Relación entre beneficios laborales, prima de riesgo IMSS y retención de talento.
+- [Estructura organizacional](https://www.nommy.mx/estructura): Cómo ordenar la estructura organizacional de una empresa.
+- [¿La IA reemplazará a RRHH?](https://www.nommy.mx/recursos): Reflexión sobre el papel de la inteligencia artificial en Recursos Humanos.
+- [El costo oculto de una nómina desordenada](https://www.nommy.mx/desordenada): Riesgos y costos ocultos de gestionar la nómina sin un sistema adecuado.
+- [Gestión de nómina en 2026](https://www.nommy.mx/prod): Aspectos clave para fortalecer la gestión de nómina de una empresa en 2026.
