@@ -337,7 +337,7 @@ export default function HomeClient() {
                 { n: "03", href: "https://negocios.nommy.mx", title: "Alas para tu negocio", desc: "Es momento de despegar de la mano de Nommy." },
                 { n: "04", href: "https://despachos.nommy.mx", title: "Despachos Contables", desc: "Unifica la gestión de tus clientes, controla la rentabilidad por proyecto y haz crecer tu equipo sin perder de vista los plazos clave." },
               ].map((card, i, arr) => (
-                
+                <a
                   key={card.n}
                   href={card.href}
                   className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}
@@ -349,7 +349,6 @@ export default function HomeClient() {
               ))}
             </div>
           </div>
-        </div>
         </div>
       </section>
 
