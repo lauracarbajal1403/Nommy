@@ -110,7 +110,7 @@ export default function HomeClient() {
                   {heroSlide === 0 ? (
                     <>
                       Una{" "}
-                      <span className="text-turquoise text-4xl sm:text-5xl lg:text-6xl">Plataforma de RRHH</span>{" "}
+                      <span className="text-turquoise text-4xl sm:text-5xl lg:text-6xl">plataforma de RRHH</span>{" "}
                       360° que simplifica la gestión de talento
                     </>
                   ) : (
@@ -332,19 +332,24 @@ export default function HomeClient() {
           <div className="max-w-7xl mx-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { n: "01", title: "Líderes RRHH", desc: "Convierte procesos en estrategia y talento en imparable." },
-                { n: "02", title: "Dueño de empresa", desc: "Tu empresa, tu visión, tu control. Sin sorpresas." },
-                { n: "03", title: "Alas para tu negocio", desc: "Es momento de despegar de la mano de Nommy." },
-                { n: "04", title: "Despachos Contables", desc: "Unifica la gestión de tus clientes, controla la rentabilidad por proyecto y haz crecer tu equipo sin perder de vista los plazos clave." },
+                { n: "01", href: "https://rrhh.nommy.mx", title: "Líderes RRHH", desc: "Convierte procesos en estrategia y talento en imparable." },
+                { n: "02", href: "https://empresas.nommy.mx", title: "Dueño de empresa", desc: "Tu empresa, tu visión, tu control. Sin sorpresas." },
+                { n: "03", href: "https://negocios.nommy.mx", title: "Alas para tu negocio", desc: "Es momento de despegar de la mano de Nommy." },
+                { n: "04", href: "https://despachos.nommy.mx", title: "Despachos Contables", desc: "Unifica la gestión de tus clientes, controla la rentabilidad por proyecto y haz crecer tu equipo sin perder de vista los plazos clave." },
               ].map((card, i, arr) => (
-                <div key={card.n} className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}>
+                
+                  key={card.n}
+                  href={card.href}
+                  className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}
+                >
                   <div className="text-white/70 font-semibold mb-6">{card.n}</div>
                   <h3 className="font-bold text-xl text-white mb-2">{card.title}</h3>
                   <p className="text-white/90 text-lg leading-relaxed">{card.desc}</p>
-                </div>
+                </a>
               ))}
             </div>
           </div>
+        </div>
         </div>
       </section>
 
