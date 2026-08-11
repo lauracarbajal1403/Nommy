@@ -15,11 +15,11 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.nommy.mx"),
   title: {
-    default: "Nommy - El aliado de tu equipo de RRHH",
+    default: "HR TECH de Nómina y RRHH para Empresas en México | Nommy",
     template: "%s | Nommy",
   },
   description:
-    "Herramienta Saas, Suite RRHH de gestión de nómina y recursos humanos en México. Automatiza tus procesos de nómina con precisión y tranquilidad.",
+    "Nommy: Plataforma de RRHH y gestión de nómina en México",
   keywords:
     "nómina, recursos humanos, RRHH, payroll, SaaS, automatización, gestión de nómina, software de nómina, nómina electrónica, cumplimiento fiscal",
   alternates: {
@@ -101,7 +101,7 @@ const organizationJsonLd = {
   url: "https://www.nommy.mx",
   logo: "https://www.nommy.mx/nommy-logo-new.png",
   description:
-    "Herramienta SaaS para gestión de nómina y recursos humanos en México. Automatiza tus procesos de nómina con precisión y tranquilidad.",
+    "Nommy es la Plataforma de gestion de nómina y RRHH que centraliza nómina, checador, IDSE, reclutamiento con IA y NOM-035 en una sola plataforma. Implementación en 30 días, costo $0.",
   sameAs: NOMMY_SAME_AS,
   contactPoint: {
     "@type": "ContactPoint",

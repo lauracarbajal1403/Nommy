@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import ProductoClient from "./ProductoClient"
 import WebPageJsonLd from "@/components/WebPageJsonLd"
 
-const TITLE = "Plataforma de Nómina, IDSE y Reclutamiento con IA de Nommy"
+const TITLE = "Plataforma de Nómina, IDSE y Reclutamiento con IA | Nommy"
 const DESCRIPTION =
-  "Calcula, timbra y dispersa nómina, conecta con el IMSS (IDSE), recluta con IA y cumple la NOM-035, todo en una sola plataforma Nommy para tu equipo de RRHH."
+  "Plataforma de nómina para empresas en México: calcula, timbra y dispersa; conecta con el IMSS vía IDSE; recluta con IA y cumple la NOM-035, todo en Nommy."
 
 export const metadata: Metadata = {
   title: TITLE,
