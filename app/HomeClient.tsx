@@ -340,6 +340,8 @@ export default function HomeClient() {
                 <a
                   key={card.n}
                   href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}
                 >
                   <div className="text-white/70 font-semibold mb-6">{card.n}</div>
