@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import ResourcesClient from "./ResourcesClient"
 
 export const metadata: Metadata = {
-  title: "Recursos para potenciar la gestión de RRHH y nómina",
-  description: "Ebooks gratuitos, guías y artículos sobre nómina, reformas laborales, cumplimiento fiscal y gestión de talento para equipos de Recursos Humanos en México.",
+  title: "Blog de Nómina, RRHH y Cumplimiento Laboral México | Nommy",
+  description: "Guías, checklists y noticias sobre nómina, IDSE, NOM-035 y gestión de RRHH en México, escritas por el equipo de Nommy para ayudarte a decidir mejor.",
   alternates: {
     canonical: "/resources",
   },

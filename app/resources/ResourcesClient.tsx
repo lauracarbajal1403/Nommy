@@ -20,6 +20,7 @@ const EBOOKS = {
 type EbookKey = keyof typeof EBOOKS
 
 export default function ResourcesPage() {
+  <h1 className="sr-only">Blog de Nómina y RH TECH: recursos para potenciar tu gestión</h1>
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",

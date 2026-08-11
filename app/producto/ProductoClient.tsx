@@ -57,6 +57,7 @@ export default function ProductoPage() {
   return (
 
     <div className="min-h-screen">
+      <h1 className="sr-only">Tu plataforma de nómina sin dolores de cabeza. ¡Lo garantizamos!</h1>
       <NominikChatbot />
     {/*bg-gradient-to-br from-white via-turquoise/5 to-navy/10*/}
       <section className="py-16 lg:py-20 bg-gradient-to-br from-white via-turquoise/15 to-navy/15">

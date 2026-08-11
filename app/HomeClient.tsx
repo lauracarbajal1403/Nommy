@@ -102,7 +102,7 @@ export default function HomeClient() {
             <div className="text-left text-white">
               {/* Logo encima del título */}
 
-              <h1 className="sr-only">Nommy: Suite de RRHH y software de nómina en México</h1>
+              <h1 className="sr-only">Nommy: Plataforma de RRHH y gestión de nómina en México</h1>
 
               {/* ── Frase que se intercala ── */}
               <div key={heroSlide} className="hero-fade">
@@ -110,7 +110,7 @@ export default function HomeClient() {
                   {heroSlide === 0 ? (
                     <>
                       Una{" "}
-                      <span className="text-turquoise text-4xl sm:text-5xl lg:text-6xl">suite de RRHH</span>{" "}
+                      <span className="text-turquoise text-4xl sm:text-5xl lg:text-6xl">Plataforma de RRHH</span>{" "}
                       360° que simplifica la gestión de talento
                     </>
                   ) : (

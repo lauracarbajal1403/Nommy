@@ -42,7 +42,6 @@ export default function IANoReemplazaraRRHHPage() {
     { texto: "Deloitte Human Capital Trends", url: "https://www2.deloitte.com" },
     { texto: "LinkedIn Future of Recruiting Report", url: "https://business.linkedin.com/talent-solutions" },
     { texto: "OCDE – Artificial Intelligence and the Labour Market", url: "https://www.oecd.org" },
-    { texto: "IBM – Global AI Adoption Index", url: "https://www.ibm.com/reports/ai-adoption" },
   ]
 
   return (
@@ -172,9 +171,7 @@ export default function IANoReemplazaraRRHHPage() {
         <p className="text-gray-600 leading-relaxed mb-2">
           La diferencia es que ahora contarán con herramientas que les permitirán hacerlo mejor y en menos tiempo.
         </p>
-        <p className="text-xs text-gray-400 italic mb-10">
-          Referencia: <a href={referencias[4].url} target="_blank" rel="noopener noreferrer" className="text-turquoise hover:underline">{referencias[4].texto}</a>
-        </p>
+       
 
         {/* Stats band */}
         <div className="grid grid-cols-3 gap-4 mb-12">
