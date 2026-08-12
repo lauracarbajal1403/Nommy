@@ -168,8 +168,6 @@ export default function HomeClient() {
           </div>
         </div>
 
-        {/* Logo inferior izquierdo */}
-        <img src="/logoblanco.png" alt="Nommy" className="absolute bottom-6 left-6 h-8 opacity-90 z-10 hidden lg:block" />
       </section>
 
       <section className="py-16 bg-white">
