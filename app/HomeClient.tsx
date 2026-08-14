@@ -12,6 +12,62 @@ import TrustedBrands from "@/components/Trustedbrands";
 
 const PHRASES = ["gestionar tu talento", "reducir errores", "ahorrar tiempo", "optimizar tu nómina"];
 
+const METRICS_DATA = [
+  {
+    id: 'timbres_3m',
+    icon: FileCheck2,
+    prefix: '≈ ',
+    value: '3 Millones',
+    label: 'Timbres de recibos procesados',
+    sublabel: 'Sin un solo error fiscal ni interrupción operativa desde 2014',
+    highlightText: '+2.99M de recibos respaldados ante el SAT',
+  },
+  {
+    id: 'ahorro_horas',
+    icon: Clock,
+    prefix: '',
+    value: '15 minutos',
+    label: 'Para calcular y dispersar tu nómina',
+    sublabel: 'Reduciendo un 90% el tiempo manual por periodo de pago',
+    highlightText: 'Ahorras hasta 12 horas hombre por semana',
+  },
+  {
+    id: 'clientes_activos',
+    icon: Building2,
+    prefix: '',
+    value: '+880',
+    label: 'Empresas confían en Nommy',
+    sublabel: 'Procesando la nómina de miles de colaboradores en México',
+    highlightText: 'Crecimiento sostenido año con año',
+  },
+  {
+    id: 'cero_multas',
+    icon: ShieldCheck,
+    prefix: '',
+    value: '100%',
+    label: 'Cumplimiento normativo SAT e IMSS',
+    sublabel: 'Actualización automática con las reformas laborales más recientes',
+    highlightText: 'Cero multas ni recargos fiscales',
+  },
+  {
+    id: 'roi_meses',
+    icon: TrendingUp,
+    prefix: '',
+    value: '30 días',
+    label: 'Para generar retorno de inversión',
+    sublabel: 'Recuperación de inversión por eliminación de errores y tiempos muertos',
+    highlightText: 'Implementación guiada en menos de 5 días',
+  },
+  {
+    id: 'adopcion_app',
+    icon: Users,
+    prefix: '',
+    value: '96%',
+    label: 'Tasa de adopción de colaboradores',
+    sublabel: 'Descargan sus recibos de nómina y solicitan vacaciones desde su celular',
+    highlightText: 'Reducción del 85% en tickets de atención a RH',
+  },
+];
 function useIsMobile(breakpoint = 1024) {
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
