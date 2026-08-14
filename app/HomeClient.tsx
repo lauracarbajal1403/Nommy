@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useEffect, useState, useRef, FormEvent } from "react";
-import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, Check, ChevronLeft, ChevronRight, FileCheck2, Clock, Building2, ShieldCheck, TrendingUp, Users } from 'lucide-react'
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
