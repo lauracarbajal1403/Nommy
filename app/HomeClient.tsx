@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useEffect, useState, useRef, FormEvent } from "react";
-import { ArrowRight, Check, ChevronLeft, ChevronRight, FileCheck2, Clock, Building2, ShieldCheck, TrendingUp, Users } from 'lucide-react'
+import { ArrowRight, Check, CheckCircle2, ShieldCheck, FileCheck2, Clock, Building2, TrendingUp, Users, Lock, Database, Award } from 'lucide-react'
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
 import NommyCalculator from "@/components/NommyCalculator"
@@ -68,6 +68,7 @@ const METRICS_DATA = [
     highlightText: 'Reducción del 85% en tickets de atención a RH',
   },
 ];
+
 function useIsMobile(breakpoint = 1024) {
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
@@ -129,6 +130,7 @@ export default function HomeClient() {
     phone: "",
   })
   const isMobile = useIsMobile()
+  const [selectedMetricId, setSelectedMetricId] = useState<string | null>(null)
 
   // Frase del hero que se intercala entre dos mensajes
   const [heroSlide, setHeroSlide] = useState(0)
@@ -158,7 +160,7 @@ export default function HomeClient() {
             <div className="text-left text-white">
               {/* Logo encima del título */}
 
-              <h1 className="sr-only">Nommy: Plataforma de RRHH y gestión de nómina en México</h1>
+              <h1 className="sr-only">Nommy: Plataforma de RRHH y software de nómina en México</h1>
 
               {/* ── Frase que se intercala ── */}
               <div key={heroSlide} className="hero-fade">
@@ -166,7 +168,7 @@ export default function HomeClient() {
                   {heroSlide === 0 ? (
                     <>
                       Una{" "}
-                      <span className="text-turquoise text-4xl sm:text-5xl lg:text-6xl">plataforma de RRHH</span>{" "}
+                      <span className="text-turquoise text-4xl sm:text-5xl lg:text-6xl">suite de RRHH</span>{" "}
                       360° que simplifica la gestión de talento
                     </>
                   ) : (
@@ -224,6 +226,8 @@ export default function HomeClient() {
           </div>
         </div>
 
+        {/* Logo inferior izquierdo */}
+        <img src="/logoblanco.png" alt="Nommy" className="absolute bottom-6 left-6 h-8 opacity-90 z-10 hidden lg:block" />
       </section>
 
       <section className="py-16 bg-white">
@@ -255,7 +259,7 @@ export default function HomeClient() {
       <TrustedBrands/>
       <NommyCalculator />
 
-      {/* Resultados / Métricas */}
+      {/* Resultados / Métricas
       <section className="py-16 sm:py-20 px-4 sm:px-8 bg-[#f8fafc] relative">
         <div className="max-w-5xl mx-auto text-center space-y-3">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-tight leading-tight">
@@ -326,8 +330,7 @@ export default function HomeClient() {
           </Link>
         </div>
       </section>
-      
-
+      */}
 
       {/* Enterprise Trust Metrics */}
       <section className="py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-slate-950 to-slate-900 relative">
@@ -467,25 +470,6 @@ export default function HomeClient() {
         {/* Logo inferior izquierdo */}
       </section>
 
-      {/* +15 años de experiencia */}
-      <section className="relative py-20 bg-navy overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollAnimation animation="slide-in-left">
-            <div className="space-y-4 text-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-                <span className="text-turquoise">+15 años de experiencia</span>{" "}
-                <span className="text-white">en la industria de RRHH</span>
-              </h2>
-              <p className="text-lg text-white/80 max-w-2xl mx-auto">
-                Miles de nóminas procesadas con precisión y respaldo.
-              </p>
-            </div>
-          </ScrollAnimation>
-        </div>
-
-        {/* Logo inferior izquierdo */}
-      </section>
-
       <section className="relative bg-gradient-to-br from-navy to-turquoise">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
@@ -574,22 +558,16 @@ export default function HomeClient() {
           <div className="max-w-7xl mx-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { n: "01", href: "https://rrhh.nommy.mx", title: "Líderes RRHH", desc: "Convierte procesos en estrategia y talento en imparable." },
-                { n: "02", href: "https://empresas.nommy.mx", title: "Dueño de empresa", desc: "Tu empresa, tu visión, tu control. Sin sorpresas." },
-                { n: "03", href: "https://negocios.nommy.mx", title: "Alas para tu negocio", desc: "Es momento de despegar de la mano de Nommy." },
-                { n: "04", href: "https://despachos.nommy.mx", title: "Despachos Contables", desc: "Unifica la gestión de tus clientes, controla la rentabilidad por proyecto y haz crecer tu equipo sin perder de vista los plazos clave." },
+                { n: "01", title: "Líderes RRHH", desc: "Convierte procesos en estrategia y talento en imparable." },
+                { n: "02", title: "Dueño de empresa", desc: "Tu empresa, tu visión, tu control. Sin sorpresas." },
+                { n: "03", title: "Alas para tu negocio", desc: "Es momento de despegar de la mano de Nommy." },
+                { n: "04", title: "Despachos Contables", desc: "Unifica la gestión de tus clientes, controla la rentabilidad por proyecto y haz crecer tu equipo sin perder de vista los plazos clave." },
               ].map((card, i, arr) => (
-                <a
-                  key={card.n}
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}
-                >
+                <div key={card.n} className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}>
                   <div className="text-white/70 font-semibold mb-6">{card.n}</div>
                   <h3 className="font-bold text-xl text-white mb-2">{card.title}</h3>
                   <p className="text-white/90 text-lg leading-relaxed">{card.desc}</p>
-                </a>
+                </div>
               ))}
             </div>
           </div>
