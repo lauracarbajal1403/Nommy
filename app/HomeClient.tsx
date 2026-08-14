@@ -227,7 +227,7 @@ export default function HomeClient() {
         </div>
 
         {/* Logo inferior izquierdo */}
-        <img src="/logoblanco.png" alt="Nommy" className="absolute bottom-6 left-6 h-8 opacity-90 z-10 hidden lg:block" />
+        
       </section>
 
       <section className="py-16 bg-white">
@@ -558,16 +558,22 @@ export default function HomeClient() {
           <div className="max-w-7xl mx-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { n: "01", title: "Líderes RRHH", desc: "Convierte procesos en estrategia y talento en imparable." },
-                { n: "02", title: "Dueño de empresa", desc: "Tu empresa, tu visión, tu control. Sin sorpresas." },
-                { n: "03", title: "Alas para tu negocio", desc: "Es momento de despegar de la mano de Nommy." },
-                { n: "04", title: "Despachos Contables", desc: "Unifica la gestión de tus clientes, controla la rentabilidad por proyecto y haz crecer tu equipo sin perder de vista los plazos clave." },
+                { n: "01", href: "https://rrhh.nommy.mx", title: "Líderes RRHH", desc: "Convierte procesos en estrategia y talento en imparable." },
+                { n: "02", href: "https://empresas.nommy.mx", title: "Dueño de empresa", desc: "Tu empresa, tu visión, tu control. Sin sorpresas." },
+                { n: "03", href: "https://negocios.nommy.mx", title: "Alas para tu negocio", desc: "Es momento de despegar de la mano de Nommy." },
+                { n: "04", href: "https://despachos.nommy.mx", title: "Despachos Contables", desc: "Unifica la gestión de tus clientes, controla la rentabilidad por proyecto y haz crecer tu equipo sin perder de vista los plazos clave." },
               ].map((card, i, arr) => (
-                <div key={card.n} className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}>
+                <a
+                  key={card.n}
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-8 text-white border-white/20 ${i < arr.length - 1 ? "lg:border-r" : ""}`}
+                >
                   <div className="text-white/70 font-semibold mb-6">{card.n}</div>
                   <h3 className="font-bold text-xl text-white mb-2">{card.title}</h3>
                   <p className="text-white/90 text-lg leading-relaxed">{card.desc}</p>
-                </div>
+                </a>
               ))}
             </div>
           </div>
