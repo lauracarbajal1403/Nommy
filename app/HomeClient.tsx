@@ -259,7 +259,7 @@ export default function HomeClient() {
       <TrustedBrands/>
       <NommyCalculator />
 
-      {/* Resultados / Métricas
+     
       <section className="py-16 sm:py-20 px-4 sm:px-8 bg-[#f8fafc] relative">
         <div className="max-w-5xl mx-auto text-center space-y-3">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-tight leading-tight">
@@ -330,7 +330,7 @@ export default function HomeClient() {
           </Link>
         </div>
       </section>
-      */}
+    
 
       {/* Enterprise Trust Metrics */}
       <section className="py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-slate-950 to-slate-900 relative">
