@@ -98,6 +98,13 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   
                 >Aviso de privacidad</a>
+                <a
+                  className="text-turquoise hover:text-navy transition-colors duration-300 text-sm mt-2 sm:mt-0"
+                  href="/privacidad-de-usuario"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  
+                >Privacidad de usuario</a>
               </div>
             </div>
           </div>

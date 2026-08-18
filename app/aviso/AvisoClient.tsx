@@ -458,7 +458,7 @@ const CompanyInfo = () => {
   const info = [
     { label: 'Nombre o razón Social', value: 'NOMMY PEOPLE & PAYROLL TECHNOLOGIES S.A.P.I DE C.V' },
     { label: 'Nombre comercial', value: 'NOMMY' },
-    { label: 'Domicilio', value: 'Av Aztlán 170, Cd del Sol, 45050 Zapopan, Jal.' },
+    { label: 'Domicilio', value: 'C. Nelson 224, Vallarta Nte., 44690 Guadalajara, Jal.' },
     { label: 'Página web', value: 'https://nommy.mx', link: 'https://nommy.mx' },
     { label: 'Giro principal', value: 'Plataforma tecnológica B2B para la gestión, cálculo y timbrado automatizado de nómina y recursos humanos.' }
   ];

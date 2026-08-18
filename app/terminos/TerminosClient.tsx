@@ -555,7 +555,7 @@ const ContactGrid = () => {
     { label: 'Denominación Social', value: 'Nommy People & Payroll technologies' },
     { label: 'RFC', value: 'NPA251110L3A' },
     { label: 'Nacionalidad', value: 'Mexicana' },
-    { label: 'Domicilio', value: 'Avenida Aztlan 170' },
+    { label: 'Domicilio', value: 'C. Nelson 224, Vallarta Nte., 44690 Guadalajara, Jal.' },
     { label: 'Página Web', value: 'www.nommy.mx', link: 'https://www.nommy.mx' },
     { label: 'Email Marketing', value: 'marketing@nommy.mx', link: 'mailto:marketing@nommy.mx' },
     { label: 'Email Legal', value: 'legal@nommy.mx', link: 'mailto:legal@nommy.mx' },
