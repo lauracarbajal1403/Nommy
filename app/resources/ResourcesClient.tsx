@@ -118,6 +118,17 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "¿Cuál es el mejor reloj checador biométrico para tu negocio?",
+      description: "Porqué es lo primero que debes implementar para transicionar a la jornada de 40 horas en México.",
+      category: "Compliance",
+      icon: BookOpen,
+      image: "/agosto12.jpeg",
+      link: "/reloj-checador",
+      readTime: "6 min de lectura",
+      date: "15 Ago 2026",
+      isFeatured: true,
+    },
+    {
       title: "Requisitos del Recibo de Nómina Electrónico en México: Checklist 2026",
       description: "Todo lo que el SAT exige para que un recibo de nómina electrónico sea válido en 2026, del CFDI 4.0 a la Revisión E, con checklist descargable.",
       category: "Compliance",
