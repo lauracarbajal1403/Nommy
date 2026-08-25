@@ -119,7 +119,7 @@ export default function TrustedBrands() {
       <section className="trusted-section">
         <div className="trusted-header">
           <p className="trusted-label-uno">
-            <span className="trusted-label-white">A lo largo de más de</span><span className="bg-white text-navy font-bold "> 15 años de trayectoria</span>
+            <span className="trusted-label-white">A lo largo de más de </span><span className="bg-white text-navy font-bold">15 años de trayectoria</span>
           </p>
           <p className="trusted-label">
             <span className="trusted-label-white">+7,500 EMPRESAS </span>
