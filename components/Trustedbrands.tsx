@@ -49,6 +49,13 @@ export default function TrustedBrands() {
           letter-spacing: -0.01em;
           line-height: 1.2;
         }
+        .trusted-label-uno {
+          margin: 0;
+          font-size: 34px;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+          line-height: 1.2;
+        }
         .trusted-label-white { color: #ffffff; }
         .trusted-label-teal  { color: #2dd4bf; }
         .trusted-subtitle {
@@ -111,14 +118,16 @@ export default function TrustedBrands() {
 
       <section className="trusted-section">
         <div className="trusted-header">
+          <p className="trusted-label-uno">
+            <span className="trusted-label-white">A lo largo de más de</span><span className="bg-white text-navy font-bold "> 15 años de trayectoria</span>
+          </p>
           <p className="trusted-label">
             <span className="trusted-label-white">+7,500 EMPRESAS </span>
             <span className="trusted-label-teal">CONFÍAN SU NÓMINA A NOMMY,</span>
           </p>
           <p className="trusted-subtitle">
-            En todo México, de startups a empresas consolidadas.
+            En todo México, convertimos startups en empresas consolidadas.
           </p>
-          <span className="trusted-badge">+9 clientes nuevos</span>
         </div>
 
         <div style={{ overflow: 'hidden', width: '100%' }}>
