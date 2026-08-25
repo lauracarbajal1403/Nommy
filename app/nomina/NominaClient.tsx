@@ -304,7 +304,7 @@ export default function ClimaLaboralPage() {
                   href="/demo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-navy text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-lg"
+                  className="bg-[#e73b4d] text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-lg"
                 >
                    Demo GRATIS
                 </Link>

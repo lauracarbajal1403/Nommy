@@ -227,7 +227,7 @@ function DemoButton({ href, mobile = false }: { href: string; mobile?: boolean }
           ? (mobile ? "9px 20px" : "12px 30px")
           : (mobile ? "8px 16px" : "10px 24px"),
         borderRadius: "999px",
-        backgroundColor: hovered ? "#152132" : "#4abdb9",
+        backgroundColor: hovered ? "#152132" : "#e73b4d",
         color: "#ffffff",
         fontSize: mobile ? "13px" : (hovered ? "15px" : "14px"),
         fontWeight: 700,
@@ -235,7 +235,7 @@ function DemoButton({ href, mobile = false }: { href: string; mobile?: boolean }
         whiteSpace: "nowrap",
         letterSpacing: "0.02em",
         boxShadow: hovered
-          ? "0 6px 20px rgba(13,148,136,0.45)"
+          ? "0 6px 20px rgba(231,59,77,0.45)"
           : "0 4px 14px rgba(0,0,0,0.15)",
         transform: hovered ? "scale(1.05)" : "scale(1)",
         transition: "all 0.25s cubic-bezier(0.34, 1.4, 0.64, 1)",

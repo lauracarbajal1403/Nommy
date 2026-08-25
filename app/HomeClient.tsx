@@ -35,10 +35,10 @@ const METRICS_DATA = [
     id: 'clientes_activos',
     icon: Building2,
     prefix: '',
-    value: '+880',
-    label: 'Empresas confían en Nommy',
-    sublabel: 'Procesando la nómina de miles de colaboradores en México',
-    highlightText: 'Crecimiento sostenido año con año',
+    value: 'De 880',
+    label: 'Nommy, logró timbrar más de 3 millones de nóminas',
+    sublabel: 'Crecimiento sostenido a lo largo de 6 años',
+    highlightText: '100% margen de error eliminado',
   },
   {
     id: 'cero_multas',
@@ -189,11 +189,11 @@ export default function HomeClient() {
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link href="/demo" target="_blank" rel="noopener noreferrer"
-                  className="bg-turquoise hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition">
+                  className="bg-[#e73b4d] hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition">
                   ¡Agenda tu DEMO!
                 </Link>
                 <Link href="/demo" target="_blank" rel="noopener noreferrer"
-                  className="bg-navy hover:bg-turquoise text-white font-bold px-6 py-3 rounded-full text-center transition">
+                  className="bg-turquoise hover:bg-navy text-white font-bold px-6 py-3 rounded-full text-center transition">
                   ▶ Ver como funciona
                 </Link>
               </div>
@@ -323,7 +323,7 @@ export default function HomeClient() {
             href="/demo"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2.5 rounded-full bg-turquoise hover:bg-navy text-white font-bold text-xs tracking-wide shadow-md transition transform hover:-translate-y-0.5 inline-flex items-center group"
+            className="px-6 py-2.5 rounded-full bg-[#e73b4d] hover:bg-navy text-white font-bold text-xs tracking-wide shadow-md transition transform hover:-translate-y-0.5 inline-flex items-center group"
           >
             Solicitar Demostración de Impacto
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -332,125 +332,7 @@ export default function HomeClient() {
       </section>
     
 
-      {/* Enterprise Trust Metrics */}
-      <section className="py-16 sm:py-20 px-4 sm:px-8 bg-gradient-to-br from-slate-950 to-slate-900 relative">
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* HEADER SECTION */}
-          <div className="text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-              <Lock className="w-3.5 h-3.5" />
-              <span>Garantía de Solidez Fiscal & Seguridad de Marca</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
-              Más de {' '} de timbres procesados. La experiencia de Nommy habla por nosotros.
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                 3 millones
-              </span>
-            </h2>
-
-            <p className="text-slate-400 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
-              Años de experiencia, miles de operaciones y empresas que confían en una nómina precisa, rápida y segura.
-            </p>
-          </div>
-
-          {/* 4 ENTERPRISE METRIC CARDS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* CARD 1: TIMBRES ACUMULADOS */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 p-6 rounded-2xl space-y-3 transition group relative overflow-hidden">
-              <div className="flex justify-between items-start">
-                <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  <FileCheck2 className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
-                  2014 - 2025
-                </span>
-              </div>
-              <div>
-                <div className="text-3xl lg:text-4xl font-black text-white tracking-tight group-hover:text-emerald-400 transition">
-                  ≈ 3.0 M
-                </div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">
-                  Timbres de Recibos
-                </p>
-              </div>
-              <p className="text-xs text-slate-400 leading-snug">
-                Total acumulado de recibos de nómina timbrados de forma exacta sin discrepancias con el SAT.
-              </p>
-            </div>
-
-            {/* CARD 2: CLIENTES ACTIVOS */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 p-6 rounded-2xl space-y-3 transition group relative overflow-hidden">
-              <div className="flex justify-between items-start">
-                <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                  <Building2 className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
-                  Crecimiento Sustentable
-                </span>
-              </div>
-              <div>
-                <div className="text-3xl lg:text-4xl font-black text-white tracking-tight group-hover:text-cyan-400 transition">
-                  881
-                </div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">
-                  Empresas Clientes
-                </p>
-              </div>
-              <p className="text-xs text-slate-400 leading-snug">
-                Empresas activas en México que procesan la nómina de sus equipos cada semana y quincena.
-              </p>
-            </div>
-
-            {/* CARD 3: EMPLEADOS IMSS */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 p-6 rounded-2xl space-y-3 transition group relative overflow-hidden">
-              <div className="flex justify-between items-start">
-                <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                  <Database className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono text-blue-400 bg-blue-950 px-2 py-0.5 rounded border border-blue-800">
-                  IMSS & INFONAVIT
-                </span>
-              </div>
-              <div>
-                <div className="text-3xl lg:text-4xl font-black text-white tracking-tight group-hover:text-blue-400 transition">
-                  6,202
-                </div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">
-                  Empleados Gestionados
-                </p>
-              </div>
-              <p className="text-xs text-slate-400 leading-snug">
-                Colaboradores registrados con avisos afiliatorios y cálculo preciso de amortizaciones.
-              </p>
-            </div>
-
-            {/* CARD 4: DISPONIBILIDAD Y CERO ERRORES */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 p-6 rounded-2xl space-y-3 transition group relative overflow-hidden">
-              <div className="flex justify-between items-start">
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                  <Award className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-mono text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">
-                  Garantía 100%
-                </span>
-              </div>
-              <div>
-                <div className="text-3xl lg:text-4xl font-black text-white tracking-tight group-hover:text-amber-400 transition">
-                  0 Multas
-                </div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mt-1">
-                  Riesgo Fiscal Cero
-                </p>
-              </div>
-              <p className="text-xs text-slate-400 leading-snug">
-                Garantía por contrato de actualización con las normativas fiscales vigentes del CFF.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      
       {/* +15 años de experiencia */}
       <section className="relative py-20 bg-navy overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -591,7 +473,7 @@ export default function HomeClient() {
               Únete a cientos de empresas que confían en NOMMY para gestionar su nómina de manera eficiente y sin curva de aprendizaje.
             </p>
             <Link href="/demo" target="_blank" rel="noopener noreferrer"
-              className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 inline-flex items-center group btn-shadow">
+              className="bg-[#e73b4d] text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 inline-flex items-center group btn-shadow">
               ¡DEMO GRATIS!
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </Link>

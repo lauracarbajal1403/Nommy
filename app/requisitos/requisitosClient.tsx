@@ -359,7 +359,7 @@ export default function RequisitosClient() {
               <p className="mb-6">¿Quieres ver cómo se vería tu proceso de nómina sin estos pendientes?</p>
               <Link
                 href="/demo"
-                className="inline-block bg-white text-navy px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="inline-block bg-[#e73b4d] text-white px-8 py-4 rounded-full font-bold hover:bg-[#e73b4d]/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 AGENDA TU DEMO
               </Link>

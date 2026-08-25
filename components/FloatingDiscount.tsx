@@ -126,7 +126,7 @@ export default function FloatingDiscount() {
             rel="noopener noreferrer"
             style={{
               marginTop: 20,
-              backgroundColor: "#0f172a",
+              backgroundColor: "#e73b4d",
               color: "white",
               fontWeight: 700,
               fontSize: "16px",
@@ -220,7 +220,7 @@ export default function FloatingDiscount() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            backgroundColor: "#0f172a", color: "white",
+            backgroundColor: "#e73b4d", color: "white",
             fontWeight: 700, fontSize: "18px",
             padding: "12px 24px", borderRadius: "999px",
             textDecoration: "none", marginTop: "16px",

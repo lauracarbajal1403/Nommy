@@ -104,7 +104,7 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/demo"
-                className="inline-flex items-center btn-secondary text-base lg:text-lg group px-8 py-4 whitespace-nowrap"
+                className="inline-flex items-center btn-demo-accent text-base lg:text-lg group px-8 py-4 whitespace-nowrap"
               >
                 ¡Empieza a optimizar tu nómina hoy!
                 <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300 flex-shrink-0" />
@@ -244,7 +244,7 @@ export default function AboutPage() {
                 href="/demo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-navy px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 shadow-nommy hover:shadow-nommy-lg"
+                className="bg-[#e73b4d] text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 shadow-nommy hover:shadow-nommy-lg"
               >
                 ¡DEMO GRATIS!
               </a>

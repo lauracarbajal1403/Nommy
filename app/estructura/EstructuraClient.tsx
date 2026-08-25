@@ -278,7 +278,7 @@ export default function EstructuraOrganizacionalPage() {
 
           <a
             href="/demo"
-            className="inline-flex items-center gap-2 bg-turquoise hover:bg-navy text-white font-bold py-3 px-8 rounded-full transition-colors duration-200 text-sm"
+            className="inline-flex items-center gap-2 bg-[#e73b4d] hover:bg-navy text-white font-bold py-3 px-8 rounded-full transition-colors duration-200 text-sm"
           >
             Agenda tu DEMO Gratis
             <ExternalLink className="w-4 h-4" />

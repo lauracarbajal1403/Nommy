@@ -133,7 +133,7 @@ export default function Control_horaPage() {
                   href="/demo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-8 py-4 bg-white text-navy font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                  className="inline-flex items-center px-8 py-4 bg-[#e73b4d] text-white font-semibold rounded-lg hover:bg-[#e73b4d]/90 transition-colors duration-200"
                 >
                   ¡DEMO GRATIS!
                 </Link>

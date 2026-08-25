@@ -372,7 +372,7 @@ export default function NommyCalculator() {
               <Link
                 href="/demo"
                 className="block w-full text-center text-white font-bold py-3 rounded-xl text-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-                style={{ background: "linear-gradient(90deg, #0d3b6e, #00bcd4)" }}
+                style={{ background: "#e73b4d" }}
               >
                 ¡DEMO GRATIS!
               </Link>

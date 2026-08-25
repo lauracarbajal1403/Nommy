@@ -282,7 +282,7 @@ export default function IndustryCarousel() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-white font-bold px-8 py-6 rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl"
-              style={{ background: "linear-gradient(90deg, #274263, #00bcd4)" }}
+              style={{ background: "#e73b4d" }}
             >
               ¡DEMO GRATIS!
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

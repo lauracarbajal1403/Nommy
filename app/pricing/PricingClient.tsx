@@ -223,10 +223,8 @@ export default function PricingPage() {
                     href={plan.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95 ${
-                      plan.customButton
-                        ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 hover:shadow-lg text-lg py-4 font-bold"
-                        : "bg-gradient-to-r from-turquoise to-navy text-white hover:shadow-xl hover:from-turquoise/90 hover:to-navy/90"
+                    className={`w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 active:scale-95 bg-[#e73b4d] text-white hover:bg-[#e73b4d]/90 hover:shadow-xl ${
+                      plan.customButton ? "text-lg py-4 font-bold" : ""
                     }`}
                   >
                     {plan.cta}
