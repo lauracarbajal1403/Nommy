@@ -123,7 +123,7 @@ export default function ResourcesPage() {
         "Qué características debe tener el mejor software de nómina para pymes en México: cálculo automático, checador digital, IDSE y NOM-035.",
       category: "Nómina",
       icon: BookOpen,
-      image: "/nommy-desktop-dashboard.png",
+      image: "/blog31.jpeg",
       link: "/software-de-nomina",
       readTime: "7 min de lectura",
       date: "31 Ago 2026",

@@ -113,7 +113,7 @@ export default function TrustedBrands() {
           .trusted-label { font-size: 22px; }
           .trusted-subtitle { font-size: 13px; }
           .logo-slot { width: 110px; height: 64px; margin-right: 28px; }
-        }
+        }te
       `}</style>
 
       <section className="trusted-section">

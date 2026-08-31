@@ -112,7 +112,7 @@ export default function SoftwareClient() {
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock className="w-4 h-4" />
-                7 min de lectura
+                5 min de lectura
               </span>
             </div>
 
@@ -121,7 +121,7 @@ export default function SoftwareClient() {
             </h1>
 
             <img
-              src="/nommy-desktop-dashboard.png"
+              src="/blog32.jpeg"
               alt="Dueña de pyme mexicana revisando el cálculo de nómina de su equipo en una laptop, usando un software de nómina en la nube"
               className="w-full h-80 object-cover rounded-2xl shadow-xl"
             />
