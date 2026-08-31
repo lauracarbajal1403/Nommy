@@ -118,6 +118,18 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "El mejor software de nómina para pequeñas y medianas empresas en México",
+      description:
+        "Qué características debe tener el mejor software de nómina para pymes en México: cálculo automático, checador digital, IDSE y NOM-035.",
+      category: "Nómina",
+      icon: BookOpen,
+      image: "/nommy-desktop-dashboard.png",
+      link: "/software-de-nomina",
+      readTime: "7 min de lectura",
+      date: "31 Ago 2026",
+      isFeatured: true,
+    },
+    {
       title: "¿Cuál es el mejor reloj checador biométrico para tu negocio?",
       description: "Porqué es lo primero que debes implementar para transicionar a la jornada de 40 horas en México.",
       category: "Compliance",
