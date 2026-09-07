@@ -120,6 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="msvalidate.01" content="A11E650E247392D4DDC71DBC202F3E23" />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript1 }} />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
+        <script charset="UTF-8" src="//web.webpushs.com/js/push/274c7b7a2c579fad47d62474dd93ba5c_1.js" async></script>
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
         <script
