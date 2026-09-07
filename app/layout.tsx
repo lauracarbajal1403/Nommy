@@ -52,6 +52,19 @@ const linkedInScript2 = `
   })(window.lintrk);
 `
 
+const facebookPixelScript = `
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2359077161166765');
+  fbq('track', 'PageView');
+`
+
 const NOMMY_SAME_AS = [
   "https://www.facebook.com/profile.php?id=61578598203669",
   "https://www.instagram.com/nommymexico/",
@@ -120,7 +133,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="msvalidate.01" content="A11E650E247392D4DDC71DBC202F3E23" />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript1 }} />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
-        <script charset="UTF-8" src="//web.webpushs.com/js/push/274c7b7a2c579fad47d62474dd93ba5c_1.js" async></script>
+        <script charSet="UTF-8" src="//web.webpushs.com/js/push/274c7b7a2c579fad47d62474dd93ba5c_1.js" async></script>
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
         <script
@@ -158,21 +171,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src="https://px.ads.linkedin.com/collect/?pid=8802034&fmt=gif"
           />
         </noscript>
-        <script>
-        !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '2359077161166765');
-          fbq('track', 'PageView');
-          </script>
-          <noscript><img height="1" width="1" style="display:none"
-          src="https://www.facebook.com/tr?id=2359077161166765&ev=PageView&noscript=1"
-          /></noscript>
+        <script dangerouslySetInnerHTML={{ __html: facebookPixelScript }} />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            alt=""
+            src="https://www.facebook.com/tr?id=2359077161166765&ev=PageView&noscript=1"
+          />
+        </noscript>
 
         <Suspense fallback={<Loading />}>
           <Navigation />
