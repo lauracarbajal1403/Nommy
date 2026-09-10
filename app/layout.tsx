@@ -134,6 +134,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript1 }} />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: linkedInScript2 }} />
         <script charSet="UTF-8" src="//web.webpushs.com/js/push/274c7b7a2c579fad47d62474dd93ba5c_1.js" async></script>
+       
+
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
         <script
@@ -145,7 +147,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <GoogleAnalytics gaId="AW-17894332131" />
-        <GoogleTagManager gtmId="GTM-TFSH9C4P" />
+        <GoogleTagManager gtmId="GTM-NB8MKBST" />
         {/* Microsoft Clarity */}
         <Script id="ms-clarity" strategy="afterInteractive">
           {`(function(c,l,a,r,i,t,y){
