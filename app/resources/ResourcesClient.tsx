@@ -118,6 +118,18 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Comparativa de Software de Nómina en la Nube para Empresas en México",
+      description:
+        "Compara las soluciones de nómina en la nube disponibles en México: seguridad, conexión con el IMSS, movilidad y soporte. Guía práctica para elegir la mejor.",
+      category: "Nómina",
+      icon: BookOpen,
+      image: "/blog31.jpeg",
+      link: "/comparativa",
+      readTime: "6 min de lectura",
+      date: "15 Sep 2026",
+      isFeatured: true,
+    },
+    {
       title: "El mejor software de nómina para pequeñas y medianas empresas en México",
       description:
         "Qué características debe tener el mejor software de nómina para pymes en México: cálculo automático, checador digital, IDSE y NOM-035.",
