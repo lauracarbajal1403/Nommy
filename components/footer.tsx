@@ -37,7 +37,7 @@ export default function Footer() {
 
               <div className="flex space-x-4 pt-4">
                 <a
-                  href="https://www.facebook.com/profile.php?id=61578598203669"
+                  href="https://www.facebook.com/profile.php?id=61594267621897&locale=es_LA"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gradient-to-br from-turquoise to-turquoise/80 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
