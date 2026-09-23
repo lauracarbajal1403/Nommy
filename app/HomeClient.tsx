@@ -69,6 +69,42 @@ const METRICS_DATA = [
   },
 ];
 
+// Anima el primer número dentro de `value` (ej. "De 880" → De 0…880) cuando entra en pantalla
+function CountUp({ value, duration = 2500 }: { value: string; duration?: number }) {
+  const match = value.match(/\d+(?:[.,]\d+)?/)
+  const target = match ? parseFloat(match[0].replace(',', '.')) : 0
+  const before = match ? value.slice(0, match.index) : value
+  const after = match ? value.slice(match.index! + match[0].length) : ''
+
+  const [current, setCurrent] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    if (!match || !ref.current) return
+    let frame = 0
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      observer.disconnect()
+      const start = performance.now()
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3) // easeOutCubic: rápido al inicio, frena al final
+        setCurrent(Math.round(target * eased))
+        if (progress < 1) frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    }, { threshold: 0.4 })
+    observer.observe(ref.current)
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(frame)
+    }
+  }, [target, duration])
+
+  if (!match) return <>{value}</>
+  return <span ref={ref}>{before}{current}{after}</span>
+}
+
 function useIsMobile(breakpoint = 1024) {
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
@@ -293,7 +329,7 @@ export default function HomeClient() {
 
                   <div className="text-3xl sm:text-4xl font-extrabold text-turquoise tracking-tight">
                     <span className="text-xl font-semibold opacity-75">{item.prefix}</span>
-                    {item.value}
+                    <CountUp value={item.value} />
                   </div>
 
                   <p className="mt-3 text-sm font-semibold text-navy leading-snug">
