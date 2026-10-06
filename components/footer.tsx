@@ -18,13 +18,13 @@ export default function Footer() {
             {/* Contact Info */}
             <div className="space-y-4">
               <a
-                href="https://wa.me/523315179175"
+                href="https://wa.me/523317675670"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-3 group hover:text-turquoise transition-colors duration-300"
               >
                 <Phone className="w-5 h-5 text-turquoise group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-navy group-hover:text-turquoise">(33) 15179175</span>
+                <span className="text-navy group-hover:text-turquoise">(33) 1767 5670</span>
               </a>
               <div className="flex items-center space-x-3 group">
                 <MapPin className="w-5 h-5 text-turquoise group-hover:scale-110 transition-transform duration-300" />

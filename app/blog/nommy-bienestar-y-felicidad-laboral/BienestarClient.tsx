@@ -30,7 +30,7 @@ export default function BienestarClient() {
               </span>
               <span className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4" />
-                18 Septiembre 2026
+                2 Octubre 2026
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock className="w-4 h-4" />5 min de lectura

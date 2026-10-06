@@ -113,7 +113,7 @@ export default function ComparativaClient() {
             </h1>
 
             <img
-              src="/blog34.jpeg"
+              src="/octubre2.jpeg"
               alt="Equipo de RH de una empresa mexicana consultando un dashboard de nómina en la nube desde una tablet en la oficina"
               className="w-full h-80 object-cover rounded-2xl shadow-xl"
             />

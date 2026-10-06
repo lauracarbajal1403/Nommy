@@ -121,7 +121,7 @@ export default function SoftwareClient() {
             </h1>
 
             <img
-              src="/blog32.jpeg"
+              src="/octubre3.jpeg"
               alt="Dueña de pyme mexicana revisando el cálculo de nómina de su equipo en una laptop, usando un software de nómina en la nube"
               className="w-full h-80 object-cover rounded-2xl shadow-xl"
             />
