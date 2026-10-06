@@ -118,6 +118,18 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Cómo Nommy hace más feliz al equipo: ventajas para el ambiente laboral",
+      description:
+        "Descubre cómo Nommy simplifica la nómina, la asistencia y el bienestar del equipo, y mejora la felicidad y el clima laboral de tus colaboradores.",
+      category: "Recursos Humanos",
+      icon: BookOpen,
+      image: "/bienestar-laboral-1.jpg",
+      link: "/blog/nommy-bienestar-y-felicidad-laboral",
+      readTime: "5 min de lectura",
+      date: "18 Sep 2026",
+      isFeatured: true,
+    },
+    {
       title: "Comparativa de Software de Nómina en la Nube para Empresas en México",
       description:
         "Compara las soluciones de nómina en la nube disponibles en México: seguridad, conexión con el IMSS, movilidad y soporte. Guía práctica para elegir la mejor.",

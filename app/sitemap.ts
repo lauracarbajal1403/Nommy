@@ -35,6 +35,7 @@ const ENTRIES: Entry[] = [
   { path: "/calcula_nomina", priority: 0.6, changeFrequency: "monthly" },
   { path: "/inteligencia", priority: 0.6, changeFrequency: "monthly" },
   { path: "/requisitos", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/blog/nommy-bienestar-y-felicidad-laboral", priority: 0.6, changeFrequency: "monthly" },
   { path: "/landing", priority: 0.5, changeFrequency: "monthly" },
   { path: "/terminos", priority: 0.3, changeFrequency: "yearly" },
   { path: "/aviso", priority: 0.3, changeFrequency: "yearly" },
