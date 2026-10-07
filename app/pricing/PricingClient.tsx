@@ -116,7 +116,7 @@ export default function PricingPage() {
         { name: "Evaluaciones de desempeño", basic: false, essential: true, enterprise: true },
         { name: "Encuestas NOM 035", basic: false, essential: true, enterprise: true },
         { name: "Comunicación masiva en plataformas (OCC, INDEED, LINKEDIN ETC)", basic: false, essential: true, enterprise: true },
-        { name: "Capacitaciones personalizadas", basic: false, essential: true, enterprise: true }
+        { name: "Capacitaciones personalizadas", basic: false, essential: true, enterprise: true },
         { name: "Plantillas de correo automático para etapas de reclutamiento", basic: false, essential: true, enterprise: true },
       ]
     }
