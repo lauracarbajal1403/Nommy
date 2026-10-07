@@ -4,6 +4,17 @@ import { BookOpen, Calendar, Clock, ArrowRight, Search, X } from "lucide-react"
 import Link from "next/link"
 import ScrollAnimation from "@/components/scroll-animation"
 import NominikChatbot from "@/app/nominik"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
+// Normaliza texto para búsqueda: minúsculas y sin acentos ("nomina" encuentra "Nómina").
+const normalize = (text: string) =>
+  text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
 
 // Mapeo de cada ebook a su archivo PDF.
 // El envío de correo ahora lo hace el backend (/api/ebook vía Resend), por eso ya no
@@ -135,7 +146,7 @@ export default function ResourcesPage() {
         "Compara las soluciones de nómina en la nube disponibles en México: seguridad, conexión con el IMSS, movilidad y soporte. Guía práctica para elegir la mejor.",
       category: "Nómina",
       icon: BookOpen,
-      image: "/octubre.jpeg",
+      image: "/octube.jpeg",
       link: "/comparativa",
       readTime: "6 min de lectura",
       date: "15 Sep 2026",
@@ -317,16 +328,31 @@ export default function ResourcesPage() {
 
   const categories = ["Todos", ...Array.from(new Set(resources.map(r => r.category)))]
 
+  const matchesSearch = (r: typeof resources[0]) => {
+    const query = normalize(searchQuery.trim())
+    return (
+      query === "" ||
+      normalize(r.title).includes(query) ||
+      normalize(r.description).includes(query) ||
+      normalize(r.category).includes(query)
+    )
+  }
+  const matchesFilter = (r: typeof resources[0]) => activeFilter === "Todos" || r.category === activeFilter
+
   const featuredResource = resources[0]
-  const regularResources = useMemo(() => {
-    return resources.slice(1).filter(r => {
-      const matchesSearch =
-        searchQuery === "" ||
-        r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        r.description.toLowerCase().includes(searchQuery.toLowerCase())
-      const matchesFilter = activeFilter === "Todos" || r.category === activeFilter
-      return matchesSearch && matchesFilter
-    })
+  const showFeatured = matchesFilter(featuredResource) && matchesSearch(featuredResource)
+
+  // Agrupa los artículos filtrados por categoría, conservando el orden de aparición.
+  const groupedResources = useMemo(() => {
+    const groups = new Map<string, typeof resources>()
+    resources
+      .slice(1)
+      .filter(r => matchesSearch(r) && matchesFilter(r))
+      .forEach(r => {
+        if (!groups.has(r.category)) groups.set(r.category, [])
+        groups.get(r.category)!.push(r)
+      })
+    return Array.from(groups, ([category, items]) => ({ category, items }))
   }, [searchQuery, activeFilter])
 
   // Featured card (existing horizontal design)
@@ -509,12 +535,9 @@ export default function ResourcesPage() {
       <main className="max-w-6xl mx-auto px-4 py-16">
 
         {/* Search + Filters */}
-        <div className="mb-10 space-y-4">
-
-
-
+        <div className="mb-10 flex flex-col-reverse lg:flex-row lg:items-center gap-4">
           {/* Category filter pills */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 flex-1">
             {categories.map(cat => (
               <button
                 key={cat}
@@ -529,33 +552,75 @@ export default function ResourcesPage() {
               </button>
             ))}
           </div>
+
+          {/* Text search */}
+          <div className="relative w-full lg:w-72 flex-shrink-0">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              placeholder="Buscar artículos..."
+              aria-label="Buscar artículos"
+              className="w-full bg-white border border-gray-200 rounded-full pl-11 pr-10 py-2.5 text-sm text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-turquoise [&::-webkit-search-cancel-button]:hidden"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                aria-label="Limpiar búsqueda"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-navy"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Featured article — always shown (original horizontal design) */}
-        {(activeFilter === "Todos" || featuredResource.category === activeFilter) &&
-          (searchQuery === "" ||
-            featuredResource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            featuredResource.description.toLowerCase().includes(searchQuery.toLowerCase())) && (
+        {showFeatured && (
           <ScrollAnimation>
             <FeaturedCard resource={featuredResource} />
           </ScrollAnimation>
         )}
 
-        {/* Regular articles — Coursera-style grid */}
-        {regularResources.length > 0 ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {regularResources.map((item, index) => (
-              <ScrollAnimation key={index}>
-                <SmallCard resource={item} />
-              </ScrollAnimation>
+        {/* Regular articles — one slideshow carousel per category */}
+        {groupedResources.length > 0 ? (
+          <div className="space-y-12">
+            {groupedResources.map(({ category, items }) => (
+              <section key={category}>
+                <Carousel opts={{ align: "start" }}>
+                  <div className="flex items-center justify-between gap-4 mb-5">
+                    <h2 className="text-2xl font-bold text-navy">
+                      {category}
+                      <span className="ml-2 text-sm font-medium text-gray-400">({items.length})</span>
+                    </h2>
+                    {items.length > 1 && (
+                      <div className="flex gap-2">
+                        <CarouselPrevious className="static translate-y-0 bg-turquoise border-turquoise text-white hover:bg-navy hover:border-navy hover:text-white" />
+                        <CarouselNext className="static translate-y-0 bg-turquoise border-turquoise text-white hover:bg-navy hover:border-navy hover:text-white" />
+                      </div>
+                    )}
+                  </div>
+                  <CarouselContent>
+                    {items.map(item => (
+                      <CarouselItem key={item.link} className="basis-[85%] sm:basis-1/2 lg:basis-1/3">
+                        <SmallCard resource={item} />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              </section>
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 text-gray-400">
-            <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
-            <p className="text-lg font-medium">No se encontraron artículos</p>
-            <p className="text-sm mt-1">Intenta con otro término o categoría</p>
-          </div>
+          !showFeatured && (
+            <div className="text-center py-20 text-gray-400">
+              <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
+              <p className="text-lg font-medium">No se encontraron artículos</p>
+              <p className="text-sm mt-1">Intenta con otro término o categoría</p>
+            </div>
+          )
         )}
       </main>
 
