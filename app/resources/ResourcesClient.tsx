@@ -132,7 +132,7 @@ export default function ResourcesPage() {
       title: "Cómo Nommy hace más feliz al equipo: ventajas para el ambiente laboral",
       description:
         "Descubre cómo Nommy simplifica la nómina, la asistencia y el bienestar del equipo, y mejora la felicidad y el clima laboral de tus colaboradores.",
-      category: "Recursos Humanos",
+      category: "RRHH",
       icon: BookOpen,
       image: "/bienestar-laboral-1.jpg",
       link: "/blog/nommy-bienestar-y-felicidad-laboral",
