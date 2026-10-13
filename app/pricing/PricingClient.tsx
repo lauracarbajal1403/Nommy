@@ -55,7 +55,16 @@ export default function PricingPage() {
     },
   ]
 
-  const comparisonFeatures = [
+  type ComparisonFeature = {
+    name: string
+    basic: boolean
+    essential: boolean
+    enterprise: boolean
+    highlighted?: boolean
+    isNew?: boolean
+  }
+
+  const comparisonFeatures: { category: string; features: ComparisonFeature[] }[] = [
     {
       category: "Cálculo de Nómina",
       features: [
@@ -116,9 +125,9 @@ export default function PricingPage() {
         { name: "Evaluaciones de desempeño", basic: false, essential: true, enterprise: true },
         { name: "Encuestas NOM 035", basic: false, essential: true, enterprise: true },
         { name: "Comunicación masiva en plataformas (OCC, INDEED, LINKEDIN ETC)", basic: false, essential: true, enterprise: true },
-        { name: "🌟 NUEVO Capacitaciones personalizadas 🌟", basic: false, essential: true, enterprise: true },
-        { name: "🌟 NUEVO: Plantillas de correo automático para etapas de reclutamiento 🌟", basic: false, essential: true, enterprise: true },
-        {name: "🌟 NUEVO: Gestión de salas de juntas y reservas 🌟", basic: false, essential: true, enterprise: true },
+        { name: "Capacitaciones personalizadas", basic: false, essential: true, enterprise: true, isNew: true },
+        { name: "Plantillas de correo automático para etapas de reclutamiento", basic: false, essential: true, enterprise: true, isNew: true },
+        { name: "Gestión y reservas de salas de juntas y reservas", basic: false, essential: true, enterprise: true, isNew: true },
       ]
     }
   ]
@@ -285,6 +294,11 @@ export default function PricingPage() {
                       >
                         <td className="px-2 py-3 sticky left-0 bg-white z-10 break-words">
                           {feature.name}
+                          {feature.isNew && (
+                            <span className="inline-block ml-2 bg-turquoise text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                              ⭐ Nuevo
+                            </span>
+                          )}
                         </td>
 
                         <td className="text-center">
