@@ -129,6 +129,18 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Software de Recursos Humanos y Nómina en México: qué buscar si gestionas varios clientes a la vez",
+      description:
+        "¿Gestionas la nómina de varios clientes? Descubre qué buscar en un software de recursos humanos y nómina para escalar sin multiplicar el trabajo.",
+      category: "Nómina",
+      icon: BookOpen,
+      image: "/Imag1_bloggy_17_09_26.jpeg",
+      link: "/blog/software-de-nomina-en-mexico-varios-clientes",
+      readTime: "7 min de lectura",
+      date: "17 Oct 2026",
+      isFeatured: true,
+    },
+    {
       title: "Cómo Nommy hace más feliz al equipo: ventajas para el ambiente laboral",
       description:
         "Descubre cómo Nommy simplifica la nómina, la asistencia y el bienestar del equipo, y mejora la felicidad y el clima laboral de tus colaboradores.",
