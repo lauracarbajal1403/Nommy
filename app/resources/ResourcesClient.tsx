@@ -129,6 +129,18 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "No hagas de tu despacho contable una empresa de terror: cómo atender más clientes de nómina en menos tiempo",
+      description:
+        "¿Cierres de nómina de terror? Descubre cómo un software de nómina para despachos contables te ayuda a atender más clientes en menos tiempo.",
+      category: "Nómina",
+      icon: BookOpen,
+      image: "/despachos-terror-hero.jpg",
+      link: "/blog/software-de-nomina-para-despachos-contables",
+      readTime: "7 min de lectura",
+      date: "30 Oct 2026",
+      isFeatured: true,
+    },
+    {
       title: "Software de Recursos Humanos y Nómina en México: qué buscar si gestionas varios clientes a la vez",
       description:
         "¿Gestionas la nómina de varios clientes? Descubre qué buscar en un software de recursos humanos y nómina para escalar sin multiplicar el trabajo.",
