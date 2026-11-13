@@ -129,6 +129,16 @@ export default function ResourcesPage() {
 
   const resources = [
     {
+      title: "Retención de talento en México: cómo una app de RH ayuda a que tu equipo se quede",
+      description: "6 estrategias de retención de talento y cómo la app de Nommy mejora la experiencia de tu equipo.",
+      category: "Talento",
+      icon: BookOpen,
+      image: "/celular.png",
+      link: "/blog/retencion-de-talento-app-de-recursos-humanos",
+      readTime: "7 min de lectura",
+      date: "13 Nov 2026",
+    },
+    {
       title: "No hagas de tu despacho contable una empresa de terror: cómo atender más clientes de nómina en menos tiempo",
       description:
         "¿Cierres de nómina de terror? Descubre cómo un software de nómina para despachos contables te ayuda a atender más clientes en menos tiempo.",

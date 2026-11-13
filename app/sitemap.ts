@@ -38,6 +38,7 @@ const ENTRIES: Entry[] = [
   { path: "/blog/nommy-bienestar-y-felicidad-laboral", priority: 0.6, changeFrequency: "monthly" },
   { path: "/blog/software-de-nomina-en-mexico-varios-clientes", priority: 0.6, changeFrequency: "monthly" },
   { path: "/blog/software-de-nomina-para-despachos-contables", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/blog/retencion-de-talento-app-de-recursos-humanos", priority: 0.6, changeFrequency: "monthly" },
   { path: "/landing", priority: 0.5, changeFrequency: "monthly" },
   { path: "/terminos", priority: 0.3, changeFrequency: "yearly" },
   { path: "/aviso", priority: 0.3, changeFrequency: "yearly" },
